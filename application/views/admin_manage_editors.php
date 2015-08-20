@@ -1,4 +1,5 @@
 <!--
+go to index.php/test/test2/admin_manage_editors to view this page
 Data needed to this view.
 user => { Object containing the name, title. gender, role, profile_picture_URL} of the logged in user
 users => set of registered editors {role= editor deleted = 0 banned = 0} {name, id and email address }
