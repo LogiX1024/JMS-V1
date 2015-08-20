@@ -1,3 +1,12 @@
+<!--
+Data needed to this view.
+user => { Object containing the name, title. gender, role, profile_picture_URL}
+users => set of registered editors {deleted = 0 banned = 0} {name, id and email address }
+functions in the controller
+get_single_user() should accept id of the user as POST request and return a JSON array of data about the user {first name, last name, title, mobile no, address1, address2, city, postal code, country, email, aand id}
+delete_user() should accept the id of the user to be deleted and password of the logged in user as POST. then verify the passwod. then set the value deleted of the user to 1
+!-->
+
 <?php $this->load->view('partial/header'); ?>
 <!-- Data Tables -->
 <link href="<?php echo base_url('assets'); ?>/css/plugins/dataTables/dataTables.bootstrap.css" rel="stylesheet">
@@ -272,7 +281,7 @@ $this->load->view('partial/modals/editor');
 //                    show_user_modal('admin_manage_users', data, 'editor');
 //                }
 //            });
-           var data = null;
+            var data = null;
             show_user_modal('admin_manage_users', data, 'editor');
 
         });
@@ -297,7 +306,7 @@ $this->load->view('partial/modals/editor');
         toastr.options = {
             "closeButton": true,
             "progressBar": true
-        }
+        };
 
         switch (success) {
             case 1:
