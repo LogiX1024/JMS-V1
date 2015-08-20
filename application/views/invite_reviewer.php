@@ -1,11 +1,11 @@
 <!--
 Data needed to this view.
 user => { Object containing the name, title. gender, role, profile_picture_URL} of the logged in user
-users => set of registered editors {role= editor deleted = 0 banned = 0} {name, id and email address }
+users => set of pending reviewer{ role = reviewer deleted = 0 banned = 1} {name, id and email address }
 functions in the controller
-get_single_user() should accept id of the user as POST request and return a JSON array of data about the user {first name, last name, title, mobile no, address1, address2, city, postal code, country, email, aand id}
-delete_user() should accept the id of the user to be deleted and password of the logged in user as POST. then verify the passwod. then set the value deleted of the user to 1
-add_editor() inserts an editor account, with a random generated p/w from random_string('alnum',8) method. email the password and login details to the newly created user.
+get_single_user() should accept id of the user as POST request and return a JSON array of data about the user {first name, last name, title, mobile no, address1, address2, city, postal code, country, email, and id}
+accept_user() should accept the id of the user to be accepted and password of the logged in user as POST. then verify the passwod. then set the value banned of the user to 0
+accept_user() should accept the id of the user to be rejected and password of the logged in user as POST. then verify the passwod. then set the value deleted of the user to 1
 !-->
 
 <?php $this->load->view('partial/header'); ?>
@@ -33,13 +33,13 @@ add_editor() inserts an editor account, with a random generated p/w from random_
         </div>
         <div class="row wrapper border-bottom white-bg page-heading">
             <div class="col-sm-4">
-                <h2><span class="fa fa-user"></span> Manage Editors</h2>
+                <h2><span class="fa fa-user"></span> Reviewers</h2>
                 <ol class="breadcrumb">
                     <li>
                         Users
                     </li>
                     <li class="active">
-                        <strong>Manage Editors</strong>
+                        <strong>Manage Reviewers</strong>
                     </li>
                 </ol>
             </div>
@@ -49,8 +49,8 @@ add_editor() inserts an editor account, with a random generated p/w from random_
                 <div class="col-lg-12">
                     <div class="ibox float-e-margins">
                         <div class="ibox-title">
-                            <h5>Add Editors
-                                <small>Add Editors to the system</small>
+                            <h5>Invite Reviewers
+                                <small>Invite Reviewers to the system</small>
                             </h5>
                             <div class="ibox-tools">
                                 <a class="collapse-link">
@@ -63,7 +63,7 @@ add_editor() inserts an editor account, with a random generated p/w from random_
                         </div>
                         <div class="ibox-content">
                             <form method="post" id="add_cad_user" class="form-horizontal"
-                                  action="<?= base_url('/users/add_editor') ?>">
+                                  action="<?= base_url('/users/invite_reviewer') ?>">
                                 <div class="row">
                                     <div class="col-lg-6 col-md-6">
                                         <div class="form-group">
@@ -109,8 +109,8 @@ add_editor() inserts an editor account, with a random generated p/w from random_
                                 </div>
                                 <div class="form-group">
                                     <div class="col-sm-12 ">
-                                        <button class="btn btn-primary pull-right" type="submit">Add <span
-                                                class="fa fa-plus"></span></button>
+                                        <button class="btn btn-primary pull-right" type="submit">Invite <span
+                                                class="fa fa-envelope-o"></span></button>
                                     </div>
                                 </div>
                             </form>
@@ -122,8 +122,8 @@ add_editor() inserts an editor account, with a random generated p/w from random_
                 <div class="col-lg-12">
                     <div class="ibox float-e-margins">
                         <div class="ibox-title">
-                            <h5>Manage Editors
-                                <small>Manage Registered Editors on the system</small>
+                            <h5>Reviewers Reviewers
+                                <small>Accept Reviewers to the system</small>
                             </h5>
                             <div class="ibox-tools">
                                 <a class="collapse-link">
@@ -140,7 +140,7 @@ add_editor() inserts an editor account, with a random generated p/w from random_
                                 <tr>
                                     <th>Name</th>
                                     <th>E-Mail</th>
-                                    <th style="width: 150px">Action</th>
+                                    <th style="width: 200px">Action</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -152,8 +152,11 @@ add_editor() inserts an editor account, with a random generated p/w from random_
                                             <button class="btn btn-sm btn-default btn-outline view" data-user-id="1">
                                                 View
                                             </button>
-                                            <button class="btn btn-sm btn-danger btn-outline delete" data-user-id="1">
-                                                Delete
+                                            <button class="btn btn-sm btn-success btn-outline accept" data-user-id="1">
+                                                Accept
+                                            </button>
+                                            <button class="btn btn-sm btn-danger btn-outline reject" data-user-id="1">
+                                                Reject
                                             </button>
                                         </div>
                                     </td>
@@ -198,26 +201,25 @@ add_editor() inserts an editor account, with a random generated p/w from random_
 
 <!-- Model Editor -->
 <?php
-$this->load->view('partial/modals/editor');
+$this->load->view('partial/modals/reviewer');
 ?>
 
-<div class="modal inmodal" id="modelDelete" tabindex="-1" role="dialog" aria-hidden="true">
+<div class="modal inmodal" id="modelAccept" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-sm">
         <div class="modal-content animated fadeIn tada">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal"><span
                         aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                <i class="fa fa-user-times modal-icon"></i>
-                <h4 id="cad-modal-title" class="modal-title">Delete User</h4>
+                <i class="fa fa-user-plus modal-icon"></i>
+                <h4 id="cad-modal-title" class="modal-title">Accept Reviewer</h4>
             </div>
-            <form action="<?php echo base_url('users/delete_user') ?>" method="POST">
-                <input type="text" id="delete-user-id" name="id" value="" hidden="hidden" class="hidden"/>
+            <form action="<?php echo base_url('users/accept_reviewer') ?>" method="POST">
+                <input type="text" id="accept-user-id" name="id" value="" hidden="hidden" class="hidden"/>
 
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-md-12 col-lg-12 col-sm-12">
-                            <p class="text-danger text-center">Do you really want to delete the user?<br/>This cannot be
-                                reversed.</p>
+                            <p class="text-center">Do you really want to accept the reviewer?</p>
 
                             <div class="form-group">
                                 <label class="text-center" for="password">Please enter your password to continue</label>
@@ -228,7 +230,43 @@ $this->load->view('partial/modals/editor');
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button id="delete-user-delete" type="submit" class="btn btn-danger">Delete</button>
+                    <button id="accept-user-accept" type="submit" class="btn btn-success">Accept</button>
+                    <button type="button" class="btn btn-white" data-dismiss="modal">Close</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="modal inmodal" id="modelReject" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content animated fadeIn tada">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span
+                        aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <i class="fa fa-user-times modal-icon"></i>
+                <h4 id="cad-modal-title" class="modal-title">Reject Reviewer</h4>
+            </div>
+            <form action="<?php echo base_url('users/reject_reviewer') ?>" method="POST">
+                <input type="text" id="reject-user-id" name="id" value="" hidden="hidden" class="hidden"/>
+
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-12 col-lg-12 col-sm-12">
+                            <p class="text-danger text-center">Do you really want to reject the reviewer?<br/>This
+                                cannot be
+                                reversed.</p>
+
+                            <div class="form-group">
+                                <label class="text-center" for="password">Please enter your password to continue</label>
+                                <input id="reject-user-password" type="password" class="form-control" name="password"
+                                       value=""/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button id="reject-user-reject" type="submit" class="btn btn-danger">Reject</button>
                     <button type="button" class="btn btn-white" data-dismiss="modal">Close</button>
                 </div>
             </form>
@@ -283,16 +321,22 @@ $this->load->view('partial/modals/editor');
 //                }
 //            });
             var data = null;
-            show_user_modal('admin_manage_users', data, 'editor');
+            show_user_modal('invite_reviewer', data, 'reviewer');
 
         });
-        $('.delete').click(function (e) {
+        $('.accept').click(function (e) {
             e.preventDefault();
             var userId = $(this).data('user-id');
-            $('#delete-user-id').val(userId);
-            $('#modelDelete').modal('show');
+            $('#accept-user-id').val(userId);
+            $('#modelAccept').modal('show');
         });
 
+        $('.reject').click(function (e) {
+            e.preventDefault();
+            var userId = $(this).data('user-id');
+            $('#reject-user-id').val(userId);
+            $('#modelReject').modal('show');
+        });
 
         $('.dataTables-example').dataTable({
             responsive: true,
