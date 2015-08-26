@@ -49,7 +49,7 @@ add_editor() inserts an editor account, with a random generated p/w from random_
             <div class="row">
                 <div class="col-lg-12">
                     <div class="ibox float-e-margins">
-                        <div class="ibox-title">
+                        <div class="ibox-title"> 
                             <h5>Add Editors
                                 <small>Add Editors to the system</small>
                             </h5>
@@ -64,11 +64,11 @@ add_editor() inserts an editor account, with a random generated p/w from random_
                         </div>
                         <div class="ibox-content">
                             <form method="post" id="add_cad_user" class="form-horizontal"
-                                  action="<?= base_url('/users/add_editor') ?>">
+                                  action="<?= base_url('/index.php/users/add_editor') ?>">
                                 <div class="row">
                                     <div class="col-lg-6 col-md-6">
                                         <div class="form-group">
-                                            <label class="col-sm-3 control-label">First Name</label>
+                                            <label class="col-sm-3 control-label" >First Name</label>
 
                                             <div class="col-sm-9">
                                                 <input name="first_name" required="" type="text" class="form-control"
@@ -159,28 +159,23 @@ add_editor() inserts an editor account, with a random generated p/w from random_
                                         </div>
                                     </td>
                                 </tr>
-                                <!--                                --><?php //foreach ($users as $user): ?>
-                                <!--                                    <tr>-->
-                                <!--                                        <td>-->
-                                <? //= $user->first_name . " " . $user->last_name ?><!--</td>-->
-                                <!--                                        <td>-->
-                                <? //= ucfirst($user->user_type) ?><!--</td>-->
-                                <!--                                        <td class="text-center">-->
-                                <!--                                            <div class="btn-group btn-group-sm">-->
-                                <!--                                                <button class="btn btn-sm btn-default btn-outline view"-->
-                                <!--                                                        data-user-id="-->
-                                <? //= $user->id ?><!--"-->
-                                <!--                                                        data-user-type="-->
-                                <? //= $user->user_type ?><!--">View-->
-                                <!--                                                </button>-->
-                                <!--                                                <button class="btn btn-sm btn-danger delete"-->
-                                <!--                                                        data-user-id="-->
-                                <? //= $user->id ?><!--">Delete-->
-                                <!--                                                </button>-->
-                                <!--                                            </div>-->
-                                <!--                                        </td>-->
-                                <!--                                    </tr>-->
-                                <!--                                --><?php //endforeach; ?>
+                                 <?php  foreach ($users as $user): ?>
+                                 <tr> 
+                                 <td> 
+                                <?= $user->first_name . " " . $user->last_name ?> </td> 
+                                 <td><?= $user->email_address?></td> 
+                                 <td class="text-center"> 
+                                 <div class="btn-group btn-group-sm"> 
+                                 <button class="btn btn-sm btn-default btn-outline view" 
+                                             data-user-id="<?= $user->id ?>">View </button> 
+                                <button class="btn btn-sm btn-danger delete" 
+                                                                                        data-user-id=" 
+                                <?= $user->id ?>">Delete 
+                                                                             </button> 
+                                                                             </div> 
+                                                                         </td> 
+                                                                    </tr> 
+                                                                <?php  endforeach; ?>
 
 
                                 </tbody>
@@ -273,16 +268,16 @@ $this->load->view('partial/modals/editor');
             e.preventDefault();
             var userId = $(this).data('user-id');
 
-//            $.ajax({
-//                type: "POST",
-//                dataType: 'json',
-//                url: "<?php //echo base_url('users/get_single_user/'); ?>//",
-//                data: {
-//                    user_id: userId
-//                }, success: function (data) {
-//                    show_user_modal('admin_manage_users', data, 'editor');
-//                }
-//            });
+            $.ajax({
+                type: "POST",
+                dataType: 'json',
+                url: "<?php echo base_url('/index.php/users/get_single_user/'); ?>",
+                data: {
+                    user_id: userId
+                }, success: function (data) {
+                    show_user_modal('admin_manage_users', data, 'editor');
+                }
+            });
             var data = null;
             show_user_modal('admin_manage_users', data, 'editor');
 
