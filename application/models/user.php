@@ -40,5 +40,11 @@ class User extends CI_Model {
         $query = $this->db->get();
         return $query->result();
     }
+    
+    public function Update($fieldset,$tableName,$id) {
+        $this->db->where('id', $id);
+        $this->db->update($tableName,$fieldset);
+        
+    }
 
 }

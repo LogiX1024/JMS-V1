@@ -11,7 +11,13 @@ class Users extends CI_Controller {
     }
 
     public function index() {
-        $this->load->view('login');
+        $userid = $this->session->userdata('id');
+        if(isset($userid)){
+//            redirect(base_url().'index.php/Users' );
+            $this->load->view('dashboard');
+        }  else {
+            $this->load->view('login');
+        }
     }
 
     public function login() {
@@ -31,9 +37,9 @@ class Users extends CI_Controller {
 
         if (!is_null($user)) {
             if ($user->password === $pass) {
-                if (isset($remember) && $remember === "remember") {
-                    $this->session->set_userdata($user);
-                }
+                
+                $this->session->set_userdata($user);
+                
                 $this->load->view('dashboard');
                 $this->user->loginLogSave($user->id, $ip);
             } else {
@@ -88,4 +94,62 @@ class Users extends CI_Controller {
 
     }
 
+    public function reviewers(){
+        $fieldset = array('id','email_address','first_name','last_name','title','gender','mobile_no' ,'address1','address2',
+        'city','postal_code','country','role','profile_picture_URL','security_question','security_answer','');
+        $data['users'] = $this->user->getData($fieldset,'user');
+        $this->load->view("invite_reviewer",$data);
+        
+    }
+    
+    public function invite_reviewer(){
+        $first_name = $this->input->post("first_name");
+        $email = $this->input->post("email");
+        $last_name = $this->input->post("last_name");
+        
+        //ToDO send this data as a mail to reviver 
+        
+    }
+    
+    public function accept_reviewer() {
+        // login userge pw eka check karanna oona
+        // Reviewerge banded 
+        
+        $id = $this->input->post("id");
+        
+        $user_password = $this->session->userdata("id");
+        $password = $this->input->post("password");
+        
+        $password = sha1($password);
+        
+        if ($user_password===$password) {
+            $fieldset = array('banned'=>0);
+            $this->user->Update($fieldset,"user",$id);
+        }
+
+    }
+    
+    public function reject_reviewer() {
+        // login userge pw eka check karanna oona
+        // Reviewerge banded 
+        
+        $id = $this->session->userdata("id");
+        
+        $user_password = $this->session->userdata("id");
+        $password = $this->input->post("password");
+        
+        $password = sha1($password);
+        
+        if ($user_password===$password) {
+            $fieldset = array('deleted'=>1);
+            $this->user->Update($fieldset,"user",$id);
+        }
+
+    }
+    
+    public function logOut() {
+       $this->session->sess_destroy();
+        $this->load->view('login');
+    }
+    
 }

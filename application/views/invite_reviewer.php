@@ -150,40 +150,40 @@ accept_user() should accept the id of the user to be rejected and password of th
                                     <td>someone@example.com</td>
                                     <td class="text-center">
                                         <div class="btn-group btn-group-sm">
-                                            <button class="btn btn-sm btn-default btn-outline view" data-user-id="1">
+                                            <button class="btn btn-sm btn-default btn-outline view" data-user-id="2">
                                                 View
                                             </button>
-                                            <button class="btn btn-sm btn-success btn-outline accept" data-user-id="1">
+                                            <button class="btn btn-sm btn-success btn-outline accept" data-user-id="2">
                                                 Accept
                                             </button>
-                                            <button class="btn btn-sm btn-danger btn-outline reject" data-user-id="1">
+                                            <button class="btn btn-sm btn-danger btn-outline reject" data-user-id="2">
                                                 Reject
                                             </button>
                                         </div>
                                     </td>
                                 </tr>
-                                <!--                                --><?php //foreach ($users as $user): ?>
-                                <!--                                    <tr>-->
-                                <!--                                        <td>-->
-                                <? //= $user->first_name . " " . $user->last_name ?><!--</td>-->
-                                <!--                                        <td>-->
-                                <? //= ucfirst($user->user_type) ?><!--</td>-->
-                                <!--                                        <td class="text-center">-->
-                                <!--                                            <div class="btn-group btn-group-sm">-->
-                                <!--                                                <button class="btn btn-sm btn-default btn-outline view"-->
-                                <!--                                                        data-user-id="-->
-                                <? //= $user->id ?><!--"-->
-                                <!--                                                        data-user-type="-->
-                                <? //= $user->user_type ?><!--">View-->
-                                <!--                                                </button>-->
-                                <!--                                                <button class="btn btn-sm btn-danger delete"-->
-                                <!--                                                        data-user-id="-->
-                                <? //= $user->id ?><!--">Delete-->
-                                <!--                                                </button>-->
-                                <!--                                            </div>-->
-                                <!--                                        </td>-->
-                                <!--                                    </tr>-->
-                                <!--                                --><?php //endforeach; ?>
+                                                               <?php foreach ($users as $user): ?>
+                                                                    <tr>
+                                                                        <td>
+                                <?= $user->first_name . " " . $user->last_name ?></td>
+                                                                        <td>
+                                <?= ucfirst($user->role) ?></td>
+                                                                        <td class="text-center">
+                                                                            <div class="btn-group btn-group-sm">
+                                                                                <button class="btn btn-sm btn-default btn-outline view"
+                                                                                        data-user-id="
+                                <?= $user->id ?>"
+                                                                                        data-user-type="
+                                <?= $user->role ?>">View"
+                                                                                </button>
+                                                                                <button class="btn btn-sm btn-danger delete"
+                                                                                        data-user-id="
+                                <?= $user->id ?>">Delete"
+                                                                                </button>
+                                                                            </div>
+                                                                        </td>
+                                                                    </tr>
+                                                                <?php endforeach; ?>
 
 
                                 </tbody>

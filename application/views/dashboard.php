@@ -11,5 +11,6 @@ and open the template in the editor.
     </head>
     <body>
         <h1>Dashboard</h1>
+        <a href="http://localhost/JMS-V1/index.php/users/logOut">Log Out</a>
     </body>
 </html>
