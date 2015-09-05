@@ -8,6 +8,7 @@ class Users extends CI_Controller {
     public function __construct() {
         parent::__construct();
         $this->load->model('user');
+        $this->load->library('form_validation');
     }
 
     public function index() {
@@ -21,7 +22,6 @@ class Users extends CI_Controller {
     }
 
     public function login() {
-        $this->load->library('form_validation');
         $this->form_validation->set_rules('username', 'Email', 'required|valid_email|is_unique[user.email_address]');
         $this->form_validation->set_rules('password', 'Password', 'trim|required|sha1');
         $email = $this->input->post('username');
@@ -122,4 +122,43 @@ class Users extends CI_Controller {
         $this->load->view('login');
     }
 
+    public function forgot_pass() {
+        $this->load->view("forgot_password");
+    }
+    
+    public function forgot_pw() {
+        $this->form_validation->set_rules('username', 'Email', 'required|valid_email|is_unique[user.email_address]');
+        $email = $this->input->post('username');
+        $id_email = $this->user->is_User($email);
+        if (isset($id_email)) {
+            $url = "http://localhost/JMS-V1/index.php/users/reset_password/".$id_email->email_address."/";
+            echo $url;
+//            echo $id_email->id." ".$id_email->email_address;
+        }  else {
+            $this->load->view("forgot_password");
+        }
+    }
+    
+    public function reset_password($email) {
+        $data["emails"]= array("email"=>$email);
+        $this->load->view("password_reset",$data);
+    }
+    
+    public function reset() {
+        $this->form_validation->set_rules('username', 'Email', 'required|valid_email|is_unique[user.email_address]');
+        $this->form_validation->set_rules('password', 'Password', 'trim|required|sha1');
+        $this->form_validation->set_rules('repassword', 'Password', 'trim|required|sha1');
+        $email = $this->input->post('username');
+        $pass = $this->input->post('password');
+        $pass2 = $this->input->post('repassword');
+        
+        if($pass==$pass2){
+            $this->user->reset_pw($email,$pass);
+        }  else {
+            $url = "http://localhost/JMS-V1/index.php/users/reset_password/".$email."/";
+            redirect($url);
+        }
+        
+    }
+    
 }

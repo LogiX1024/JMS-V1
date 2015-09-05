@@ -50,7 +50,7 @@
                     </div>
                     <button type="submit" class="btn btn-primary block full-width m-b">Login</button>
 
-                    <a href="#">
+                    <a href="<?= base_url('/index.php/users/forgot_pass') ?>">
                         <small>Forgot password?</small>
                     </a>
                 </form>
