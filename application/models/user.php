@@ -12,7 +12,6 @@ class User extends CI_Model {
         $this->db->where('email_address', $email);
         $res = $this->db->get();
         $arr = $res->result();
-
         if ($res->num_rows() > 0) {
             return $arr[0];
         } else {
@@ -24,13 +23,13 @@ class User extends CI_Model {
         $data = array('user_id' => $uid, 'ip' => $ipadd);
         $this->db->insert('login_log', $data);
     }
-    
+
     public function insertData($table, $data) {
         $this->db->insert($table, $data);
         $insert_id = $this->db->insert_id();
-        return  $insert_id;
+        return $insert_id;
     }
-    
+
     public function getData($fieldset, $tableName, $where = '') {
         if ($where == "") {
             $this->db->select($fieldset)->from($tableName);
@@ -40,11 +39,10 @@ class User extends CI_Model {
         $query = $this->db->get();
         return $query->result();
     }
-    
-    public function Update($fieldset,$tableName,$id) {
+
+    public function Update($fieldset, $tableName, $id) {
         $this->db->where('id', $id);
-        $this->db->update($tableName,$fieldset);
-        
+        $this->db->update($tableName, $fieldset);
     }
 
 }
