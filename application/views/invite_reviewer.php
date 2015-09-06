@@ -1,5 +1,6 @@
 <!--
 go to index.php/test/test2/invite_reviewer to view this page
+go to index.php/users/reviewers to view this page
 Data needed to this view.
 user => { Object containing the name, title. gender, role, profile_picture_URL} of the logged in user
 users => set of pending reviewer{ role = reviewer deleted = 0 banned = 1} {name, id and email address }
@@ -174,11 +175,14 @@ accept_user() should accept the id of the user to be rejected and password of th
                                                                 data-user-id="
                                                                 <?= $user->id ?>"
                                                                 data-user-type="
-                                                                <?= $user->role ?>">View"
+                                                                <?= $user->role ?>">View
+                                                        </button>
+                                                        <button class="btn btn-sm btn-success btn-outline accept" data-user-id="2">
+                                                        Accept
                                                         </button>
                                                         <button class="btn btn-sm btn-danger delete"
                                                                 data-user-id="
-                                                                <?= $user->id ?>">Delete"
+                                                                <?= $user->id ?>">Delete
                                                         </button>
                                                     </div>
                                                 </td>

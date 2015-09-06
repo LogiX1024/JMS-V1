@@ -1,5 +1,6 @@
 <!-- 
 go to index.php/test/test2/admin_manage_editors to view this page
+go to index.php/users/new_editor to view this page
 Data needed to this view.
 user => { Object containing the name, title. gender, role, profile_picture_URL} of the logged in user
 users => set of registered editors {role= editor deleted = 0 banned = 0} {name, id and email address }
@@ -105,13 +106,11 @@ add_editor() inserts an editor account, with a random generated p/w from random_
                                                 </select>
                                             </div>
                                         </div>
-
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <div class="col-sm-12 ">
-                                        <button class="btn btn-primary pull-right" type="submit">Add <span
-                                                class="fa fa-plus"></span></button>
+                                        <button class="btn btn-primary pull-right" type="submit">Add <span class="fa fa-plus"></span></button>
                                     </div>
                                 </div>
                             </form>
@@ -166,16 +165,12 @@ add_editor() inserts an editor account, with a random generated p/w from random_
                                  <td><?= $user->email_address?></td> 
                                  <td class="text-center"> 
                                  <div class="btn-group btn-group-sm"> 
-                                 <button class="btn btn-sm btn-default btn-outline view" 
-                                             data-user-id="<?= $user->id ?>">View </button> 
-                                <button class="btn btn-sm btn-danger delete" 
-                                                                                        data-user-id=" 
-                                <?= $user->id ?>">Delete 
-                                                                             </button> 
-                                                                             </div> 
-                                                                         </td> 
-                                                                    </tr> 
-                                                                <?php  endforeach; ?>
+                                 <button class="btn btn-sm btn-default btn-outline view" data-user-id="<?= $user->id ?>">View </button> 
+                                 <button class="btn btn-sm btn-danger delete" data-user-id="<?= $user->id ?>">Delete </button> 
+                                 </div> 
+                                 </td> 
+                                 </tr> 
+                                 <?php  endforeach; ?>
 
 
                                 </tbody>
