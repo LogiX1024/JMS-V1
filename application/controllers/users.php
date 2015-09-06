@@ -13,7 +13,7 @@ class Users extends CI_Controller {
 
     public function index() {
         $userid = $this->session->userdata('id');
-        if (isset($userid)) {
+        if ($userid!=FALSE) {
 //            redirect(base_url().'index.php/Users' );
             $this->load->view('dashboard');
         } else {
@@ -21,6 +21,7 @@ class Users extends CI_Controller {
         }
     }
 
+    // Login & Logout
     public function login() {
         $this->form_validation->set_rules('username', 'Email', 'required|valid_email|is_unique[user.email_address]');
         $this->form_validation->set_rules('password', 'Password', 'trim|required|sha1');
@@ -44,7 +45,13 @@ class Users extends CI_Controller {
             $this->load->view('login', $error);
         }
     }
+    
+    public function logOut() {
+        $this->session->sess_destroy();
+        $this->load->view('login');
+    }
 
+    // Editors Area
     public function add_editor() {
         $first_name = $this->input->post("first_name", TRUE);
         $email = $this->input->post("email", TRUE);
@@ -77,6 +84,7 @@ class Users extends CI_Controller {
         //var_dump($a);
     }
 
+    // Reviewers Area
     public function reviewers() {
         $fieldset = array('id', 'email_address', 'first_name', 'last_name', 'title', 'gender', 'mobile_no', 'address1', 'address2',
             'city', 'postal_code', 'country', 'role', 'profile_picture_URL', 'security_question', 'security_answer', '');
@@ -116,12 +124,18 @@ class Users extends CI_Controller {
             $this->user->Update($fieldset, "user", $id);
         }
     }
-
-    public function logOut() {
-        $this->session->sess_destroy();
-        $this->load->view('login');
+    
+    public function register_reviewer() {
+        $this->load->view("register_reviewer");
+    }
+    
+    public function reviewerRegistation() {
+        
     }
 
+
+
+    // Forgot Password Area
     public function forgot_pass() {
         $this->load->view("forgot_password");
     }
