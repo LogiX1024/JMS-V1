@@ -13,7 +13,7 @@ class Users extends CI_Controller {
 
     public function index() {
         $userid = $this->session->userdata('id');
-        if ($userid!=FALSE) {
+        if ($userid != FALSE) {
 //            redirect(base_url().'index.php/Users' );
             $this->load->view('dashboard');
         } else {
@@ -45,7 +45,7 @@ class Users extends CI_Controller {
             $this->load->view('login', $error);
         }
     }
-    
+
     public function logOut() {
         $this->session->sess_destroy();
         $this->load->view('login');
@@ -124,40 +124,65 @@ class Users extends CI_Controller {
             $this->user->Update($fieldset, "user", $id);
         }
     }
-    
+
     public function register_reviewer() {
         $this->load->view("register_reviewer");
     }
-    
+
     public function reviewerRegistation() {
-        
+
+        $email = $this->input->post("username", TRUE);
+        $pass = $this->input->post("password", TRUE);
+        $pass2 = $this->input->post("password2", TRUE);
+        if ($pass == $pass2) {
+            $first_name = $this->input->post("first_name", TRUE);
+            $last_name = $this->input->post("last_name", TRUE);
+            $DataSet = array('first_name' => $first_name, 'last_name' => $last_name, 'email_address' => $email, 'role' => "Reviewer");
+
+            $config['upload_path'] = './uploadimg/';
+            $config['allowed_types'] = 'gif|jpg|png';
+            $config['max_size'] = 100;
+            $config['max_width'] = 1024;
+            $config['max_height'] = 768;
+            $this->load->library('upload', $config);
+
+            if (!$this->upload->do_upload('profile_picture')) {
+                $error = array('error' => $this->upload->display_errors());
+
+                $this->load->view('upload_form', $error);
+            } else {
+                $data = array('upload_data' => $this->upload->data());
+
+                $this->load->view('upload_success', $data);
+            }
+        } else {
+            
+        }
     }
-
-
 
     // Forgot Password Area
     public function forgot_pass() {
         $this->load->view("forgot_password");
     }
-    
+
     public function forgot_pw() {
         $this->form_validation->set_rules('username', 'Email', 'required|valid_email|is_unique[user.email_address]');
         $email = $this->input->post('username');
         $id_email = $this->user->is_User($email);
         if (isset($id_email)) {
-            $url = "http://localhost/JMS-V1/index.php/users/reset_password/".$id_email->email_address."/";
+            $url = "http://localhost/JMS-V1/index.php/users/reset_password/" . $id_email->email_address . "/";
             echo $url;
 //            echo $id_email->id." ".$id_email->email_address;
-        }  else {
+        } else {
             $this->load->view("forgot_password");
         }
     }
-    
+
     public function reset_password($email) {
-        $data["emails"]= array("email"=>$email);
-        $this->load->view("password_reset",$data);
+        $data["emails"] = array("email" => $email);
+        $this->load->view("password_reset", $data);
     }
-    
+
     public function reset() {
         $this->form_validation->set_rules('username', 'Email', 'required|valid_email|is_unique[user.email_address]');
         $this->form_validation->set_rules('password', 'Password', 'trim|required|sha1');
@@ -165,14 +190,13 @@ class Users extends CI_Controller {
         $email = $this->input->post('username');
         $pass = $this->input->post('password');
         $pass2 = $this->input->post('repassword');
-        
-        if($pass==$pass2){
-            $this->user->reset_pw($email,$pass);
-        }  else {
-            $url = "http://localhost/JMS-V1/index.php/users/reset_password/".$email."/";
+
+        if ($pass == $pass2) {
+            $this->user->reset_pw($email, $pass);
+        } else {
+            $url = "http://localhost/JMS-V1/index.php/users/reset_password/" . $email . "/";
             redirect($url);
         }
-        
     }
-    
+
 }
