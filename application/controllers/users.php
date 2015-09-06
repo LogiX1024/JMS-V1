@@ -129,7 +129,7 @@ class Users extends CI_Controller {
         $this->load->view("register_reviewer");
     }
 
-    public function reviewerRegistation() {
+    public function reviewerRegistration() {
 
         $email = $this->input->post("username", TRUE);
         $pass = $this->input->post("password", TRUE);
@@ -137,26 +137,132 @@ class Users extends CI_Controller {
         if ($pass == $pass2) {
             $first_name = $this->input->post("first_name", TRUE);
             $last_name = $this->input->post("last_name", TRUE);
-            $DataSet = array('first_name' => $first_name, 'last_name' => $last_name, 'email_address' => $email, 'role' => "Reviewer");
-
+            $title = $this->input->post("title", TRUE);
+            $gender = $this->input->post("gender", TRUE);
+            $mobile_no = $this->input->post("mobile_no", TRUE);
+            $address1 = $this->input->post("address1", TRUE);
+            $address2 = $this->input->post("address2");
+            $city = $this->input->post("city", TRUE);
+            $postal_code = $this->input->post("postal_code", TRUE);
+            $country = $this->input->post("country", TRUE);
+            $sec_question = $this->input->post("sec_question", TRUE);
+            $sec_answer = $this->input->post("sec_answer", TRUE);
+            // Uploading Part
             $config['upload_path'] = './uploadimg/';
-            $config['allowed_types'] = 'gif|jpg|png';
-            $config['max_size'] = 100;
+            $config['allowed_types'] = 'jpg|png';
+            $config['max_size'] = 0;
             $config['max_width'] = 1024;
             $config['max_height'] = 768;
+            $config['encrypt_name'] = TRUE;
             $this->load->library('upload', $config);
-
             if (!$this->upload->do_upload('profile_picture')) {
                 $error = array('error' => $this->upload->display_errors());
-
-                $this->load->view('upload_form', $error);
+                $this->load->view('register_reviewer', $error);
             } else {
-                $data = array('upload_data' => $this->upload->data());
+                $img_url = $this->upload->data('full_path');
+            }
 
-                $this->load->view('upload_success', $data);
+            $DataSet = array('first_name' => $first_name,
+                'last_name' => $last_name,
+                'email_address' => $email,
+                'title' => $title,
+                'gender' => $gender,
+                'password' => $pass,
+                'mobile_no' => $mobile_no,
+                'address1' => $address1,
+                'address2' => $address2,
+                'city' => $city,
+                'postal_code' => $postal_code,
+                'country' => $country,
+                'profile_picture_URL' => $img_url,
+                'security_question' => $sec_question,
+                'security_answer' => $sec_answer,
+                'role' => "Reviewer",
+                'deleted' => 0,
+                'banned' => 1);
+
+            $insert_id = $this->user->insertData("user", $DataSet);
+            if ($insert_id > 0) {
+                $this->load->view('login');
+                //Todo; send email
+            } else {
+                $error = array('error' => "Error in InsertData");
+                $this->load->view('register_reviewer', $error);
             }
         } else {
-            
+            $error = array('error' => "Password mis match!");
+            $this->load->view('register_reviewer', $error);
+        }
+    }
+
+    // Authors Area
+    public function register_author() {
+        $this->load->view("register_author");
+    }
+
+    public function authorRegistration() {
+
+        $email = $this->input->post("username", TRUE);
+        $pass = $this->input->post("password", TRUE);
+        $pass2 = $this->input->post("password2", TRUE);
+        if ($pass == $pass2) {
+            $first_name = $this->input->post("first_name", TRUE);
+            $last_name = $this->input->post("last_name", TRUE);
+            $title = $this->input->post("title", TRUE);
+            $gender = $this->input->post("gender", TRUE);
+            $mobile_no = $this->input->post("mobile_no", TRUE);
+            $address1 = $this->input->post("address1", TRUE);
+            $address2 = $this->input->post("address2");
+            $city = $this->input->post("city", TRUE);
+            $postal_code = $this->input->post("postal_code", TRUE);
+            $country = $this->input->post("country", TRUE);
+            $sec_question = $this->input->post("sec_question", TRUE);
+            $sec_answer = $this->input->post("sec_answer", TRUE);
+            // Uploading Part
+            $config['upload_path'] = './uploadimg/';
+            $config['allowed_types'] = 'jpg|png';
+            $config['max_size'] = 0;
+            $config['max_width'] = 1024;
+            $config['max_height'] = 768;
+            $config['encrypt_name'] = TRUE;
+            $this->load->library('upload', $config);
+            if (!$this->upload->do_upload('profile_picture')) {
+                $error = array('error' => $this->upload->display_errors());
+                $this->load->view('register_reviewer', $error);
+            } else {
+                $img_url = $this->upload->data('full_path');
+            }
+
+            $DataSet = array('first_name' => $first_name,
+                'last_name' => $last_name,
+                'email_address' => $email,
+                'title' => $title,
+                'gender' => $gender,
+                'password' => $pass,
+                'mobile_no' => $mobile_no,
+                'address1' => $address1,
+                'address2' => $address2,
+                'city' => $city,
+                'postal_code' => $postal_code,
+                'country' => $country,
+                'profile_picture_URL' => $img_url,
+                'security_question' => $sec_question,
+                'security_answer' => $sec_answer,
+                'role' => "Author",
+                'deleted' => 0,
+                'banned' => 1);
+
+            $insert_id = $this->user->insertData("user", $DataSet);
+            if ($insert_id > 0) {
+                $this->load->view('login');
+                //Todo; send email
+            } else {
+                $error = array('error' => "Error in InsertData");
+                $this->load->view('register_reviewer', $error);
+            }
+        } else {
+            $error = array('error' => "Password mis match!");
+            $this->load->view('register_reviewer', $error);
         }
     }
 

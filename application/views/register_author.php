@@ -1,12 +1,12 @@
 <html>
     <body>
-        <h2>Reviewer Registration</h2>
+        <h2>Author Registration</h2>
         <?php
         if (isset($error)) {
             echo $error;
         }
         ?>
-        <form action="<?= base_url('/index.php/users/reviewerRegistration') ?>" method="POST" enctype="multipart/form-data" >
+        <form action="<?= base_url('/index.php/users/authorRegistration') ?>" method="POST" enctype="multipart/form-data" >
             <table>
                 <tr>
                     <td>email_address</td>
