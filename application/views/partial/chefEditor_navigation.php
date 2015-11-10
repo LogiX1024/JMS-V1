@@ -20,7 +20,7 @@
                     </ul>
                 </div>
                 <div class="logo-element">
-                    CAD
+                    JMS
                 </div>
             </li>
             
@@ -33,10 +33,8 @@
             <li>
                 <a href="#"><i class="fa fa-th-large"></i> <span class="nav-label">Sub Editors</span> <span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
-                    <li class="active"><a href="#">Add</a></li>
+                    <li ><a href="#">Add</a></li>
                     <li ><a href="#">Edit</a></li>
-                    <li ><a href="#">Block</a></li>
-                    <li ><a href="#">Band</a></li>
                 </ul>
             </li>
 

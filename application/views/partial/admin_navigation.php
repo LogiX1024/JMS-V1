@@ -20,7 +20,7 @@
                     </ul>
                 </div>
                 <div class="logo-element">
-                    CAD
+                    JMS
                 </div>
             </li>
             <li>
@@ -39,8 +39,6 @@
                 <ul class="nav nav-second-level">
                     <li><a href="#">Add</a></li>
                     <li><a href="#">Edit</a></li>
-                    <li><a href="#">Block</a></li>
-                    <li><a href="#">Band</a></li>
                 </ul>
             </li>
             <li>
@@ -49,8 +47,6 @@
                 <ul class="nav nav-second-level">
                     <li><a href="#">Add</a></li>
                     <li><a href="#">Edit</a></li>
-                    <li><a href="#">Block</a></li>
-                    <li><a href="#">Band</a></li>
                 </ul>
             </li>
             <li>
@@ -59,8 +55,6 @@
                 <ul class="nav nav-second-level">
                     <li><a href="#">Add</a></li>
                     <li><a href="#">Edit</a></li>
-                    <li><a href="#">Block</a></li>
-                    <li><a href="#">Band</a></li>
                 </ul>
             </li>
             

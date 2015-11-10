@@ -20,7 +20,7 @@
                     </ul>
                 </div>
                 <div class="logo-element">
-                    CAD
+                    JMS
                 </div>
             </li>
 
@@ -33,7 +33,7 @@
             <li>
                 <a href="#"><i class="fa fa-th-large"></i> <span class="nav-label">Dashboards</span> </a>
                 <ul class="nav nav-second-level">
-                    <li class="active"><a href="#">Dashboard v.1</a></li>
+                    <li ><a href="#">Dashboard v.1</a></li>
                     <li ><a href="#">Dashboard v.2</a></li>
                     <li ><a href="#">Dashboard v.3</a></li>
                     <li ><a href="#">Dashboard v.4</a></li>

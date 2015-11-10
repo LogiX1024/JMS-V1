@@ -20,7 +20,7 @@
                     </ul>
                 </div>
                 <div class="logo-element">
-                    CAD
+                    JMS
                 </div>
             </li>
 
