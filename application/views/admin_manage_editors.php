@@ -26,6 +26,10 @@ add_editor() inserts an editor account, with a random generated p/w from random_
 
     <!--    --><?php //$this->load->view('partial/admin_navigation', array('user' => $user, 'position' => $position)); ?>
     <?php $this->load->view('partial/admin_navigation'); ?>
+    <?php // $this->load->view('partial/chefEditor_navigation'); ?>
+    <?php // $this->load->view('partial/editor_navigation'); ?>
+    <?php // $this->load->view('partial/author_navigation'); ?>
+    <?php // $this->load->view('partial/reviewer_navigation'); ?>
 
     <div id="page-wrapper" class="gray-bg">
         <div class="row border-bottom">

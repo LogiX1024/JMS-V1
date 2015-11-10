@@ -24,65 +24,49 @@
                 </div>
             </li>
             <li>
-                <a href="dashboard"><i class="fa fa-th-large"></i> <span class="nav-label">Dashboard</span></a>
+                <a href="#"><i class="fa fa-th-large"></i> <span class="nav-label">Dashboard</span></a>
             </li>
             <li>
-                <a href="#"><i class="fa fa-envelope"></i> <span class="nav-label">Mailbox </span><span
+                <a href="#"><i class="fa fa-th-large"></i> <span class="nav-label">Create Journal</span></a>
+            </li>
+            <li>
+                <a href="#"><i class="fa fa-th-large"></i> <span class="nav-label">Edit Journal Info</span></a>
+            </li>
+            
+            <li>
+                <a href="#"><i class="fa fa-th-large"></i> <span class="nav-label">Editors</span><span
                         class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
-                    <li><a href="/compose">Compose</a></li>
-                    <li><a href="/inbox">Inbox <span class="label label-default pull-right">16</span></a></li>
-                    <li><a href="/sentbox">Sent</a></li>
+                    <li><a href="#">Add</a></li>
+                    <li><a href="#">Edit</a></li>
+                    <li><a href="#">Block</a></li>
+                    <li><a href="#">Band</a></li>
                 </ul>
             </li>
             <li>
-                <a href="#"><i class="fa fa-user"></i> <span class="nav-label">Users</span><span
+                <a href="#"><i class="fa fa-th-large"></i> <span class="nav-label">Reviewer</span><span
                         class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
-                    <li><a href="/users/create_CAD_user">Add CAD User</a></li>
-                    <li><a href="/users/registration_request">Registration Requests</a></li>
-                    <li><a href="/users/manage_users">Manage Users</a></li>
+                    <li><a href="#">Add</a></li>
+                    <li><a href="#">Edit</a></li>
+                    <li><a href="#">Block</a></li>
+                    <li><a href="#">Band</a></li>
                 </ul>
             </li>
             <li>
-                <a href="#"><i class="fa fa-bank"></i> <span class="nav-label">School</span><span
+                <a href="#"><i class="fa fa-th-large"></i> <span class="nav-label">Author</span><span
                         class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
-                    <li><a href="admin_add_school">Add School</a></li>
-                    <li><a href="admin_registered_schools">Registered Schools</a></li>
-                    <li><a href="admin_manage_classes">Manage Classes</a></li>
-                    <li><a href="admin_manage_subjects">Manage Subject</a></li>
-                    <li><a href="admin_class_subject">Add Subjects to Class</a></li>
+                    <li><a href="#">Add</a></li>
+                    <li><a href="#">Edit</a></li>
+                    <li><a href="#">Block</a></li>
+                    <li><a href="#">Band</a></li>
                 </ul>
             </li>
-            <li>
-                <a href="#"><i class="fa fa-dollar"></i> <span class="nav-label">Funds </span><span
-                        class="fa arrow"></span></a>
-                <ul class="nav nav-second-level">
-                    <li><a href="admin_accept_funds">Accept Funds</a></li>
-                    <li><a href="admin_transferred_funds">Transferred Funds</a></li>
-                </ul>
-            </li>
-            <li>
-                <a href="#"><i class="fa fa-quote-left"></i> <span class="nav-label">Articles</span><span
-                        class="fa arrow"></span></a>
-                <ul class="nav nav-second-level">
-                    <li><a href="admin_add_article">Add Article</a></li>
-                    <li><a href="admin_manage_articles">Manage Articles</a></li>
-                </ul>
-            </li>
-            <li>
-                <a href="#"><i class="fa fa-newspaper-o"></i> <span class="nav-label">Reports </span><span
-                        class="fa arrow"></span></a>
-                <ul class="nav nav-second-level">
-                    <li><a href="admin_test_reports">Tests Reports Summary</a></li>
-                    <li><a href="admin_transaction_detailed">Transaction Detailed</a></li>
-                    <li><a href="admin_transaction_summary">Transaction Summary</a></li>
-                    <li><a href="admin_transaction_history">Transaction History</a></li>
-                    <li><a href="admin_donor_birthday_list">Donors Birthday List</a></li>
-
-                </ul>
-            </li>
+            
+            
+            
+            
             <li>
                 <a href="#"><i class="fa fa-cloud-download"></i> <span class="nav-label">Backup </span></a>
             </li>
