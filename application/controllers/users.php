@@ -83,6 +83,10 @@ class Users extends CI_Controller {
         echo json_encode($query);
         //var_dump($a);
     }
+    
+    public function delete_editor() {
+        
+    }
 
     // Reviewers Area
     public function reviewers() {
