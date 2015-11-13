@@ -159,20 +159,22 @@ and open the template in the editor.
                                     </div>
                                 </form>
                             </div>
-                            
-                            
-                            
+
+
+
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
+    </div>
 
 
-            <?php $this->load->view('partial/common_js'); ?>
+    <?php $this->load->view('partial/common_js'); ?>
 
-            <!-- Custom and plugin javascript -->
-            <script src="<?php echo base_url('assets'); ?>/js/inspinia.js"></script>
-            <script src="<?php echo base_url('assets'); ?>/js/plugins/pace/pace.min.js"></script>
+    <!-- Custom and plugin javascript -->
+    <script src="<?php echo base_url('assets'); ?>/js/inspinia.js"></script>
+    <script src="<?php echo base_url('assets'); ?>/js/plugins/pace/pace.min.js"></script>
 
-            </body>
-            </html>
+</body>
+</html>
