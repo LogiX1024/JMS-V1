@@ -24,7 +24,7 @@ and open the template in the editor.
             </div>
             <div class="row wrapper border-bottom white-bg page-heading">
                 <div class="col-sm-4">
-                    <h2><span class="fa fa-user"></span>Submit Paper</h2>
+                    <h2><span class="fa fa-user"></span> Submit Paper</h2>
                     <ol class="breadcrumb">
                         <li>
                             Author
