@@ -131,6 +131,7 @@ class Users extends CI_Controller
         $first_name = $this->input->post("first_name");
         $email = $this->input->post("email");
         $last_name = $this->input->post("last_name");
+        $journal = $this->input->post("journals[]");
         //ToDO send this data as a mail to reviver        
         $this->load->library('EmailSender');
 
@@ -142,9 +143,20 @@ class Users extends CI_Controller
         $body_string = $this->parser->parse('email/invite_reviewer', $data, TRUE);
 
         if ($this->emailsender->send($email, 'Applied e journal', $body_string)) {
-            echo "Success";
+            
+            $DataSet = array('first_name' => $first_name,
+                'last_name' => $last_name,
+                'email_address' => $email,
+                'journal' => $journal);
+            
+            $insert_id = $this->user->insertData("invited_reviwer", $DataSet);
+            $success = array('Success' => "Successfully Invited!");
+            redirect(base_url() . 'index.php/Users/reviewers', $success);
+            //echo "Success";
         } else {
-            echo "Failed";
+            $Error = array('Error' => "Error Detected!");
+            redirect(base_url() . 'index.php/Users/reviewers', $Error);
+            //echo "Failed";
         }
         
     }

@@ -124,6 +124,84 @@ accept_user() should accept the id of the user to be rejected and password of th
                     <div class="col-lg-12">
                         <div class="ibox float-e-margins">
                             <div class="ibox-title">
+                                <h5>Invited Reviewers
+                                    <small>Invited Reviewers to the system</small>
+                                </h5>
+                                <div class="ibox-tools">
+                                    <a class="collapse-link">
+                                        <i class="fa fa-chevron-up"></i>
+                                    </a>
+                                    <a class="close-link">
+                                        <i class="fa fa-times"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="ibox-content">
+                                <table class="table table-striped table-bordered table-hover dataTables-example">
+                                    <thead>
+                                        <tr>
+                                            <th>Name</th>
+                                            <th>E-Mail</th>
+                                            <th style="width: 200px">Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>First Name Last Name</td>
+                                            <td>someone@example.com</td>
+                                            <td class="text-center">
+                                                <div class="btn-group btn-group-sm">
+                                                    <button class="btn btn-sm btn-default btn-outline view" data-user-id="2">
+                                                        View
+                                                    </button>
+                                                    <button class="btn btn-sm btn-success btn-outline accept" data-user-id="2">
+                                                        Accept
+                                                    </button>
+                                                    <button class="btn btn-sm btn-danger btn-outline reject" data-user-id="2">
+                                                        Reject
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <?php foreach ($users as $user): ?>
+                                            <tr>
+                                                <td>
+                                                    <?= $user->first_name . " " . $user->last_name ?></td>
+                                                <td>
+                                                    <?= ucfirst($user->email_address) ?></td>
+                                                <td class="text-center">
+                                                    <div class="btn-group btn-group-sm">
+                                                        <button class="btn btn-sm btn-default btn-outline view"
+                                                                data-user-id="
+                                                                <?= $user->id ?>"
+                                                                data-user-type="
+                                                                <?= $user->role ?>">View
+                                                        </button>
+                                                        <button class="btn btn-sm btn-success btn-outline accept" data-user-id="2">
+                                                        Accept
+                                                        </button>
+                                                        <button class="btn btn-sm btn-danger delete"
+                                                                data-user-id="
+                                                                <?= $user->id ?>">Delete
+                                                        </button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        <?php endforeach; ?>
+
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="ibox float-e-margins">
+                            <div class="ibox-title">
                                 <h5>Reviewers Reviewers
                                     <small>Accept Reviewers to the system</small>
                                 </h5>
