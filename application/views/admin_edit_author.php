@@ -72,9 +72,10 @@ add_editor() inserts an editor account, with a random generated p/w from random_
                             <table class="table table-striped table-bordered table-hover dataTables-example">
                                 <thead>
                                 <tr>
+                                    <th>Title</th>
                                     <th>Name</th>
                                     <th>Email</th>
-                                    <th>Gender</th>
+                                    
                                     <th style="width: 150px">Mobile</th>
                                     <th style="width: 150px">Action</th>
                                     
@@ -84,9 +85,10 @@ add_editor() inserts an editor account, with a random generated p/w from random_
                                  
                                  <?php  foreach ($authors as $author): ?>
                                  <tr> 
+                                     
+                                 <td><?= $author->title ?></td>              
                                  <td><?= $author->first_name   ?> </td> 
                                  <td><?= $author->email_address ?> </td>
-                                 <td><?= $author->gender ?></td>              
                                  <td><?= $author->mobile_no ?></td> 
                                  <td class="text-center"> 
                                  <div class="btn-group btn-group-sm"> 

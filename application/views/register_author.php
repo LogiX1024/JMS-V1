@@ -25,13 +25,13 @@ and open the template in the editor.
             </div>
             <div class="row wrapper border-bottom white-bg page-heading">
                 <div class="col-sm-4">
-                    <h2><span class="fa fa-user"></span> Create Journal</h2>
+                    <h2><span class="fa fa-user"></span> Create Authors</h2>
                     <ol class="breadcrumb">
                         <li>
                             Journal
                         </li>
                         <li class="active">
-                            <strong>Create Journal</strong>
+                            <strong>Create Author</strong>
                         </li>
                     </ol>
                 </div>
@@ -41,8 +41,8 @@ and open the template in the editor.
                     <div class="col-lg-12">
                         <div class="ibox float-e-margins">
                             <div class="ibox-title"> 
-                                <h5>Create Journal
-                                    <small>Create Journal to the system</small>
+                                <h5>Create Authors
+                                    <small>Create Authors to the system</small>
                                 </h5>
                                 <div class="ibox-tools">
                                     <a class="collapse-link">
@@ -56,7 +56,7 @@ and open the template in the editor.
 
                             <div class="ibox-content">
                                 <form name="create_jurnal" method="post" id="add_cad_user" class="form-horizontal"
-                                      action="<?= base_url('/index.php/journal/add_journal') ?>">
+                                      action="<?= base_url('/index.php/Users/authorRegistration') ?>">
                                     <div class="row">
                                         <div class="col-lg-6 col-md-6">
                                             <div class="form-group">
@@ -71,16 +71,7 @@ and open the template in the editor.
                                                     <input name="title" required="" type="text" class="form-control" placeholder="Issue">
                                                 </div>
                                             </div>
-                                            <div class="form-group">
-                                                <label class="col-sm-3 control-label">Gender</label>
-                                                <div class="col-sm-9">
-                                                    <select required="" class="form-control">
-                                                        <option value="">--Select--</option>
-                                                        <option value="male">Male</option>
-                                                        <option value="female">Female</option>
-                                                    </select>
-                                                </div>
-                                            </div>
+                                            
                                             <div class="form-group">
                                                 <label class="col-sm-3 control-label">Address1</label>
                                                 <div class="col-sm-9">
@@ -145,12 +136,7 @@ and open the template in the editor.
                                                     <input name="password2" required="" type="password" class="form-control" >
                                                 </div>
                                             </div>
-                                            <div class="form-group">
-                                                <label class="col-sm-3 control-label">Profile Picture </label>
-                                                <div class="col-sm-9">
-                                                    <input type="file" name="profile_picture" class="form-control"/>
-                                                </div>
-                                            </div>
+                                             
                                             <div class="form-group">
                                                 <label class="col-sm-3 control-label">Security Question </label>
                                                 <div class="col-sm-9">

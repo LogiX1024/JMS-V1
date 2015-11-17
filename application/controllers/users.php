@@ -15,8 +15,8 @@ class Users extends CI_Controller
 
     public function index()
     {
-        $userid = $this->session->userdata('id');
-        if ($userid != FALSE) {
+        $user = $this->session->userdata('user');
+        if (isset($user)) {
 //            redirect(base_url().'index.php/Users' );
             $this->load->view('dashboard');
         } else {
@@ -95,8 +95,8 @@ class Users extends CI_Controller
 
     public function new_editor()
     {
-        $fieldset = array('id', 'email_address', 'first_name', 'last_name', 'title', 'gender', 'mobile_no', 'address1', 'address2',
-            'city', 'postal_code', 'country', 'role', 'profile_picture_URL', 'security_question', 'security_answer', '');
+        $fieldset = array('id', 'email_address', 'first_name', 'last_name', 'title', 'mobile_no', 'address1', 'address2',
+            'city', 'postal_code', 'country', 'role', 'security_question', 'security_answer', '');
         $data['users'] = $this->user->getData($fieldset, 'user');
         $this->load->view('admin_manage_editors', $data);
     }
@@ -118,8 +118,8 @@ class Users extends CI_Controller
     // Reviewers Area
     public function reviewers()
     {
-        $fieldset = array('id', 'email_address', 'first_name', 'last_name', 'title', 'gender', 'mobile_no', 'address1', 'address2',
-            'city', 'postal_code', 'country', 'role', 'profile_picture_URL', 'security_question', 'security_answer', '');
+        $fieldset = array('id', 'email_address', 'first_name', 'last_name', 'title', 'mobile_no', 'address1', 'address2',
+            'city', 'postal_code', 'country', 'role', 'security_question', 'security_answer', '');
         $data['users'] = $this->user->getData($fieldset, 'user');
         $this->load->view("invite_reviewer", $data);
     }
@@ -203,7 +203,6 @@ class Users extends CI_Controller
                 'last_name' => $last_name,
                 'email_address' => $email,
                 'title' => $title,
-                'gender' => $gender,
                 'password' => $pass,
                 'mobile_no' => $mobile_no,
                 'address1' => $address1,
@@ -211,7 +210,6 @@ class Users extends CI_Controller
                 'city' => $city,
                 'postal_code' => $postal_code,
                 'country' => $country,
-                'profile_picture_URL' => $img_url,
                 'security_question' => $sec_question,
                 'security_answer' => $sec_answer,
                 'role' => "Reviewer",
@@ -239,7 +237,7 @@ class Users extends CI_Controller
     }
     
     public function view_author(){
-        $fieldset = array('id','first_name','last_name','email_address','title','gender','mobile_no');
+        $fieldset = array('id','first_name','last_name','email_address','title','mobile_no');
         $data['authors'] = $this->user->getData($fieldset, 'user');
         $this->load->view("admin_edit_author",$data);
     }
@@ -282,15 +280,13 @@ class Users extends CI_Controller
                 'last_name' => $last_name,
                 'email_address' => $email,
                 'title' => $title,
-                'gender' => $gender,
                 'password' => $pass,
                 'mobile_no' => $mobile_no,
                 'address1' => $address1,
                 'address2' => $address2,
                 'city' => $city,
                 'postal_code' => $postal_code,
-                'country' => $country,
-                'profile_picture_URL' => $img_url,
+                'country' => $country,               
                 'security_question' => $sec_question,
                 'security_answer' => $sec_answer,
                 'role' => "Author",
@@ -303,11 +299,11 @@ class Users extends CI_Controller
                 //Todo; send email
             } else {
                 $error = array('error' => "Error in InsertData");
-                $this->load->view('register_reviewer', $error);
+                $this->load->view('register_author', $error);
             }
         } else {
             $error = array('error' => "Password mis match!");
-            $this->load->view('register_reviewer', $error);
+            $this->load->view('register_author', $error);
         }
     }
 
