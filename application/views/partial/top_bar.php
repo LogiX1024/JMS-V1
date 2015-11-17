@@ -18,7 +18,7 @@
             </ul>
         </li>
         <li>
-            <a href="/users/logout">
+            <a href="<?php echo base_url() ?>index.php/users/logout">
                 <i class="fa fa-sign-out"></i> Log out
             </a>
         </li>
