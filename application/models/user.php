@@ -7,7 +7,7 @@ class User extends CI_Model {
     }
 
     function get_pass($email) {
-        $this->db->select('id, password, first_name, last_name, title, gender, role, profile_picture_URL');
+        $this->db->select('id, password, first_name, last_name, title,  role');
         $this->db->from('user');
         $this->db->where('email_address', $email);
         $res = $this->db->get();

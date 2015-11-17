@@ -12,8 +12,8 @@ class Journal extends CI_Controller {
     }
 
     public function index() {
-        $userid = $this->session->userdata('id');
-        if ($userid != FALSE) {
+        $user = $this->session->userdata('user');
+        if (isset($user)) {
 //            redirect(base_url().'index.php/Users' );
             $this->load->view('admin_create_journal');
         } else {
