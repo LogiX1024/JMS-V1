@@ -25,7 +25,7 @@ class Articles extends CI_Controller {
 
         $config['upload_path'] = './uploads/';
         $config['allowed_types'] = 'pdf';
-        
+
         $this->load->library('upload', $config);
 
         $title = $this->input->post("title");
@@ -33,7 +33,19 @@ class Articles extends CI_Controller {
         $sub_auth_1 = $this->input->post("sub_auth_1");
         $sub_auth_2 = $this->input->post("sub_auth_2");
         $keywords = $this->input->post("keywords");
-        $upload = $this->upload->data('file_name');
+        $upload = "";
+
+        if (!$this->upload->do_upload()) {
+            $error = array('error' => $this->upload->display_errors());
+            $this->load->view('author_submit_paper', $error);
+        } else {
+            $upload = $this->upload->data('file_name');
+        }
+        
+        $DataSet = array('first_name' => $first_name, 'last_name' => $last_name, 'email_address' => $email, 'role' => "Editor");
+        
+        $this->article->submit_article($DataSet);
+        
     }
 
 }

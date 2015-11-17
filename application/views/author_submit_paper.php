@@ -55,7 +55,7 @@ and open the template in the editor.
 
                             <div class="ibox-content">
                                 <div class="row">
-                                    <form name="create_jurnal" method="post" id="add_cad_user" class="form-horizontal"
+                                    <form name="create_jurnal" method="post" enctype="multipart/form-data" id="add_cad_user" class="form-horizontal"
                                           action="<?= base_url('/index.php/articles/submit_article') ?>">
 
                                         <div class="col-lg-8 col-md-8">
