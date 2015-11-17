@@ -92,7 +92,7 @@ class Journal extends CI_Controller {
         $whereArr = array("id" => $id);        
         //Query For Employee Update
         $result = $this->user->Update($DataSet,"journal",  $id);
- 
+        redirect(base_url() . 'index.php/Journal');    
          
     }
 }
