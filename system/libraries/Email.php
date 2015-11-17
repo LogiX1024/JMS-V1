@@ -42,7 +42,7 @@ class CI_Email {
 	var	$mailtype		= "text";	// text/html  Defines email formatting
 	var	$charset		= "utf-8";	// Default char set: iso-8859-1 or us-ascii
 	var	$multipart		= "mixed";	// "mixed" (in the body) or "related" (separate)
-	var $alt_message	= '';		// Alternative message for HTML emails
+	var $alt_message	= '';		// Alternative message for HTML email
 	var	$validate		= FALSE;	// TRUE/FALSE.  Enables email validation
 	var	$priority		= "3";		// Default priority (1 - 5)
 	var	$newline		= "\n";		// Default newline. "\r\n" or "\n" (Use "\r\n" to comply with RFC 822)
@@ -811,7 +811,7 @@ class CI_Email {
 	 * Build alternative plain text message
 	 *
 	 * This public function provides the raw message for use
-	 * in plain-text headers of HTML-formatted emails.
+	 * in plain-text headers of HTML-formatted email.
 	 * If the user hasn't specified his own alternative message
 	 * it creates one by stripping the HTML
 	 *

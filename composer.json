@@ -1,0 +1,13 @@
+{
+    "name": "logix1024/jms",
+    "description": "Online Journal Management System for FASc RUSL",
+    "require": {
+        "swiftmailer/swiftmailer": "^5.4"
+    },
+    "authors": [
+        {
+            "name": "Thejan Rajapakshe",
+            "email": "coder.clix@gmail.com"
+        }
+    ]
+}
