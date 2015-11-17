@@ -39,8 +39,7 @@ class Articles extends CI_Controller {
 
         if (!$this->upload->do_upload()) {
             $error = array('error' => $this->upload->display_errors());
-            echo $this->upload->display_errors();
-//            $this->load->view('author_submit_paper', $error);
+            $this->load->view('author_submit_paper', $error);
         } else {
             $upload = $this->upload->data('file_name');
         }
@@ -54,8 +53,8 @@ class Articles extends CI_Controller {
             redirect(base_url() . 'index.php/Articles/', $success);
             //Todo; send email
         } else {
-            $Error = array('Error' => "Error Detected!");
-            redirect(base_url() . 'index.php/Articles/', $Error);
+            $error = array('error' => "Error Detected!");
+            redirect(base_url() . 'index.php/Articles/', $error);
         }
     }
 

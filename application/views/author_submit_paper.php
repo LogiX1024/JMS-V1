@@ -54,9 +54,14 @@ and open the template in the editor.
                             </div>
 
                             <?php
-                                $user = $this->session->userdata("user");
-                            ?>
+                            $user = $this->session->userdata("user");
+
+                            if (isset($error)) {
+                                echo $error['error'];
+                            }
                             
+                            ?>
+
                             <div class="ibox-content">
                                 <div class="row">
                                     <form name="create_jurnal" method="post" enctype="multipart/form-data" id="add_cad_user" class="form-horizontal"
@@ -78,7 +83,7 @@ and open the template in the editor.
                                                 <!--</div>-->
                                                 <div class="col-sm-9">
                                                     <div class="input-group">
-                                                        <input type="text" class="form-control" name="chief_author" readonly="readonly" value="<?=$user->first_name." ".$user->last_name ?>" > 
+                                                        <input type="text" class="form-control" name="chief_author" readonly="readonly" value="<?= $user->first_name . " " . $user->last_name ?>" > 
                                                         <span class="input-group-btn"> 
                                                             <button type="button" class="btn btn-primary">Change</button> 
                                                         </span>
@@ -159,7 +164,7 @@ and open the template in the editor.
     </div>
 
 
-    <?php $this->load->view('partial/common_js'); ?>
+<?php $this->load->view('partial/common_js'); ?>
 
     <!-- Custom and plugin javascript -->
     <script src="<?php echo base_url('assets'); ?>/js/inspinia.js"></script>
