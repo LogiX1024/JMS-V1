@@ -35,12 +35,14 @@ class Users extends CI_Controller
         );
         $body_string = $this->parser->parse('email/invite_reviewer', $data, TRUE);
 
-        if ($this->emailsender->send('harithalht@gmail.com', 'Applied e journal', $body_string)) {
+        if ($this->emailsender->send('tosandeepa@gmail.com', 'Applied e journal', $body_string)) {
             echo "Success";
         } else {
             echo "Failed";
         }
     }
+    
+    
 
     // Login & Logout
     public function login()
@@ -130,6 +132,21 @@ class Users extends CI_Controller
         $email = $this->input->post("email");
         $last_name = $this->input->post("last_name");
         //ToDO send this data as a mail to reviver        
+        $this->load->library('EmailSender');
+
+        $this->load->library('parser');
+        $data = array(
+            'name' => $first_name." ".$last_name,
+            'link' => 'http://www.google.com'
+        );
+        $body_string = $this->parser->parse('email/invite_reviewer', $data, TRUE);
+
+        if ($this->emailsender->send($email, 'Applied e journal', $body_string)) {
+            echo "Success";
+        } else {
+            echo "Failed";
+        }
+        
     }
 
     public function accept_reviewer()

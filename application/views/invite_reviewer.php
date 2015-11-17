@@ -65,7 +65,7 @@ accept_user() should accept the id of the user to be rejected and password of th
                             </div>
                             <div class="ibox-content">
                                 <form method="post" id="add_cad_user" class="form-horizontal"
-                                      action="<?= base_url('/users/invite_reviewer') ?>">
+                                      action="<?= base_url('/index.php/users/invite_reviewer') ?>">
                                     <div class="row">
                                         <div class="col-lg-6 col-md-6">
                                             <div class="form-group">
