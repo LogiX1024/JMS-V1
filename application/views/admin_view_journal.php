@@ -75,7 +75,9 @@ add_editor() inserts an editor account, with a random generated p/w from random_
                                     <th>Name</th>
                                     <th>Issue</th>
                                     <th>Volume</th>
+                                    <th style="width: 150px">Status</th>
                                     <th style="width: 150px">Action</th>
+                                    
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -84,13 +86,14 @@ add_editor() inserts an editor account, with a random generated p/w from random_
                                  <tr> 
                                  <td><?= $journal->name   ?> </td> 
                                  <td><?= $journal->issue ?> </td>
-                                 <td><?= $journal->volume?></td> 
+                                 <td><?= $journal->volume ?></td>              
+                                 <td><?= $journal->status ?></td> 
                                  <td class="text-center"> 
                                  <div class="btn-group btn-group-sm"> 
                                  <button class="btn btn-sm btn-default btn-outline view" data-user-id="<?= $journal->id ?>">View </button> 
-                                 <button class="btn btn-sm btn-danger delete" data-user-id="<?= $journal->id ?>">Delete </button> 
+                                 <button class="btn btn-sm btn-info " data-user-id="<?= $journal->id ?>">Edit </button> 
                                  </div> 
-                                 </td> 
+                                 </td>
                                  </tr> 
                                  <?php  endforeach; ?>
 
