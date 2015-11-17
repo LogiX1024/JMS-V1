@@ -58,7 +58,19 @@ class Journal extends CI_Controller {
         $this->load->view('admin_view_journal', $data);
     }
     
-    public function edit_journal(){
+    public function edit_journal($id){
+        $whereArr = array("id" => $id);
+        $result = $this->user->getData('name,issue,volume,aim,objective,scope,category,'
+                . 'keywords,collection_date,camera_rady_date,chief_editor_id,editor,status',
+                'journal', $whereArr);
+        $editdata['JournalData'] = $result[0];
+        $editdata["id"] = $id;
+        $this->load->view("admin_edit_journal",$editdata, $id);
+        
+    }
+    
+    public function update_journal(){
+        var_dump($id);die();
         $name = $this->input->post("name", TRUE);
         $issue = $this->input->post("issue", TRUE);
         $volume = $this->input->post("volume", TRUE);
