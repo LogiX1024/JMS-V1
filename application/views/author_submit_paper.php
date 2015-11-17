@@ -67,7 +67,7 @@ and open the template in the editor.
                                                 <label class="col-sm-2 control-label" >Title</label>
                                                 <div class="col-sm-9">
                                                     <input name="title" required="" type="text" class="form-control" placeholder="Title">
-                                                    <input name="journal_id" required="" type="hidden" class="form-control" placeholder="Title">
+                                                    <input name="journal_id"  type="hidden" class="form-control" value="4562">
                                                 </div>
                                             </div>
                                             <div class="form-group">

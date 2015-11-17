@@ -7,7 +7,7 @@ class Articles extends CI_Controller {
 
     public function __construct() {
         parent::__construct();
-        $this->load->model('article');
+        $this->load->model('user');
         $this->load->library('form_validation');
     }
 
@@ -39,7 +39,8 @@ class Articles extends CI_Controller {
 
         if (!$this->upload->do_upload()) {
             $error = array('error' => $this->upload->display_errors());
-            $this->load->view('author_submit_paper', $error);
+            echo $this->upload->display_errors();
+//            $this->load->view('author_submit_paper', $error);
         } else {
             $upload = $this->upload->data('file_name');
         }
