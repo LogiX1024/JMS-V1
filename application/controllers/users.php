@@ -55,7 +55,7 @@ class Users extends CI_Controller
         $user = $this->user->get_pass($email);
         if (!is_null($user)) {
             if ($user->password === $pass) {
-                $this->session->set_userdata($user);
+                $this->session->set_userdata("user",$user);
                 $this->load->view('dashboard');
                 $this->user->loginLogSave($user->id, $ip);
             } else {
