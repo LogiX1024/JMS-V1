@@ -12,8 +12,8 @@ class Articles extends CI_Controller {
     }
 
     public function index() {
-        $userid = $this->session->userdata('id');
-        if ($userid != FALSE) {
+        $user = $this->session->userdata('user');
+        if (isset($user)) {
 //            redirect(base_url().'index.php/Users' );
             $success = array('success' => "Successfully Loaded!");
             $this->load->view('author_submit_paper', $success);

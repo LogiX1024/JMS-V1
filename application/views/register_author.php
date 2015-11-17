@@ -1,91 +1,193 @@
-<html>
-    <body>
-        <h2>Author Registration</h2>
-        <?php
-        if (isset($error)) {
-            echo $error;
-        }
-        ?>
-        <form action="<?= base_url('/index.php/users/authorRegistration') ?>" method="POST" enctype="multipart/form-data" >
-            <table>
-                <tr>
-                    <td>email_address</td>
-                    <td><input type="email" name="username" placeholder="Enter Email Address" /></td>
-                </tr>
-                <tr>
-                    <td>password</td>
-                    <td><input type="password" name="password" placeholder="Enter password" /></td>
-                </tr>
-                <tr>
-                    <td>password</td>
-                    <td><input type="password" name="password2" placeholder="Re-Enter password" /></td>
-                </tr>
-                <tr>
-                    <td>first_name</td>
-                    <td><input type="text" name="first_name" placeholder="Enter First Name" /></td>
-                </tr>
-                <tr>
-                    <td>last_name</td>
-                    <td><input type="text" name="last_name" placeholder="Enter Last Name" /></td>
-                </tr>
-                <tr>
-                    <td>title</td>
-                    <td><input type="text" name="title" placeholder="Enter Title" /></td>
-                </tr>
-                <tr>
-                    <td>gender</td>
-                    <td>
-                        <select>
-                            <option value="male">Male</option>
-                            <option value="female">Female</option>
-                        </select>
-                    </td>
-                </tr>
-                <tr>
-                    <td>mobile_no</td>
-                    <td><input type="text" name="mobile" placeholder="Enter Mobile No" /></td>
-                </tr>
-                <tr>
-                    <td>address1</td>
-                    <td><input type="text" name="address1" /></td>
-                </tr>
-                <tr>
-                    <td>address2</td>
-                    <td><input type="text" name="address2" /></td>
-                </tr>
-                <tr>
-                    <td>city</td>
-                    <td><input type="text" name="city" placeholder="Enter city" /></td>
-                </tr>
-                <tr>
-                    <td>postal_code</td>
-                    <td><input type="text" name="postal_code" placeholder="Enter postal code" /></td>
-                </tr>
-                <tr>
-                    <td>country</td>
-                    <td><input type="text" name="country" placeholder="Enter country" /></td>
-                </tr>
-<!--                <tr>
-                    <td>role</td>
-                    <td><input type="text" name="role" placeholder="Enter role" /></td>
-                </tr>-->
-                <tr>
-                    <td>profile_picture_URL</td>
-                    <td><input type="file" name="profile_picture" /></td>
-                </tr>
-                <tr>
-                    <td>security_question</td>
-                    <td><input type="text" name="sec_question" placeholder="Enter security question" /></td>
-                </tr>
-                <tr>
-                    <td>security_answer</td>
-                    <td><input type="text" name="sec_answer" placeholder="Enter Answer" /></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td><input type="submit" name="submit" value="Submit"></td>
-                </tr>
-            </table>  
-        </form>
-    </body>
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<?php $this->load->view('partial/header'); ?>
+<!-- Data Tables -->
+<link href="<?php echo base_url('assets'); ?>/css/plugins/dataTables/dataTables.bootstrap.css" rel="stylesheet">
+<link href="<?php echo base_url('assets'); ?>/css/plugins/dataTables/dataTables.responsive.css" rel="stylesheet">
+<link href="<?php echo base_url('assets'); ?>/css/plugins/dataTables/dataTables.tableTools.min.css" rel="stylesheet">
+
+
+</head>
+<body>
+
+    <div id="wrapper">
+        <?php $this->load->view('partial/admin_navigation'); ?>
+
+        <div id="page-wrapper" class="gray-bg">
+            <div class="row border-bottom">
+
+                <?php $this->load->view('partial/top_bar'); ?>
+
+            </div>
+            <div class="row wrapper border-bottom white-bg page-heading">
+                <div class="col-sm-4">
+                    <h2><span class="fa fa-user"></span> Create Journal</h2>
+                    <ol class="breadcrumb">
+                        <li>
+                            Journal
+                        </li>
+                        <li class="active">
+                            <strong>Create Journal</strong>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+            <div class="wrapper wrapper-content animated fadeInRight">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="ibox float-e-margins">
+                            <div class="ibox-title"> 
+                                <h5>Create Journal
+                                    <small>Create Journal to the system</small>
+                                </h5>
+                                <div class="ibox-tools">
+                                    <a class="collapse-link">
+                                        <i class="fa fa-chevron-up"></i>
+                                    </a>
+                                    <a class="close-link">
+                                        <i class="fa fa-times"></i>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="ibox-content">
+                                <form name="create_jurnal" method="post" id="add_cad_user" class="form-horizontal"
+                                      action="<?= base_url('/index.php/journal/add_journal') ?>">
+                                    <div class="row">
+                                        <div class="col-lg-6 col-md-6">
+                                            <div class="form-group">
+                                                <label class="col-sm-3 control-label" >First Name</label>
+                                                <div class="col-sm-9">
+                                                    <input name="first_name" required="" type="text" class="form-control" placeholder="First Name">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-sm-3 control-label">Title</label>
+                                                <div class="col-sm-9">
+                                                    <input name="title" required="" type="text" class="form-control" placeholder="Issue">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-sm-3 control-label">Gender</label>
+                                                <div class="col-sm-9">
+                                                    <select required="" class="form-control">
+                                                        <option value="">--Select--</option>
+                                                        <option value="male">Male</option>
+                                                        <option value="female">Female</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-sm-3 control-label">Address1</label>
+                                                <div class="col-sm-9">
+                                                    <input type="text" name="address1" class="form-control" placeholder="Address1">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-sm-3 control-label">Address2</label>
+                                                <div class="col-sm-9">
+                                                    <input type="text" name="address2" class="form-control" placeholder="Address2">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-sm-3 control-label">City</label>
+                                                <div class="col-sm-9">
+                                                    <input type="text" name="city" class="form-control" placeholder="City"> 
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-sm-3 control-label">Postal Code</label>
+                                                <div class="col-sm-9">
+                                                    <input type="text" name="postal_code" class="form-control" placeholder="Postal Code">  
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-sm-3 control-label">Country</label>
+                                                <div class="col-sm-9">
+                                                    <input type="text" name="country" class="form-control" placeholder="Country">  
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-6 col-md-6">
+                                            <div class="form-group">
+                                                <label class="col-sm-3 control-label">Last Name</label>
+                                                <div class="col-sm-9">
+                                                    <input name="last_name" required="" type="text" class="form-control" placeholder="Last Name">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-sm-3 control-label">Email</label>
+                                                <div class="col-sm-9">
+                                                    <input name="email" required=""  class="form-control" placeholder="Email">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-sm-3 control-label">Mobile</label>
+                                                <div class="col-sm-9">
+                                                    <input name="mobile" required="" class="form-control" placeholder="Mobile">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-sm-3 control-label">Password</label>
+                                                <div class="col-sm-9">
+                                                    <input name="password" required="" type="password" class="form-control" >
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label class="col-sm-3 control-label">Confirm Password</label>
+                                                <div class="col-sm-9">
+                                                    <input name="password2" required="" type="password" class="form-control" >
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-sm-3 control-label">Profile Picture </label>
+                                                <div class="col-sm-9">
+                                                    <input type="file" name="profile_picture" class="form-control"/>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-sm-3 control-label">Security Question </label>
+                                                <div class="col-sm-9">
+                                                    <input type="text" name="sec_question" class="form-control"/>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-sm-3 control-label">Answer </label>
+                                                <div class="col-sm-9">
+                                                    <input type="text" name="sec_answer" class="form-control"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-sm-12 ">
+                                            <button class="btn btn-primary pull-right" type="submit">Create <span class="fa fa-plus"></span></button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <?php $this->load->view('partial/common_js'); ?>
+
+    <!-- Custom and plugin javascript -->
+    <script src="<?php echo base_url('assets'); ?>/js/inspinia.js"></script>
+    <script src="<?php echo base_url('assets'); ?>/js/plugins/pace/pace.min.js"></script>
+
+</body>
 </html>

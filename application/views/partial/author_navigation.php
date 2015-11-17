@@ -25,7 +25,7 @@
             </li>
 
             <li>
-                <a href="#"><i class="fa fa-th-large"></i> <span class="nav-label">Submit Papers</span></a> 
+                <a href="<?php echo base_url() ?>index.php/Articles"><i class="fa fa-th-large"></i> <span class="nav-label">Submit Papers</span></a> 
             </li>
             <li>
                 <a href="#"><i class="fa fa-th-large"></i> <span class="nav-label">View Timeline</span></a>

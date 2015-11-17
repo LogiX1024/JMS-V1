@@ -57,10 +57,10 @@ and open the template in the editor.
                             $user = $this->session->userdata("user");
 
                             if (isset($error)) {
-                                echo $error['error'];
+                               // echo $error['error'];
                             }
                             if (isset($success)) {
-                                echo $success['success'];
+                                //echo $success['success'];
                             }
                             
                             ?>

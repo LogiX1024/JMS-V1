@@ -237,8 +237,14 @@ class Users extends CI_Controller
     {
         $this->load->view("register_author");
     }
+    
+    public function view_author(){
+        $fieldset = array('id','first_name','last_name','email_address','title','gender','mobile_no');
+        $data['authors'] = $this->user->getData($fieldset, 'user');
+        $this->load->view("admin_edit_author",$data);
+    }
 
-    public function authorRegistration()
+        public function authorRegistration()
     {
 
         $email = $this->input->post("username", TRUE);
