@@ -15,7 +15,8 @@ class Articles extends CI_Controller {
         $userid = $this->session->userdata('id');
         if ($userid != FALSE) {
 //            redirect(base_url().'index.php/Users' );
-            $this->load->view('author_submit_paper');
+            $success = array('success' => "Successfully Loaded!");
+            $this->load->view('author_submit_paper',$success);
         } else {
             $this->load->view('login');
         }
@@ -49,7 +50,7 @@ class Articles extends CI_Controller {
         $insert_id = $this->user->insertData("article", $DataSet);
 
         if ($insert_id > 0) {
-            $success = array('Success' => "Successfully Added!");
+            $success = array('success' => "Successfully Added!");
             redirect(base_url() . 'index.php/Articles/', $success);
             //Todo; send email
         } else {

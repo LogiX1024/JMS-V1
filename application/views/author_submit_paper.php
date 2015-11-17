@@ -59,6 +59,9 @@ and open the template in the editor.
                             if (isset($error)) {
                                 echo $error['error'];
                             }
+                            if (isset($success)) {
+                                echo $success['success'];
+                            }
                             
                             ?>
 
