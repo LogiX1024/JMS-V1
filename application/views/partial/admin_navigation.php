@@ -30,15 +30,15 @@
                 <a href="<?php echo base_url() ?>index.php/Journal/add_journal"><i class="fa fa-th-large"></i> <span class="nav-label">Create Journal</span></a>
             </li>
             <li>
-                <a href="#"><i class="fa fa-th-large"></i> <span class="nav-label">View Journal</span></a>
+                <a href="<?php echo base_url() ?>index.php/Journal/view_journal"><i class="fa fa-th-large"></i> <span class="nav-label">View Journal</span></a>
             </li>
             
             <li>
                 <a href="#"><i class="fa fa-th-large"></i> <span class="nav-label">Editors</span><span
                         class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
-                    <li><a href="#">Add</a></li>
-                    <li><a href="#">Edit</a></li>
+                    <li><a href="<?php echo base_url() ?>index.php/Users/new_editor">Add</a></li>
+                    <li><a href="<?php echo base_url() ?>index.php/Users/new_editor">Edit</a></li>
                 </ul>
             </li>
             <li>
