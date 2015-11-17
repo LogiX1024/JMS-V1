@@ -44,7 +44,7 @@ class User extends CI_Model {
         $this->db->where('id', $id);
         $this->db->update($tableName, $fieldset);
     }
-
+     
     public function is_User($email) {
         if (isset($email)) {
             $this->db->select('id,email_address');

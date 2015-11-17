@@ -106,6 +106,11 @@ and open the template in the editor.
                                                     </select>
                                                 </div>
                                             </div>
+                                            <div class="form-group">
+                                                <div class=" panel-body">
+                                <input value="<?php echo $JournalData->id; ?>" type="hidden" name="hdnID" id="hdnID">
+                            </div>
+                                            </div>
                                         </div>
 
                                         <div class="col-lg-6 col-md-6">
