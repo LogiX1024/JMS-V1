@@ -9,6 +9,7 @@ and open the template in the editor.
 <link href="<?php echo base_url('assets'); ?>/css/plugins/dataTables/dataTables.bootstrap.css" rel="stylesheet">
 <link href="<?php echo base_url('assets'); ?>/css/plugins/dataTables/dataTables.responsive.css" rel="stylesheet">
 <link href="<?php echo base_url('assets'); ?>/css/plugins/dataTables/dataTables.tableTools.min.css" rel="stylesheet">
+<link href="<?php echo base_url('assets'); ?>/css/plugins/datapicker/datepicker3.css" rel="stylesheet">
 
 
 </head>
@@ -25,10 +26,10 @@ and open the template in the editor.
             </div>
             <div class="row wrapper border-bottom white-bg page-heading">
                 <div class="col-sm-4">
-                    <h2><span class="fa fa-user"></span> Create Journal</h2>
+                    <h2><span class="fa fa-user"></span>Create Journal</h2>
                     <ol class="breadcrumb">
                         <li>
-                            Journal
+                            Administrator
                         </li>
                         <li class="active">
                             <strong>Create Journal</strong>
@@ -41,8 +42,8 @@ and open the template in the editor.
                     <div class="col-lg-12">
                         <div class="ibox float-e-margins">
                             <div class="ibox-title"> 
-                                <h5>Create Journal
-                                    <small>Create Journal to the system</small>
+                                <h5>Create Journal Wizard - 
+                                    <small>Enter the details of the journal you want to create</small>
                                 </h5>
                                 <div class="ibox-tools">
                                     <a class="collapse-link">
@@ -62,37 +63,37 @@ and open the template in the editor.
                                             <div class="form-group">
                                                 <label class="col-sm-3 control-label" >Name</label>
                                                 <div class="col-sm-9">
-                                                    <input name="name" required="" type="text" class="form-control" placeholder="Name">
+                                                    <input name="name" required="" type="text" class="form-control" placeholder="Name of the journal">
                                                 </div>
                                             </div>
                                             <div class="form-group">
                                                 <label class="col-sm-3 control-label">Issue</label>
                                                 <div class="col-sm-9">
-                                                    <input name="issue" required="" type="text" class="form-control" placeholder="Issue">
+                                                    <input name="issue" required="" type="text" class="form-control" placeholder="Issue of the journal">
                                                 </div>
                                             </div>
                                             <div class="form-group">
                                                 <label class="col-sm-3 control-label">Volume</label>
                                                 <div class="col-sm-9">
-                                                    <input name="volume" required="" type="text" class="form-control" placeholder="Volume">
+                                                    <input name="volume" required="" type="text" class="form-control" placeholder="Volume number">
                                                 </div>
                                             </div>
                                             <div class="form-group">
                                                 <label class="col-sm-3 control-label">Aim</label>
                                                 <div class="col-sm-9">
-                                                    <textarea name="aim" class="form-control" placeholder="Aim"></textarea>
+                                                    <textarea name="aim" class="form-control" placeholder="Aim of the journal"></textarea>
                                                 </div>
                                             </div>
                                             <div class="form-group">
                                                 <label class="col-sm-3 control-label">Objective</label>
                                                 <div class="col-sm-9">
-                                                    <textarea name="objective" class="form-control" placeholder="Objective"></textarea>
+                                                    <textarea name="objective" class="form-control" placeholder="Objective of the journal"></textarea>
                                                 </div>
                                             </div>
                                             <div class="form-group">
                                                 <label class="col-sm-3 control-label">Scope</label>
                                                 <div class="col-sm-9">
-                                                    <textarea name="scope" class="form-control" placeholder="Scope"></textarea>
+                                                    <textarea name="scope" class="form-control" placeholder="Scope of the journal"></textarea>
                                                 </div>
                                             </div>
                                             <div class="form-group">
@@ -100,7 +101,9 @@ and open the template in the editor.
                                                 <div class="col-sm-9">
                                                     <select name="category" id="journals" class="chosen-select form-control" >
                                                         <option value="1">2015 Applied Journal</option>
-                                                        <option value="2">Biodiversity & Conservation Conference</option>
+                                                        <option value="2">Bio-diversity & Conservation Conference</option>
+                                                        <option value="2">Ubi-media Journal</option>
+                                                        <option value="2">Journal on Insects</option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -110,34 +113,49 @@ and open the template in the editor.
                                             <div class="form-group">
                                                 <label class="col-sm-3 control-label">Keywords</label>
                                                 <div class="col-sm-9">
-                                                    <input name="keywords" required="" type="text" class="form-control" placeholder="Keywords">
+                                                    <input name="keywords" required="" type="text" class="form-control" placeholder="Seperate each comma with a comma">
                                                 </div>
                                             </div>
                                             <div class="form-group">
-                                                <label class="col-sm-3 control-label">End of Paper Submition Date</label>
+                                                <label class="col-sm-3 control-label">Deadline for paper submissions</label>
                                                 <div class="col-sm-9">
-                                                    <input name="submition_date" required="" type="date" class="form-control" placeholder="End of Paper Submition date">
+                                                    <div id="submition_date">
+                                                        <div class="input-group date">
+                                                            <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                                            <input name="submition_date" required="" type="text" class="form-control" placeholder="Deadline for paper submissions">
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                             <div class="form-group">
-                                                <label class="col-sm-3 control-label">Camera Ready Date</label>
+                                                <label class="col-sm-3 control-label">Camera Ready Submission Date</label>
                                                 <div class="col-sm-9">
-                                                    <input name="camera_ready_date" required="" type="date" class="form-control" placeholder="camera_ready_date">
+                                                    <div id="camera_ready_date">
+                                                        <div class="input-group date">
+                                                            <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                                            <input name="camera_ready_date" required="" type="text" class="form-control" placeholder="Camera Ready Submission Date">
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                             <div class="form-group">
-                                                <label class="col-sm-3 control-label">Publish Date</label>
+                                                <label class="col-sm-3 control-label">Publication Date</label>
                                                 <div class="col-sm-9">
-                                                    <input name="publish_date" required="" type="date" class="form-control" placeholder="Publish Date">
+                                                    <div id="publish_date">
+                                                        <div class="input-group date">
+                                                            <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                                            <input name="publish_date" required="" type="text" class="form-control" placeholder="Publication Date">
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
 
                                             <div class="form-group">
-                                                <label class="col-sm-3 control-label">Chief Eeditor</label>
+                                                <label class="col-sm-3 control-label">Chief Editor</label>
                                                 <div class="col-sm-9">
                                                     <select name="chief_editor" id="journals" class="chosen-select form-control">
-                                                        <option value="1">2015 Applied Journal</option>
-                                                        <option value="2">Biodiversity & Conservation Conference</option>
+                                                        <option value="1">Kamal Jayasinghe</option>
+                                                        <option value="2">Sumanadasa Rajakaruna</option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -145,8 +163,8 @@ and open the template in the editor.
                                                 <label class="col-sm-3 control-label">Editors</label>
                                                 <div class="col-sm-9">
                                                     <select name="editors[]" id="journals" class="chosen-select form-control" multiple="multiple">
-                                                        <option value="1">2015 Applied Journal</option>
-                                                        <option value="2">Biodiversity & Conservation Conference</option>
+                                                        <option value="1">Nimal Perera</option>
+                                                        <option value="2">Sunil Malewana</option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -159,8 +177,6 @@ and open the template in the editor.
                                     </div>
                                 </form>
                             </div>
-
-
 
                         </div>
                     </div>
@@ -176,5 +192,32 @@ and open the template in the editor.
     <script src="<?php echo base_url('assets'); ?>/js/inspinia.js"></script>
     <script src="<?php echo base_url('assets'); ?>/js/plugins/pace/pace.min.js"></script>
 
+    <script src="<?php echo base_url('assets'); ?>/js/plugins/datapicker/bootstrap-datepicker.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#submition_date .input-group.date').datepicker({
+                todayBtn: "linked",
+                keyboardNavigation: false,
+                forceParse: false,
+                calendarWeeks: true,
+                autoclose: true
+            });
+            $('#camera_ready_date .input-group.date').datepicker({
+                todayBtn: "linked",
+                keyboardNavigation: false,
+                forceParse: false,
+                calendarWeeks: true,
+                autoclose: true
+            });
+            $('#publish_date .input-group.date').datepicker({
+                todayBtn: "linked",
+                keyboardNavigation: false,
+                forceParse: false,
+                calendarWeeks: true,
+                autoclose: true
+            });
+        });
+    </script>
 </body>
 </html>

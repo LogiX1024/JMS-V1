@@ -366,7 +366,7 @@ if ( ! function_exists('safe_mailto'))
  *
  * Automatically links URL and Email addresses.
  * Note: There's a bit of extra code here to deal with
- * URLs or emails that end in a period.  We'll strip these
+ * URLs or email that end in a period.  We'll strip these
  * off and add them after the link.
  *
  * @access	public
