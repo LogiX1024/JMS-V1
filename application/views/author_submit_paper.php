@@ -53,6 +53,18 @@ and open the template in the editor.
                                 </div>
                             </div>
 
+                            <?php
+                            $user = $this->session->userdata("user");
+
+                            if (isset($error)) {
+                                echo $error['error'];
+                            }
+                            if (isset($success)) {
+                                echo $success['success'];
+                            }
+                            
+                            ?>
+
                             <div class="ibox-content">
                                 <div class="row">
                                     <form name="create_jurnal" method="post" enctype="multipart/form-data" id="add_cad_user" class="form-horizontal"
@@ -63,6 +75,7 @@ and open the template in the editor.
                                                 <label class="col-sm-2 control-label" >Title</label>
                                                 <div class="col-sm-9">
                                                     <input name="title" required="" type="text" class="form-control" placeholder="Title">
+                                                    <input name="journal_id"  type="hidden" class="form-control" value="4562">
                                                 </div>
                                             </div>
                                             <div class="form-group">
@@ -73,7 +86,7 @@ and open the template in the editor.
                                                 <!--</div>-->
                                                 <div class="col-sm-9">
                                                     <div class="input-group">
-                                                        <input type="text" class="form-control" name="chief_author" readonly="readonly"> 
+                                                        <input type="text" class="form-control" name="chief_author" readonly="readonly" value="<?= $user->first_name . " " . $user->last_name ?>" > 
                                                         <span class="input-group-btn"> 
                                                             <button type="button" class="btn btn-primary">Change</button> 
                                                         </span>
@@ -154,7 +167,7 @@ and open the template in the editor.
     </div>
 
 
-    <?php $this->load->view('partial/common_js'); ?>
+<?php $this->load->view('partial/common_js'); ?>
 
     <!-- Custom and plugin javascript -->
     <script src="<?php echo base_url('assets'); ?>/js/inspinia.js"></script>

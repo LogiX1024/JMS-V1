@@ -7,7 +7,7 @@ class Articles extends CI_Controller {
 
     public function __construct() {
         parent::__construct();
-        $this->load->model('article');
+        $this->load->model('user');
         $this->load->library('form_validation');
     }
 
@@ -15,7 +15,8 @@ class Articles extends CI_Controller {
         $userid = $this->session->userdata('id');
         if ($userid != FALSE) {
 //            redirect(base_url().'index.php/Users' );
-            $this->load->view('author_submit_paper');
+            $success = array('success' => "Successfully Loaded!");
+            $this->load->view('author_submit_paper',$success);
         } else {
             $this->load->view('login');
         }
@@ -28,8 +29,10 @@ class Articles extends CI_Controller {
 
         $this->load->library('upload', $config);
 
+        $user = $this->session->userdata("user");
         $title = $this->input->post("title");
-        $chf_author = $this->input->post("chief_author");
+        $journal_id = $this->input->post("journal_id");
+//        $chf_author = $this->input->post("chief_author");
         $sub_auth_1 = $this->input->post("sub_auth_1");
         $sub_auth_2 = $this->input->post("sub_auth_2");
         $keywords = $this->input->post("keywords");
@@ -41,11 +44,19 @@ class Articles extends CI_Controller {
         } else {
             $upload = $this->upload->data('file_name');
         }
-        
-        $DataSet = array('first_name' => $first_name, 'last_name' => $last_name, 'email_address' => $email, 'role' => "Editor");
-        
-        $this->article->submit_article($DataSet);
-        
+
+        $DataSet = array('author_id' => $user->id, 'journal_id' => $journal_id, 'title' => $title, 'status' => "assigned", 'co-authors' => $sub_auth_1 . "," . $sub_auth_2, 'keywords' => $keywords, 'file_name' => $upload);
+
+        $insert_id = $this->user->insertData("article", $DataSet);
+
+        if ($insert_id > 0) {
+            $success = array('success' => "Successfully Added!");
+            redirect(base_url() . 'index.php/Articles/', $success);
+            //Todo; send email
+        } else {
+            $error = array('error' => "Error Detected!");
+            redirect(base_url() . 'index.php/Articles/', $error);
+        }
     }
 
 }

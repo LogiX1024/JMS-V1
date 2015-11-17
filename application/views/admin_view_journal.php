@@ -91,7 +91,9 @@ add_editor() inserts an editor account, with a random generated p/w from random_
                                  <td class="text-center"> 
                                  <div class="btn-group btn-group-sm"> 
                                  <button class="btn btn-sm btn-default btn-outline view" data-user-id="<?= $journal->id ?>">View </button> 
-                                 <button class="btn btn-sm btn-info " data-user-id="<?= $journal->id ?>">Edit </button> 
+                                 <a href="<?php echo base_url() ?>index.php/Journal/edit_journal/<?= $journal->id ?>">
+                                 <button class="btn btn-sm btn-info" data-user-id="<?= $journal->id ?>">Edit </button> 
+                                     </a>
                                  </div> 
                                  </td>
                                  </tr> 
