@@ -168,11 +168,11 @@ and open the template in the editor.
                                                     </select>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <div class="col-sm-12 ">
-                                            <button class="btn btn-primary pull-right" type="submit">Create <span class="fa fa-plus"></span></button>
+                                            <div class="form-group">
+                                                <div class="col-sm-8 ">
+                                                    <button class="btn btn-primary pull-right" type="submit">Create <span class="fa fa-plus"></span></button>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </form>
