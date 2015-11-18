@@ -39,13 +39,13 @@ add_editor() inserts an editor account, with a random generated p/w from random_
         </div>
         <div class="row wrapper border-bottom white-bg page-heading">
             <div class="col-sm-4">
-                <h2><span class="fa fa-user"></span> Manage Journals</h2>
+                <h2><span class="fa fa-user"></span> Journal Manager</h2>
                 <ol class="breadcrumb">
                     <li>
-                        Journal
+                        Administrator
                     </li>
                     <li class="active">
-                        <strong>View Journals</strong>
+                        <strong>Journal Manager</strong>
                     </li>
                 </ol>
             </div>

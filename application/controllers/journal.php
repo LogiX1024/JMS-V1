@@ -50,12 +50,12 @@ class Journal extends CI_Controller {
         
     }
     
-    public function view_journal() {
+    public function journal_manager() {
         $fieldset = array('id', 'name', 'issue','volume', 'aim' ,'objective',
            'scope' , 'category', 'keywords','collection_date',
             'camera_rady_date' , 'chief_editor_id', 'editor', 'status');
         $data['journals'] = $this->user->getData($fieldset, 'journal');
-        $this->load->view('admin_view_journal', $data);
+        $this->load->view('admin_journal_manager', $data);
     }
     
     public function edit_journal($id){
