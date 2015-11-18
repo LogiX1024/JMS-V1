@@ -28,15 +28,19 @@
                 <a href="<?php echo base_url() ?>index.php/Articles"><i class="fa fa-th-large"></i> <span class="nav-label">Submit Papers</span></a> 
             </li>
             <li>
-                <a href="#"><i class="fa fa-th-large"></i> <span class="nav-label">View Timeline</span></a>
+                <a href="<?php echo base_url() ?>index.php/test/test2/author_dashboard"><i class="fa fa-th-large"></i> <span class="nav-label">View Timeline</span></a>
             </li>
-            <li>
+            
+            
+<!--            <li>
                 <a href="#"><i class="fa fa-th-large"></i> <span class="nav-label">Review for Submission</span></a>
             </li>
             <li>
                 <a href="#"><i class="fa fa-th-large"></i> <span class="nav-label">Camera Ready Submission</span></a>
-            </li>
-            <li>
+            </li>-->
+            
+            
+<!--            <li>
                 <a href="#"><i class="fa fa-th-large"></i> <span class="nav-label">Dashboards</span></span></a>
                 <ul class="nav nav-second-level">
                     <li class="active"><a href="#">Dashboard v.1</a></li>
@@ -44,7 +48,7 @@
                     <li ><a href="#">Dashboard v.3</a></li>
                     <li ><a href="#">Dashboard v.4</a></li>
                 </ul>
-            </li>
+            </li>-->
 
 
         </ul>

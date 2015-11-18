@@ -24,13 +24,13 @@
                 </div>
             </li>
 
-            <li>
+<!--            <li>
                 <a href="#"><i class="fa fa-th-large"></i> <span class="nav-label">Assign papers for Reviewers</span></a>
-            </li>
+            </li>-->
             <li>
-                <a href="#"><i class="fa fa-th-large"></i> <span class="nav-label">View uploded Papers</span> </a>
+                <a href="<?php echo base_url() ?>index.php/test/test2/editor_submissions"><i class="fa fa-th-large"></i> <span class="nav-label">View Submissions</span> </a>
             </li>
-            <li>
+<!--            <li>
                 <a href="#"><i class="fa fa-th-large"></i> <span class="nav-label">Dashboards</span></a>
                 <ul class="nav nav-second-level">
                     <li ><a href="#">Dashboard v.1</a></li>
@@ -38,7 +38,7 @@
                     <li ><a href="#">Dashboard v.3</a></li>
                     <li ><a href="#">Dashboard v.4</a></li>
                 </ul>
-            </li>
+            </li>-->
 
 
 

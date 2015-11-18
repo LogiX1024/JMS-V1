@@ -23,9 +23,9 @@
                     JMS
                 </div>
             </li>
-            <li>
+<!--            <li>
                 <a href="#"><i class="fa fa-th-large"></i> <span class="nav-label">Dashboard</span></a>
-            </li>
+            </li>-->
             <li>
                 <a href="<?php echo base_url() ?>index.php/Journal/"><i class="fa fa-th-large"></i> <span class="nav-label">Create Journal</span></a>
             </li>
@@ -54,15 +54,8 @@
                         class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
                     <li><a href="<?php echo base_url() ?>index.php/Users/register_author">Add</a></li>
-                    <li><a href="<?php echo base_url() ?>index.php/Users/view_author"">Edit</a></li>
+                    <li><a href="<?php echo base_url() ?>index.php/Users/view_author">Edit</a></li>
                 </ul>
-            </li>
-            
-            
-            
-            
-            <li>
-                <a href="#"><i class="fa fa-cloud-download"></i> <span class="nav-label">Backup </span></a>
             </li>
         </ul>
 
