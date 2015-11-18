@@ -86,7 +86,7 @@ and open the template in the editor.
                                                 <!--</div>-->
                                                 <div class="col-sm-9">
                                                     <div class="input-group">
-                                                        <input type="text" class="form-control" name="chief_author" readonly="readonly" value="<?= $user->first_name . " " . $user->last_name ?>" > 
+                                                        <input type="text" class="form-control" name="chief_author" readonly="readonly" value="<?=$user->first_name . " " . $user->last_name ?>" > 
                                                         <span class="input-group-btn"> 
                                                             <button type="button" class="btn btn-primary">Change</button> 
                                                         </span>
