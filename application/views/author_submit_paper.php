@@ -57,10 +57,10 @@ and open the template in the editor.
                             $user = $this->session->userdata("user");
 
                             if (isset($error)) {
-                               // echo $error['error'];
+                                echo $error;
                             }
                             if (isset($success)) {
-                                //echo $success['success'];
+                                echo $success;
                             }
                             
                             ?>
@@ -116,7 +116,7 @@ and open the template in the editor.
                                             <div class="form-group">
                                                 <label class="col-sm-2 control-label">Upload File</label>
                                                 <div class="col-sm-9">
-                                                    <input name="upload" required="" type="file" class="form-control" placeholder="Upload">
+                                                    <input name="upload_file" required="" type="file" class="form-control" placeholder="Upload">
                                                 </div>
                                             </div>
 
