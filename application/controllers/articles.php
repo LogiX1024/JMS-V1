@@ -47,9 +47,13 @@ class Articles extends CI_Controller {
             $this->load->library('upload', $config);
             
             if (!$this->upload->do_upload("upload_file")) {
-                $error = array('error' => $this->upload->display_errors());
-                $this->load->view('author_submit_paper', $error);
+                echo $this->upload->display_errors();
+//                $error = array('error' => $this->upload->display_errors());
+//                $this->load->view('author_submit_paper', $error);
             }
+            
+            $DataSet = array('file_name'=>$this->upload->data("file_name"));
+            $this->user->Update($DataSet, "article", $insert_id);
 
             $success = array('success' => "Successfully Added!");
             redirect(base_url() . 'index.php/Articles/', $success);
