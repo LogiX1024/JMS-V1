@@ -7,7 +7,7 @@ class Articles extends CI_Controller {
 
     public function __construct() {
         parent::__construct();
-        $this->load->model('user');
+        $this->load->model('article');
         $this->load->helper(array('form', 'url'));
         $this->load->library('form_validation');
     }
@@ -35,7 +35,7 @@ class Articles extends CI_Controller {
 
         $DataSet = array('author_id' => $user->id, 'journal_id' => $journal_id, 'title' => $title, 'status' => "assigned", 'co_authors' => $sub_auth_1 . "," . $sub_auth_2, 'keyword' => $keywords);
 
-        $insert_id = $this->user->insertData("article", $DataSet);
+        $insert_id = $this->article->insertData("article", $DataSet);
 
 
         if ($insert_id > 0) {
@@ -52,8 +52,10 @@ class Articles extends CI_Controller {
 //                $this->load->view('author_submit_paper', $error);
             }
             
-            $DataSet = array('file_name'=>$this->upload->data("file_name"));
-            $this->user->Update($DataSet, "article", $insert_id);
+            $file = $this->upload->data();
+
+            $DataSet = array('file_name'=>$file['file_name']);
+            $this->article->Update($DataSet, "article", $insert_id);
 
             $success = array('success' => "Successfully Added!");
             redirect(base_url() . 'index.php/Articles/', $success);
