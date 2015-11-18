@@ -109,7 +109,7 @@ and open the template in the editor.
                                                 <label class="col-sm-2 control-label">Keywords</label>
                                                 <div class="col-sm-9">
                                                     <input name="keywords" required="" type="text" class="form-control" placeholder="Keywords">
-                                                    * Separated by commas'
+                                                    * Separated by commas
                                                 </div>
 
                                             </div>
