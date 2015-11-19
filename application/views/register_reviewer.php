@@ -46,37 +46,36 @@
                                 <fieldset>
                                     <h2>Personal Information</h2>
                                     <div class="row">
-                                        <div class="col-lg-12">
-                                            <div class="col-lg-6">
-                                                <div class="form-group">
-                                                    <label>First Name *</label>
-                                                    <input type="text" name="first_name" placeholder="Enter First Name" class="form-control "/>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label>Title</label>
-                                                    <select id="gender" class="form-control">
-                                                        <option value="male">Mr.</option>
-                                                        <option value="female">Mrs.</option>
-                                                    </select>
-                                                </div>
+
+                                        <div class="col-lg-6">
+                                            <div class="form-group">
+                                                <label>Title</label>
+                                                <select id="title" class="form-control">
+                                                    <option value="Mr">Mr.</option>
+                                                    <option value="Mrs.">Mrs.</option>
+                                                    <option value="Dr.">Dr.</option>
+                                                </select>
                                             </div>
-                                            <div class="col-lg-6">
-                                                <div class="form-group">
-                                                    <label>Last Name *</label>
-                                                    <input type="text" name="last_name" placeholder="Enter Last Name" class="form-control" />
-                                                </div>
-                                                <div class="form-group">
-                                                    <label>Gender</label>
-                                                    <select id="gender" class="form-control">
-                                                        <option value="male">Male</option>
-                                                        <option value="female">Female</option>
-                                                    </select>
-                                                </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+
+                                        <div class="col-lg-6">
+                                            <div class="form-group">
+                                                <label>First Name *</label>
+                                                <input type="text" name="first_name" placeholder="Enter First Name"
+                                                       class="form-control "/>
                                             </div>
 
-                                            
                                         </div>
-                                         
+                                        <div class="col-lg-6">
+                                            <div class="form-group">
+                                                <label>Last Name *</label>
+                                                <input type="text" name="last_name" placeholder="Enter Last Name"
+                                                       class="form-control"/>
+                                            </div>
+                                        </div>
+
                                     </div>
 
                                 </fieldset>
@@ -129,12 +128,12 @@
                                         <div class="col-lg-12">
                                         <div class="col-lg-6">
                                             <div class="form-group">
-                                                <label>Role</label>
-                                                <input id="name" name="role" type="text" placeholder="Enter Role" class="form-control ">
+                                                 
+                                                <input id="name" name="role" type="hidden" placeholder="Enter Role" class="form-control ">
                                             </div>
                                             <div class="form-group">
                                                 <label>Password</label>
-                                                <input type="password" name="password2" placeholder="Re-Enter password" class="form-control"/>
+                                                <input type="password" name="password2" placeholder="Enter password" class="form-control"/>
                                             </div>
                                             <div class="form-group">
                                                 <label>Security Question</label>
@@ -145,8 +144,6 @@
                                         </div>
                                         <div class="col-lg-6">
                                             <div class="form-group">
-                                                <label>Profile Pic</label>
-                                                <input type="file" name="profile_picture" class="form-control" />
                                             </div>
                                             <div class="form-group">
                                                 <label>Confirm password</label>

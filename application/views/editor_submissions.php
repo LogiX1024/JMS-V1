@@ -63,7 +63,6 @@ and open the template in the editor.
                                             <?php if ($article_data->status == "published") { ?>
                                                 <div class="media well">
                                                     <div class="media-body">
-                                                        <a href="#" style="//margin-right: 10px" class="pull-left"><img height="132" width="92px" alt="Bootstrap Media Preview" src="http://localhost/journalProto/imgs/two.jpg" class="media-object"></a>
                                                         <div class="col-lg-8" >
                                                             <div class="ibox-content">
                                                                 <h3 class="media-heading">
@@ -86,7 +85,6 @@ and open the template in the editor.
                                             <?php } if ($article_data->status == "reviewed" || $article_data->status == "cameraready" ) { ?>
                                                 <div class="media well">
                                                     <div class="media-body">
-                                                        <a href="#" style="//margin-right: 10px" class="pull-left"><img height="132" width="92px" alt="Bootstrap Media Preview" src="http://localhost/journalProto/imgs/two.jpg" class="media-object"></a>
                                                         <div class="col-lg-8" >
                                                             <div class="ibox-content">
                                                                 <h3 class="media-heading">
@@ -110,7 +108,6 @@ and open the template in the editor.
                                             <?php } if ($article_data->status == "assigned" || $article_data->status == "pending") { ?>
                                                 <div class="media well">
                                                     <div class="media-body">
-                                                        <a href="#" style="//margin-right: 10px" class="pull-left"><img height="132" width="92px" alt="Bootstrap Media Preview" src="http://localhost/journalProto/imgs/two.jpg" class="media-object"></a>
                                                         <div class="col-lg-8" >
                                                             <div class="ibox-content">
                                                                 <h3 class="media-heading">
@@ -138,7 +135,6 @@ and open the template in the editor.
                                             <?php if ($article_data->status == "pending") { ?>
                                                 <div class="media well">
                                                     <div class="media-body">
-                                                        <a href="#" style="//margin-right: 10px" class="pull-left"><img height="132" width="92px" alt="Bootstrap Media Preview" src="http://localhost/journalProto/imgs/two.jpg" class="media-object"></a>
                                                         <div class="col-lg-8" >
                                                             <div class="ibox-content">
                                                                 <h3 class="media-heading">
@@ -169,7 +165,6 @@ and open the template in the editor.
                                             <?php if ($article_data->status == "reviewed") { ?>
                                                 <div class="media well">
                                                     <div class="media-body">
-                                                        <a href="#" style="//margin-right: 10px" class="pull-left"><img height="132" width="92px" alt="Bootstrap Media Preview" src="http://localhost/journalProto/imgs/two.jpg" class="media-object"></a>
                                                         <div class="col-lg-8" >
                                                             <div class="ibox-content">
                                                                 <h3 class="media-heading">
@@ -200,7 +195,6 @@ and open the template in the editor.
                                             <?php if ($article_data->status == "cameraready") { ?>
                                                 <div class="media well">
                                                     <div class="media-body">
-                                                        <a href="#" style="//margin-right: 10px" class="pull-left"><img height="132" width="92px" alt="Bootstrap Media Preview" src="http://localhost/journalProto/imgs/two.jpg" class="media-object"></a>
                                                         <div class="col-lg-8" >
                                                             <div class="ibox-content">
                                                                 <h3 class="media-heading">

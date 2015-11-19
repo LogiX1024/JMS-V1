@@ -7,11 +7,11 @@
                     </span>
                     <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                         <span class="clear"> <span class="block m-t-xs"> <strong class="font-bold">
-                                    <!--                                        --><? //= $user->first_name . " " . $user->last_name ?>
+                                    <!--                                        --> 
                                 </strong>
                             </span> <span class="text-muted text-xs block">
                                 <!--                                    --> <!-- -->
-                                <!--                                    --><? //= $position ?><!-- -->
+                                <!--                                    --> <!-- -->
                                 <b class="caret"></b></span> </span> </a>
                     <ul class="dropdown-menu animated fadeInUp m-t-xs">
                         <li><a href="profile.html">Profile</a></li>
