@@ -1,4 +1,4 @@
-<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 /*
 | -------------------------------------------------------------------------
 | URI ROUTING
@@ -44,6 +44,7 @@ $route['404_override'] = '';
 $route['dashboard'] = "Users/dashboard";
 $route['login'] = "Users/login";
 $route['submit_paper'] = "Articles";
+$route['create_journal'] = "journal/create_journal";
 
 
 /* End of file routes.php */
