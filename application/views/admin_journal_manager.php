@@ -155,7 +155,6 @@ $this->load->view('partial/modals/journal');
         $('.view').click(function (e) {
             e.preventDefault();
             var journalID = $(this).data('journal-id');
-            alert(journalID);
 
             $.ajax({
                 type: "POST",
