@@ -101,7 +101,7 @@
                                                 </div>
                                             </div>
                                         </div> 
-                                        
+
                                         <div class="media well">
                                             <div class="media-body">
                                                 <a href="#" style="//margin-right: 10px" class="pull-left"><img height="132" width="92px" alt="Bootstrap Media Preview" src="http://localhost/journalProto/imgs/one.jpg" class="media-object"></a>
@@ -125,6 +125,7 @@
                                                 </div>
                                             </div>
                                         </div> 
+
 
 
                                     </div>
@@ -339,6 +340,13 @@
                                 </div>
                             </div>
                         </div>
+
+                        <?php
+//                        if (isset($auther_articals)) {
+                            print_r($auther_articals);
+//                        }
+                        ?>
+
                     </div>
                 </div>
 

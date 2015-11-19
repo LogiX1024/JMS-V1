@@ -60,7 +60,7 @@ and open the template in the editor.
                                 echo $error;
                             }
                             if (isset($success)) {
-                                echo $success;
+//                                echo $success;
                             }
                             
                             ?>
