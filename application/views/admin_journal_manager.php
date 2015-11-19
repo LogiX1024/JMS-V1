@@ -1,14 +1,3 @@
-<!-- 
-go to index.php/test/test2/admin_manage_editors to view this page
-go to index.php/users/new_editor to view this page
-Data needed to this view.
-user => { Object containing the name, title. gender, role, profile_picture_URL} of the logged in user
-users => set of registered editors {role= editor deleted = 0 banned = 0} {name, id and email address }
-functions in the controller
-get_single_user() should accept id of the user as POST request and return a JSON array of data about the user {first name, last name, title, mobile no, address1, address2, city, postal code, country, email, aand id}
-delete_user() should accept the id of the user to be deleted and password of the logged in user as POST. then verify the passwod. then set the value deleted of the user to 1
-add_editor() inserts an editor account, with a random generated p/w from random_string('alnum',8) method. email the password and login details to the newly created user.
-!-->
 
 <?php $this->load->view('partial/header'); ?>
 <!-- Data Tables -->
@@ -26,10 +15,6 @@ add_editor() inserts an editor account, with a random generated p/w from random_
 
     <!--    --><?php //$this->load->view('partial/admin_navigation', array('user' => $user, 'position' => $position)); ?>
     <?php $this->load->view('partial/admin_navigation'); ?>
-    <?php // $this->load->view('partial/chefEditor_navigation'); ?>
-    <?php // $this->load->view('partial/editor_navigation'); ?>
-    <?php // $this->load->view('partial/author_navigation'); ?>
-    <?php // $this->load->view('partial/reviewer_navigation'); ?>
 
     <div id="page-wrapper" class="gray-bg">
         <div class="row border-bottom">
@@ -50,6 +35,18 @@ add_editor() inserts an editor account, with a random generated p/w from random_
                 </ol>
             </div>
         </div>
+
+        <?php
+        if (isset($success_creating) && ($success_creating == TRUE)):
+            ?>
+            <div class="alert alert-success alert-dismissable">
+                <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+                Journal created successfully.</a>.
+            </div>
+        <?php
+        endif;
+        ?>
+
         <div class="wrapper wrapper-content animated fadeInRight">
             
             <div class="row">

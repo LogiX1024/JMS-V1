@@ -35,6 +35,7 @@ and open the template in the editor.
                     </ol>
                 </div>
             </div>
+
             <div class="wrapper wrapper-content animated fadeInRight">
                 <div class="row">
                     <div class="col-lg-12">
@@ -96,13 +97,13 @@ and open the template in the editor.
                                             <div class="form-group">
                                                 <label class="col-sm-2 control-label">Sub Author 1</label>
                                                 <div class="col-sm-9">
-                                                    <input name="sub_auth_1" required="" type="text" class="form-control" placeholder="Sub Author1">
+                                                    <input name="sub_auth_1" type="text" class="form-control" placeholder="Sub Author1">
                                                 </div>
                                             </div>
                                             <div class="form-group">
                                                 <label class="col-sm-2 control-label">Sub Author 2</label>
                                                 <div class="col-sm-9">
-                                                    <input name="sub_auth_2" required="" type="text" class="form-control" placeholder="Sub Author2">
+                                                    <input name="sub_auth_2" type="text" class="form-control" placeholder="Sub Author2">
                                                 </div>
                                             </div>
                                             <div class="form-group">
@@ -132,13 +133,13 @@ and open the template in the editor.
 
                                     <div class="col-sm-4">
                                         <div>
-                                            <label>Dowlands</label>
+                                            <label>Downloads</label>
                                         </div>
                                         <div>
-                                            <a href=""><button type="button" class="btn btn-primary">Paper Format</button></a>
+                                            <a href="" target="_blank" class="btn btn-primary">Paper Format</a>
                                         </div>
                                         <div>
-                                            <a href=""><button type="button" class="btn btn-primary">Guideline</button></a>
+                                            <a href="" target="_blank" class="btn btn-primary">Guideline</a>
                                         </div>
                                         <!--<div class="widget navy-bg p-lg text-left">-->
                                         <div>

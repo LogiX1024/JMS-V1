@@ -74,6 +74,12 @@ class Users extends CI_Controller
         //$fieldset = array('artical_id', 'journal_id', 'file_name');
         $data['author_article'] = $this->user->getData('*', 'article', $author_id);
 
+
+        $success = $this->session->flashdata('upload');
+
+        if ($success == "success") {
+            $data['success_upload'] = TRUE;
+        }
         //$auther_articals = $this->article->getData("*", 'article','');
 
         //print_r($auther_articals);
@@ -123,7 +129,7 @@ class Users extends CI_Controller
     public function logOut()
     {
         $this->session->sess_destroy();
-        $this->load->view('login');
+        redirect('/');
     }
 
     // Editors Area
