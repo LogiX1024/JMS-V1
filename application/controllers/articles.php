@@ -40,7 +40,7 @@ class Articles extends CI_Controller {
 
         if ($insert_id > 0) {
 
-            $config['upload_path'] = './uploads/';
+            $config['upload_path'] = './uploads/FreshCopy';
             $config['allowed_types'] = 'doc|docx|odt';
             $config['file_name'] = $insert_id;
 
