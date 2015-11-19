@@ -5,68 +5,94 @@ if (!defined('BASEPATH'))
 
 class Users extends CI_Controller
 {
+    var $USER_OBJ = false;
 
     public function __construct()
     {
         parent::__construct();
         $this->load->model('user');
         $this->load->library('form_validation');
+
+        $this->USER_OBJ = $this->session->userdata('user');
     }
 
     public function index()
     {
-        $user = $this->session->userdata('user');
-        if (isset($user)) {
-//            redirect(base_url().'index.php/Users' );
-            $this->load->view('dashboard');
+        if ($this->USER_OBJ != false) {
+            //session exists
+            redirect('/dashboard');
+
         } else {
+            //session expired or DNE
             $this->load->view('login');
         }
+//
+//        $user = $this->session->userdata('user');
+//        if (isset($user)) {
+//            $this->dashboard();
+//            //$this->load->view('dashboard');
+//        } else {
+//            $this->load->view('login');
+//        }
     }
 
-    public function test()
+    public function dashboard()
     {
-        $this->load->library('EmailSender');
+        switch ($this->ua->check_login()) {
+            case "Super":
+                echo "Super User";
+                break;
+            case "Editor":
+                echo "Editor";
+                break;
+            case "Author":
+                echo "Author";
+                break;
+            case "Reviewer":
+                break;
+            default:
+                $this->load->view('401');
 
-        $this->load->library('parser');
-        $data = array(
-            'name' => 'Kamal Piyasena',
-            'link' => 'http://www.google.com'
-        );
-        $body_string = $this->parser->parse('email/invite_reviewer', $data, TRUE);
-
-        if ($this->emailsender->send('tosandeepa@gmail.com', 'Applied e journal', $body_string)) {
-            echo "Success";
-        } else {
-            echo "Failed";
         }
     }
-    
-    
+
+    private function super_user_dashboard()
+    {
+    }
+
+
+
 
     // Login & Logout
     public function login()
     {
-        $this->form_validation->set_rules('username', 'Email', 'required|valid_email|is_unique[user.email_address]');
-        $this->form_validation->set_rules('password', 'Password', 'trim|required|sha1');
-        $email = $this->input->post('username');
-        $pass = $this->input->post('password');
-        $remember = $this->input->post('remember');
-        $ip = $this->input->server('REMOTE_ADDR');
-        $pass = sha1($pass);
-        $user = $this->user->get_pass($email);
-        if (!is_null($user)) {
-            if ($user->password === $pass) {
-                $this->session->set_userdata("user",$user);
-                $this->load->view('dashboard');
-                $this->user->loginLogSave($user->id, $ip);
+        $user_obj = $this->session->userdata('user');
+        if ($user_obj != false) {
+            redirect('/dashboard');
+
+        } else {
+
+            $this->form_validation->set_rules('username', 'Email', 'required|valid_email|is_unique[user.email_address]');
+            $this->form_validation->set_rules('password', 'Password', 'trim|required|sha1');
+            $email = $this->input->post('username');
+            $pass = $this->input->post('password');
+            $remember = $this->input->post('remember');
+            $ip = $this->input->server('REMOTE_ADDR');
+            $pass = sha1($pass);
+            $user = $this->user->get_pass($email);
+            if (!is_null($user)) {
+                if ($user->password === $pass) {
+                    $this->session->set_userdata("user", $user);
+                    $this->user->loginLogSave($user->id, $ip);
+                    redirect('/dashboard');
+                } else {
+                    $error = array('error' => "Password is incorrect!");
+                    $this->load->view('login', $error);
+                }
             } else {
-                $error = array('error' => "Password is incorrect!");
+                $error = array('error' => "E-mail is wrong!");
                 $this->load->view('login', $error);
             }
-        } else {
-            $error = array('error' => "E-mail is wrong!");
-            $this->load->view('login', $error);
         }
     }
 
@@ -83,7 +109,7 @@ class Users extends CI_Controller
         $email = $this->input->post("email", TRUE);
         $last_name = $this->input->post("last_name", TRUE);
         $DataSet = array('first_name' => $first_name, 'last_name' => $last_name, 'email_address' => $email, 'role' => "Editor");
-        //Query For Editor insertion 
+        //Query For Editor insertion
         $insert_id = $this->user->insertData("user", $DataSet);
         if ($insert_id > 0) {
             $success = array('Success' => "Successfully Added!");
@@ -132,23 +158,23 @@ class Users extends CI_Controller
         $email = $this->input->post("email");
         $last_name = $this->input->post("last_name");
         $journal = $this->input->post("journals[]");
-        //ToDO send this data as a mail to reviver        
+        //ToDO send this data as a mail to reviver
         $this->load->library('EmailSender');
 
         $this->load->library('parser');
         $data = array(
-            'name' => $first_name." ".$last_name,
+            'name' => $first_name . " " . $last_name,
             'link' => 'http://www.google.com'
         );
         $body_string = $this->parser->parse('email/invite_reviewer', $data, TRUE);
 
         if ($this->emailsender->send($email, 'Applied e journal', $body_string)) {
-            
+
             $DataSet = array('first_name' => $first_name,
                 'last_name' => $last_name,
                 'email_address' => $email,
                 'journal' => $journal);
-            
+
             $insert_id = $this->user->insertData("invited_reviwer", $DataSet);
             $success = array('Success' => "Successfully Invited!");
             redirect(base_url() . 'index.php/Users/reviewers', $success);
@@ -158,13 +184,13 @@ class Users extends CI_Controller
             redirect(base_url() . 'index.php/Users/reviewers', $Error);
             //echo "Failed";
         }
-        
+
     }
 
     public function accept_reviewer()
     {
         // login userge pw eka check karanna oona
-        // Reviewerge banded      
+        // Reviewerge banded
         $id = $this->input->post("id");
         $user_password = $this->session->userdata("id");
         $password = $this->input->post("password");
@@ -178,7 +204,7 @@ class Users extends CI_Controller
     public function reject_reviewer()
     {
         // login userge pw eka check karanna oona
-        // Reviewerge banded         
+        // Reviewerge banded
         $id = $this->session->userdata("id");
         $user_password = $this->session->userdata("id");
         $password = $this->input->post("password");
@@ -264,14 +290,15 @@ class Users extends CI_Controller
     {
         $this->load->view("register_author");
     }
-    
-    public function view_author(){
-        $fieldset = array('id','first_name','last_name','email_address','title','mobile_no');
+
+    public function view_author()
+    {
+        $fieldset = array('id', 'first_name', 'last_name', 'email_address', 'title', 'mobile_no');
         $data['authors'] = $this->user->getData($fieldset, 'user');
-        $this->load->view("admin_edit_author",$data);
+        $this->load->view("admin_edit_author", $data);
     }
 
-        public function authorRegistration()
+    public function authorRegistration()
     {
 
         $email = $this->input->post("username", TRUE);
@@ -315,7 +342,7 @@ class Users extends CI_Controller
                 'address2' => $address2,
                 'city' => $city,
                 'postal_code' => $postal_code,
-                'country' => $country,               
+                'country' => $country,
                 'security_question' => $sec_question,
                 'security_answer' => $sec_answer,
                 'role' => "Author",

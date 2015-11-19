@@ -2,18 +2,29 @@
     "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-    <title>eJournal</title>
+    <title>Applied Journal Management System</title>
 </head>
 <body>
-<h3>Invitation to eJournal</h3>
+<h3 style="text-align: center">Invitation</h3>
 
-<p>Hello {name},</p>
+<p>Dear Sir/Madam,</p>
+<h4><u>Invitation Letter to Review Manuscripts Submitted to the {journal_name}</u></h4>
 
-<p>You are invited to register to the eJournal Online system of Faculty of Applied Sciences, Rajarata University of Sri
-    Lanka.</p>
+<p>Having the high level of knowledge in your research field the Editorial Team of
+    {journal_name} is inviting you to become reviewer for our journal, participate in the reviewing process and make
+    recommendations to whether a manuscript is suitable for publishing or not.
+</p>
 
-<p>Please follow the <a href="{link}">link</a> to Register. </p>
-<br/>
+<p>The editorial board of the {journal_name} would like to express its gratitude for your contribution to our
+    journal.</p>
+
+<p>For more information, contact Chief Editor via <a href="mailto:{chief_editor_email}">{chief_editor_email}</a></p>
+
+<p>You can register as a reviewer though the link below.<br/>
+    <a href="{link}" target="_blank">{link}</a></p>
+
+<p>Please confirm whether you are willing to become part of our team of reviewers.</p>
+
 <p style="text-align: center">Thank You</p>
 </body>
 </html>

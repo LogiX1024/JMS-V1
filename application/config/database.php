@@ -45,7 +45,7 @@
 | the active record class
 */
 
-$active_group = 'default';
+$active_group = 'mamp';
 $active_record = TRUE;
 
 $db['default']['hostname'] = '127.0.0.1:3306';
@@ -64,6 +64,22 @@ $db['default']['swap_pre'] = '';
 $db['default']['autoinit'] = TRUE;
 $db['default']['stricton'] = FALSE;
 
+
+$db['mamp']['hostname'] = '127.0.0.1:3306';
+$db['mamp']['username'] = 'root';
+$db['mamp']['password'] = 'root';
+$db['mamp']['database'] = 'jms';
+$db['mamp']['dbdriver'] = 'mysql';
+$db['mamp']['dbprefix'] = '';
+$db['mamp']['pconnect'] = TRUE;
+$db['mamp']['db_debug'] = TRUE;
+$db['mamp']['cache_on'] = FALSE;
+$db['mamp']['cachedir'] = '';
+$db['mamp']['char_set'] = 'utf8';
+$db['mamp']['dbcollat'] = 'utf8_general_ci';
+$db['mamp']['swap_pre'] = '';
+$db['mamp']['autoinit'] = TRUE;
+$db['mamp']['stricton'] = FALSE;
 
 /* End of file database.php */
 /* Location: ./application/config/database.php */
