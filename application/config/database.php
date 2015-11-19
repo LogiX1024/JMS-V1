@@ -67,7 +67,7 @@ $db['default']['stricton'] = FALSE;
 
 $db['mamp']['hostname'] = '127.0.0.1:3306';
 $db['mamp']['username'] = 'root';
-$db['mamp']['password'] = 'root';
+$db['mamp']['password'] = '';
 $db['mamp']['database'] = 'jms';
 $db['mamp']['dbdriver'] = 'mysql';
 $db['mamp']['dbprefix'] = '';
