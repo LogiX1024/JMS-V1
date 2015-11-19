@@ -48,7 +48,8 @@
                                     </ul>
                                 </div>
                             </div>
-
+<?php var_dump($data);
+                                        die();?>
                             <div class="panel-body">
 
                                 <div class="tab-content">
@@ -60,7 +61,7 @@
                                                 <div class="col-lg-8" >
                                                     <div class="ibox-content">
                                                         <h3 class="media-heading">
-                                                            Seeking efficacy in L-asparaginase to combat acute lymphoblastic leukemia (ALL): A review
+                                                            Seekingaaa efficacy in L-asparaginase to combat acute lymphoblastic leukemia (ALL): A review
                                                         </h3> 
 
                                                         <span>Author : </span><br/>
@@ -131,19 +132,23 @@
                                     </div>
 
                                     <div id="tab-2" class="tab-pane">
-
+                                        
+                                            <?php  foreach ($author_article as $article_data): ?>
                                         <div class="media well">
+                                            
+                                            
                                             <div class="media-body">
+                                                
                                                 <a href="#" style="//margin-right: 10px" class="pull-left"><img height="132" width="92px" alt="Bootstrap Media Preview" src="http://localhost/journalProto/imgs/two.jpg" class="media-object"></a>
                                                 <div class="col-lg-8" >
                                                     <div class="ibox-content">
                                                         <h3 class="media-heading">
-                                                            Seeking efficacy in L-asparaginase to combat acute lymphoblastic leukemia (ALL): A review
+                                                            <?= $article_data->title   ?>
                                                         </h3> 
 
-                                                        <span>Author : </span><br/>
-                                                        <span>Sub Authors : </span><br/>
-                                                        <span>Keywords : </span><br/>
+                                                        <span>Author :<?= $article_data->title   ?> </span><br/>
+                                                        <span>Sub Authors : <?= $article_data->co_authors   ?> </span><br/>
+                                                        <span>Keywords : <?= $article_data->keyword  ?> </span><br/>
 
                                                     </div>
                                                 </div>
@@ -152,51 +157,12 @@
                                                     <a href="downloads/3282E2E55115.pdf" target="_blank"><button type="button" style="margin-bottom: 10px" class="btn btn-w-m btn-default pull-right">View in Journal</button></a>
                                                 </div>
                                             </div>
+                                            
                                         </div> 
+                                            <?php  endforeach; ?>
+                                         
 
-                                        <div class="media well">
-                                            <div class="media-body">
-                                                <a href="#" style="//margin-right: 10px" class="pull-left"><img height="132" width="92px" alt="Bootstrap Media Preview" src="http://localhost/journalProto/imgs/two.jpg" class="media-object"></a>
-                                                <div class="col-lg-8" >
-                                                    <div class="ibox-content">
-                                                        <h3 class="media-heading">
-                                                            Seeking efficacy in L-asparaginase to combat acute lymphoblastic leukemia (ALL): A review
-                                                        </h3> 
-
-                                                        <span>Author : </span><br/>
-                                                        <span>Sub Authors : </span><br/>
-                                                        <span>Keywords : </span><br/>
-
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-2 pull-right">
-                                                    <a href="downloads/3282E2E55115.pdf" target="_blank"><button type="button" style="margin-bottom: 10px" class="btn btn-w-m btn-default pull-right">Download PDF</button></a>
-                                                    <a href="downloads/3282E2E55115.pdf" target="_blank"><button type="button" style="margin-bottom: 10px" class="btn btn-w-m btn-default pull-right">View in Journal</button></a>
-                                                </div>
-                                            </div>
-                                        </div> 
-
-                                        <div class="media well">
-                                            <div class="media-body">
-                                                <a href="#" style="//margin-right: 10px" class="pull-left"><img height="132" width="92px" alt="Bootstrap Media Preview" src="http://localhost/journalProto/imgs/two.jpg" class="media-object"></a>
-                                                <div class="col-lg-8" >
-                                                    <div class="ibox-content">
-                                                        <h3 class="media-heading">
-                                                            Seeking efficacy in L-asparaginase to combat acute lymphoblastic leukemia (ALL): A review
-                                                        </h3> 
-
-                                                        <span>Author : </span><br/>
-                                                        <span>Sub Authors : </span><br/>
-                                                        <span>Keywords : </span><br/>
-
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-2 pull-right">
-                                                    <a href="downloads/3282E2E55115.pdf" target="_blank"><button type="button" style="margin-bottom: 10px" class="btn btn-w-m btn-default pull-right">Download PDF</button></a>
-                                                    <a href="downloads/3282E2E55115.pdf" target="_blank"><button type="button" style="margin-bottom: 10px" class="btn btn-w-m btn-default pull-right">View in Journal</button></a>
-                                                </div>
-                                            </div>
-                                        </div> 
+                                         
 
                                     </div>
                                     <div id="tab-3" class="tab-pane">
