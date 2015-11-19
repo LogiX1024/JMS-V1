@@ -14,7 +14,7 @@
 | path to your installation.
 |
 */
-$config['base_url']	= 'appjms.azurewebsites.net';
+$config['base_url']	= 'http://localhost:8088';
 
 /*
 |--------------------------------------------------------------------------

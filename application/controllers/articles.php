@@ -39,6 +39,7 @@ class Articles extends CI_Controller
 
     public function submit_article()
     {
+        date_default_timezone_set("Asia/Colombo");
 
         $user = $this->session->userdata("user");
         $title = $this->input->post("title");

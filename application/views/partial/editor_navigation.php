@@ -30,6 +30,10 @@
             <li>
                 <a href="<?php echo base_url() ?>index.php/dashboard"><i class="fa fa-th-large"></i> <span class="nav-label">View Submissions</span> </a>
             </li>
+
+            <li>
+                <a href="<?php echo base_url() ?>index.php/users/reviewers"><i class="fa fa-th-large"></i> <span class="nav-label">Invite Reviewers</span> </a>
+            </li>
 <!--            <li>
                 <a href="#"><i class="fa fa-th-large"></i> <span class="nav-label">Dashboards</span></a>
                 <ul class="nav nav-second-level">
