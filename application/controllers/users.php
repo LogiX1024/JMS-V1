@@ -73,6 +73,19 @@ class Users extends CI_Controller
     {
         $author_id = array("author_id" => $this->USER_OBJ->id);
         $data['author_article'] = $this->user->getData('*', 'article', $author_id);
+
+
+        $success = $this->session->flashdata('upload');
+
+        if ($success == "success") {
+            $data['success_upload'] = TRUE;
+        }
+        //$auther_articals = $this->article->getData("*", 'article','');
+
+        //print_r($auther_articals);
+        // var_dump($data);
+        //die();
+
         $this->load->view('author_dashboard', $data);
     }
 
@@ -117,7 +130,7 @@ class Users extends CI_Controller
     public function logOut()
     {
         $this->session->sess_destroy();
-        $this->load->view('login');
+        redirect('/');
     }
 
     // Editors Area

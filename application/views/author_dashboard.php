@@ -29,6 +29,16 @@
                 </div>
             </div>
 
+            <?php
+            if (isset($success_creating) && ($success_creating == TRUE)):
+                ?>
+                <div class="alert alert-success alert-dismissable">
+                    <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+                    Your article submitted successfully.</a>.
+                </div>
+            <?php
+            endif;
+            ?>
 
             <div class="wrapper wrapper-content animated fadeInRight">
 
@@ -60,7 +70,6 @@
                                             <?php if ($article_data->status == "published") { ?>
                                                 <div class="media well">
                                                     <div class="media-body">
-                                                        <a href="#" style="//margin-right: 10px" class="pull-left"><img height="132" width="92px" alt="Bootstrap Media Preview" src="http://localhost/journalProto/imgs/two.jpg" class="media-object"></a>
                                                         <div class="col-lg-8" >
                                                             <div class="ibox-content">
                                                                 <h3 class="media-heading">
@@ -83,7 +92,6 @@
                                             <?php } if ($article_data->status == "reviewed") { ?>
                                                 <div class="media well">
                                                     <div class="media-body">
-                                                        <a href="#" style="//margin-right: 10px" class="pull-left"><img height="132" width="92px" alt="Bootstrap Media Preview" src="http://localhost/journalProto/imgs/two.jpg" class="media-object"></a>
                                                         <div class="col-lg-8" >
                                                             <div class="ibox-content">
                                                                 <h3 class="media-heading">
@@ -107,7 +115,6 @@
                                             <?php } if ($article_data->status == "assigned" || $article_data->status == "pending") { ?>
                                                 <div class="media well">
                                                     <div class="media-body">
-                                                        <a href="#" style="//margin-right: 10px" class="pull-left"><img height="132" width="92px" alt="Bootstrap Media Preview" src="http://localhost/journalProto/imgs/two.jpg" class="media-object"></a>
                                                         <div class="col-lg-8" >
                                                             <div class="ibox-content">
                                                                 <h3 class="media-heading">
@@ -135,7 +142,6 @@
                                             <?php if ($article_data->status == "published") { ?>
                                                 <div class="media well">
                                                     <div class="media-body">
-                                                        <a href="#" style="//margin-right: 10px" class="pull-left"><img height="132" width="92px" alt="Bootstrap Media Preview" src="http://localhost/journalProto/imgs/two.jpg" class="media-object"></a>
                                                         <div class="col-lg-8" >
                                                             <div class="ibox-content">
                                                                 <h3 class="media-heading">
