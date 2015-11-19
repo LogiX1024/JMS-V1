@@ -48,9 +48,9 @@ and open the template in the editor.
 
                                     <ul class="nav nav-tabs">
                                         <li class="active"><a data-toggle="tab" href="#tab-1">All</a></li>
-                                        <li class=""><a data-toggle="tab" href="#tab-2">Reviewed</a></li>
-                                        <li class=""><a data-toggle="tab" href="#tab-3">Waiting for Review</a></li>
-                                        <li class=""><a data-toggle="tab" href="#tab-4">Waiting for Camera Ready</a></li>
+                                        <li class=""><a data-toggle="tab" href="#tab-2">Waiting for Review</a></li>
+                                        <li class=""><a data-toggle="tab" href="#tab-3">Reviewed</a></li>
+                                        <li class=""><a data-toggle="tab" href="#tab-4">Camera Ready Submitted</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -59,293 +59,168 @@ and open the template in the editor.
 
                                 <div class="tab-content">
                                     <div id="tab-1" class="tab-pane active">
+                                        <?php foreach ($author_article as $article_data): ?>
+                                            <?php if ($article_data->status == "published") { ?>
+                                                <div class="media well">
+                                                    <div class="media-body">
+                                                        <a href="#" style="//margin-right: 10px" class="pull-left"><img height="132" width="92px" alt="Bootstrap Media Preview" src="http://localhost/journalProto/imgs/two.jpg" class="media-object"></a>
+                                                        <div class="col-lg-8" >
+                                                            <div class="ibox-content">
+                                                                <h3 class="media-heading">
+                                                                    <?= $article_data->title ?>
+                                                                </h3> 
 
-                                        <div class="media well">
-                                            <div class="media-body">
-                                                <a href="#" style="//margin-right: 10px" class="pull-left"><img height="132" width="92px" alt="Bootstrap Media Preview" src="http://localhost/journalProto/imgs/one.jpg" class="media-object"></a>
-                                                <div class="col-lg-8" >
-                                                    <div class="ibox-content">
-                                                        <h3 class="media-heading">
-                                                            Seeking efficacy in L-asparaginase to combat acute lymphoblastic leukemia (ALL): A review
-                                                        </h3> 
+                                                                <span>Author :<?= $article_data->title ?> </span><br/>
+                                                                <span>Sub Authors : <?= $article_data->co_authors ?> </span><br/>
+                                                                <span>Keywords : <?= $article_data->keyword ?> </span><br/>
 
-                                                        <span>Author : </span><br/>
-                                                        <span>Sub Authors : </span><br/>
-                                                        <span>Keywords : </span><br/>
-
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-2 pull-right">
+                                                            <a href="<?php echo base_url(); ?>./uploads/FreshCopy/<?= $article_data->file_name ?>" target="_blank"><button type="button" style="margin-bottom: 10px" class="btn btn-w-m btn-default pull-right">Download PDF</button></a>
+                                                            <a href="downloads/3282E2E55115.pdf" target="_blank"><button type="button" style="margin-bottom: 10px" class="btn btn-w-m btn-default pull-right">View in Journal</button></a>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                                <div class="col-lg-2 pull-right">
-                                                    <a href="downloads/3282E2E55115.pdf" target="_blank"><button type="button" style="margin-bottom: 10px" class="btn btn-w-m btn-default pull-right">Download as PDF</button></a>
-                                                    <a href="downloads/3282E2E55115.pdf" target="_blank"><button type="button" style="margin-bottom: 10px" class="btn btn-w-m btn-default pull-right">Submit to Review</button></a>
-                                                    <a href="downloads/3282E2E55115.pdf" target="_blank"><button type="button" style="margin-bottom: 10px" class="btn btn-w-m btn-default pull-right">Resend to Author</button></a>
-                                                </div>
-                                            </div>
-                                        </div> 
 
-                                         <div class="media well">
-                                            <div class="media-body">
-                                                <a href="#" style="//margin-right: 10px" class="pull-left"><img height="132" width="92px" alt="Bootstrap Media Preview" src="http://localhost/journalProto/imgs/one.jpg" class="media-object"></a>
-                                                <div class="col-lg-8" >
-                                                    <div class="ibox-content">
-                                                        <h3 class="media-heading">
-                                                            Seeking efficacy in L-asparaginase to combat acute lymphoblastic leukemia (ALL): A review
-                                                        </h3> 
+                                                </div> 
+                                            <?php } if ($article_data->status == "reviewed" || $article_data->status == "cameraready" ) { ?>
+                                                <div class="media well">
+                                                    <div class="media-body">
+                                                        <a href="#" style="//margin-right: 10px" class="pull-left"><img height="132" width="92px" alt="Bootstrap Media Preview" src="http://localhost/journalProto/imgs/two.jpg" class="media-object"></a>
+                                                        <div class="col-lg-8" >
+                                                            <div class="ibox-content">
+                                                                <h3 class="media-heading">
+                                                                    <?= $article_data->title ?>
+                                                                </h3> 
 
-                                                        <span>Author : </span><br/>
-                                                        <span>Sub Authors : </span><br/>
-                                                        <span>Keywords : </span><br/>
+                                                                <span>Author :<?= $article_data->title ?> </span><br/>
+                                                                <span>Sub Authors : <?= $article_data->co_authors ?> </span><br/>
+                                                                <span>Keywords : <?= $article_data->keyword ?> </span><br/>
 
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-2 pull-right">
+                                                            <a href="<?php echo base_url(); ?>./uploads/FreshCopy/<?= $article_data->file_name ?>" target="_blank"><button type="button" style="margin-bottom: 10px" class="btn btn-w-m btn-default pull-right">Download PDF</button></a>
+                                                            <a href="" target="_blank"><button type="button" style="margin-bottom: 10px" class="btn btn-w-m btn-default pull-right">View Review</button></a>
+                                                            <a href="" target="_blank"><button type="button" style="margin-bottom: 10px" class="btn btn-w-m btn-default pull-right">Submit for Camera Ready</button></a>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                                <div class="col-lg-2 pull-right">
-                                                    <a href="downloads/3282E2E55115.pdf" target="_blank"><button type="button" style="margin-bottom: 10px" class="btn btn-w-m btn-default pull-right">Download as PDF</button></a>
-                                                    <a href="downloads/3282E2E55115.pdf" target="_blank"><button type="button" style="margin-bottom: 10px" class="btn btn-w-m btn-default pull-right">Submit to Review</button></a>
-                                                    <a href="downloads/3282E2E55115.pdf" target="_blank"><button type="button" style="margin-bottom: 10px" class="btn btn-w-m btn-default pull-right">Resend to Author</button></a>
-                                                </div>
-                                            </div>
-                                        </div> 
-                                        
-                                         <div class="media well">
-                                            <div class="media-body">
-                                                <a href="#" style="//margin-right: 10px" class="pull-left"><img height="132" width="92px" alt="Bootstrap Media Preview" src="http://localhost/journalProto/imgs/one.jpg" class="media-object"></a>
-                                                <div class="col-lg-8" >
-                                                    <div class="ibox-content">
-                                                        <h3 class="media-heading">
-                                                            Seeking efficacy in L-asparaginase to combat acute lymphoblastic leukemia (ALL): A review
-                                                        </h3> 
 
-                                                        <span>Author : </span><br/>
-                                                        <span>Sub Authors : </span><br/>
-                                                        <span>Keywords : </span><br/>
+                                                </div> 
+                                            <?php } if ($article_data->status == "assigned" || $article_data->status == "pending") { ?>
+                                                <div class="media well">
+                                                    <div class="media-body">
+                                                        <a href="#" style="//margin-right: 10px" class="pull-left"><img height="132" width="92px" alt="Bootstrap Media Preview" src="http://localhost/journalProto/imgs/two.jpg" class="media-object"></a>
+                                                        <div class="col-lg-8" >
+                                                            <div class="ibox-content">
+                                                                <h3 class="media-heading">
+                                                                    <?= $article_data->title ?>
+                                                                </h3> 
 
+                                                                <span>Author :<?= $article_data->title ?> </span><br/>
+                                                                <span>Sub Authors : <?= $article_data->co_authors ?> </span><br/>
+                                                                <span>Keywords : <?= $article_data->keyword ?> </span><br/>
+
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-2 pull-right">
+                                                            <a href="<?php echo base_url(); ?>./uploads/FreshCopy/<?= $article_data->file_name ?>" target="_blank"><button type="button" style="margin-bottom: 10px" class="btn btn-w-m btn-default pull-right">Download PDF</button></a>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                                <div class="col-lg-2 pull-right">
-                                                    <a href="downloads/3282E2E55115.pdf" target="_blank"><button type="button" style="margin-bottom: 10px" class="btn btn-w-m btn-default pull-right">Download as PDF</button></a>
-                                                    <a href="downloads/3282E2E55115.pdf" target="_blank"><button type="button" style="margin-bottom: 10px" class="btn btn-w-m btn-default pull-right">Submit to Review</button></a>
-                                                    <a href="downloads/3282E2E55115.pdf" target="_blank"><button type="button" style="margin-bottom: 10px" class="btn btn-w-m btn-default pull-right">Resend to Author</button></a>
-                                                </div>
-                                            </div>
-                                        </div> 
-
+                                                </div> 
+                                            <?php } endforeach; ?>
 
                                     </div>
 
                                     <div id="tab-2" class="tab-pane">
 
-                                        <div class="media well">
-                                            <div class="media-body">
-                                                <a href="#" style="//margin-right: 10px" class="pull-left"><img height="132" width="92px" alt="Bootstrap Media Preview" src="http://localhost/journalProto/imgs/two.jpg" class="media-object"></a>
-                                                <div class="col-lg-8" >
-                                                    <div class="ibox-content">
-                                                        <h3 class="media-heading">
-                                                            Seeking efficacy in L-asparaginase to combat acute lymphoblastic leukemia (ALL): A review
-                                                        </h3> 
+                                        <?php foreach ($author_article as $article_data): ?>
+                                            <?php if ($article_data->status == "pending") { ?>
+                                                <div class="media well">
+                                                    <div class="media-body">
+                                                        <a href="#" style="//margin-right: 10px" class="pull-left"><img height="132" width="92px" alt="Bootstrap Media Preview" src="http://localhost/journalProto/imgs/two.jpg" class="media-object"></a>
+                                                        <div class="col-lg-8" >
+                                                            <div class="ibox-content">
+                                                                <h3 class="media-heading">
+                                                                    <?= $article_data->title ?>
+                                                                </h3> 
 
-                                                        <span>Author : </span><br/>
-                                                        <span>Sub Authors : </span><br/>
-                                                        <span>Keywords : </span><br/>
+                                                                <span>Author :<?= $article_data->title ?> </span><br/>
+                                                                <span>Sub Authors : <?= $article_data->co_authors ?> </span><br/>
+                                                                <span>Keywords : <?= $article_data->keyword ?> </span><br/>
 
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-2 pull-right">
+                                                            <a href="<?php echo base_url(); ?>./uploads/FreshCopy/<?= $article_data->file_name ?>" target="_blank"><button type="button" style="margin-bottom: 10px" class="btn btn-w-m btn-default pull-right">Download PDF</button></a>
+                                                            <a href="downloads/3282E2E55115.pdf" target="_blank"><button type="button" style="margin-bottom: 10px" class="btn btn-w-m btn-default pull-right">View in Journal</button></a>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                                <div class="col-lg-2 pull-right">
-                                                    <a href="downloads/3282E2E55115.pdf" target="_blank"><button type="button" style="margin-bottom: 10px" class="btn btn-w-m btn-default pull-right">Download as PDF</button></a>
-                                                    <a href="downloads/3282E2E55115.pdf" target="_blank"><button type="button" style="margin-bottom: 10px" class="btn btn-w-m btn-default pull-right">Submit to Review</button></a>
-                                                    <a href="downloads/3282E2E55115.pdf" target="_blank"><button type="button" style="margin-bottom: 10px" class="btn btn-w-m btn-default pull-right">Resend to Author</button></a>
-                                                </div>
-                                            </div>
-                                        </div> 
 
-                                         <div class="media well">
-                                            <div class="media-body">
-                                                <a href="#" style="//margin-right: 10px" class="pull-left"><img height="132" width="92px" alt="Bootstrap Media Preview" src="http://localhost/journalProto/imgs/two.jpg" class="media-object"></a>
-                                                <div class="col-lg-8" >
-                                                    <div class="ibox-content">
-                                                        <h3 class="media-heading">
-                                                            Seeking efficacy in L-asparaginase to combat acute lymphoblastic leukemia (ALL): A review
-                                                        </h3> 
+                                                </div> 
+                                            <?php }endforeach; ?>
 
-                                                        <span>Author : </span><br/>
-                                                        <span>Sub Authors : </span><br/>
-                                                        <span>Keywords : </span><br/>
 
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-2 pull-right">
-                                                    <a href="downloads/3282E2E55115.pdf" target="_blank"><button type="button" style="margin-bottom: 10px" class="btn btn-w-m btn-default pull-right">Download as PDF</button></a>
-                                                    <a href="downloads/3282E2E55115.pdf" target="_blank"><button type="button" style="margin-bottom: 10px" class="btn btn-w-m btn-default pull-right">Submit to Review</button></a>
-                                                    <a href="downloads/3282E2E55115.pdf" target="_blank"><button type="button" style="margin-bottom: 10px" class="btn btn-w-m btn-default pull-right">Resend to Author</button></a>
-                                                </div>
-                                            </div>
-                                        </div> 
-                                        
-                                         <div class="media well">
-                                            <div class="media-body">
-                                                <a href="#" style="//margin-right: 10px" class="pull-left"><img height="132" width="92px" alt="Bootstrap Media Preview" src="http://localhost/journalProto/imgs/two.jpg" class="media-object"></a>
-                                                <div class="col-lg-8" >
-                                                    <div class="ibox-content">
-                                                        <h3 class="media-heading">
-                                                            Seeking efficacy in L-asparaginase to combat acute lymphoblastic leukemia (ALL): A review
-                                                        </h3> 
 
-                                                        <span>Author : </span><br/>
-                                                        <span>Sub Authors : </span><br/>
-                                                        <span>Keywords : </span><br/>
-
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-2 pull-right">
-                                                    <a href="downloads/3282E2E55115.pdf" target="_blank"><button type="button" style="margin-bottom: 10px" class="btn btn-w-m btn-default pull-right">Download as PDF</button></a>
-                                                    <a href="downloads/3282E2E55115.pdf" target="_blank"><button type="button" style="margin-bottom: 10px" class="btn btn-w-m btn-default pull-right">Submit to Review</button></a>
-                                                    <a href="downloads/3282E2E55115.pdf" target="_blank"><button type="button" style="margin-bottom: 10px" class="btn btn-w-m btn-default pull-right">Resend to Author</button></a>
-                                                </div>
-                                            </div>
-                                        </div> 
 
                                     </div>
                                     <div id="tab-3" class="tab-pane">
+                                        <?php foreach ($author_article as $article_data): ?>
+                                            <?php if ($article_data->status == "reviewed") { ?>
+                                                <div class="media well">
+                                                    <div class="media-body">
+                                                        <a href="#" style="//margin-right: 10px" class="pull-left"><img height="132" width="92px" alt="Bootstrap Media Preview" src="http://localhost/journalProto/imgs/two.jpg" class="media-object"></a>
+                                                        <div class="col-lg-8" >
+                                                            <div class="ibox-content">
+                                                                <h3 class="media-heading">
+                                                                    <?= $article_data->title ?>
+                                                                </h3> 
 
-                                        <div class="media well">
-                                            <div class="media-body">
-                                                <a href="#" style="//margin-right: 10px" class="pull-left"><img height="132" width="92px" alt="Bootstrap Media Preview" src="http://localhost/journalProto/imgs/three.jpg" class="media-object"></a>
-                                                <div class="col-lg-8" >
-                                                    <div class="ibox-content">
-                                                        <h3 class="media-heading">
-                                                            Seeking efficacy in L-asparaginase to combat acute lymphoblastic leukemia (ALL): A review
-                                                        </h3> 
+                                                                <span>Author :<?= $article_data->title ?> </span><br/>
+                                                                <span>Sub Authors : <?= $article_data->co_authors ?> </span><br/>
+                                                                <span>Keywords : <?= $article_data->keyword ?> </span><br/>
 
-                                                        <span>Author : </span><br/>
-                                                        <span>Sub Authors : </span><br/>
-                                                        <span>Keywords : </span><br/>
-
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-2 pull-right">
+                                                            <a href="<?php echo base_url(); ?>./uploads/FreshCopy/<?= $article_data->file_name ?>" target="_blank"><button type="button" style="margin-bottom: 10px" class="btn btn-w-m btn-default pull-right">Download PDF</button></a>
+                                                            <a href="" target="_blank"><button type="button" style="margin-bottom: 10px" class="btn btn-w-m btn-default pull-right">View Review</button></a>
+                                                            <a href="" target="_blank"><button type="button" style="margin-bottom: 10px" class="btn btn-w-m btn-default pull-right">Submit for Camera Ready</button></a>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                                <div class="col-lg-2 pull-right">
-                                                    <a href="downloads/3282E2E55115.pdf" target="_blank"><button type="button" style="margin-bottom: 10px" class="btn btn-w-m btn-default pull-right">Download as PDF</button></a>
-                                                    <a href="downloads/3282E2E55115.pdf" target="_blank"><button type="button" style="margin-bottom: 10px" class="btn btn-w-m btn-default pull-right">Submit to Review</button></a>
-                                                    <a href="downloads/3282E2E55115.pdf" target="_blank"><button type="button" style="margin-bottom: 10px" class="btn btn-w-m btn-default pull-right">Resend to Author</button></a>
-                                                </div>
-                                            </div>
-                                        </div> 
 
-                                         <div class="media well">
-                                            <div class="media-body">
-                                                <a href="#" style="//margin-right: 10px" class="pull-left"><img height="132" width="92px" alt="Bootstrap Media Preview" src="http://localhost/journalProto/imgs/three.jpg" class="media-object"></a>
-                                                <div class="col-lg-8" >
-                                                    <div class="ibox-content">
-                                                        <h3 class="media-heading">
-                                                            Seeking efficacy in L-asparaginase to combat acute lymphoblastic leukemia (ALL): A review
-                                                        </h3> 
-
-                                                        <span>Author : </span><br/>
-                                                        <span>Sub Authors : </span><br/>
-                                                        <span>Keywords : </span><br/>
-
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-2 pull-right">
-                                                    <a href="downloads/3282E2E55115.pdf" target="_blank"><button type="button" style="margin-bottom: 10px" class="btn btn-w-m btn-default pull-right">Download as PDF</button></a>
-                                                    <a href="downloads/3282E2E55115.pdf" target="_blank"><button type="button" style="margin-bottom: 10px" class="btn btn-w-m btn-default pull-right">Submit to Review</button></a>
-                                                    <a href="downloads/3282E2E55115.pdf" target="_blank"><button type="button" style="margin-bottom: 10px" class="btn btn-w-m btn-default pull-right">Resend to Author</button></a>
-                                                </div>
-                                            </div>
-                                        </div> 
-                                        
-                                         <div class="media well">
-                                            <div class="media-body">
-                                                <a href="#" style="//margin-right: 10px" class="pull-left"><img height="132" width="92px" alt="Bootstrap Media Preview" src="http://localhost/journalProto/imgs/three.jpg" class="media-object"></a>
-                                                <div class="col-lg-8" >
-                                                    <div class="ibox-content">
-                                                        <h3 class="media-heading">
-                                                            Seeking efficacy in L-asparaginase to combat acute lymphoblastic leukemia (ALL): A review
-                                                        </h3> 
-
-                                                        <span>Author : </span><br/>
-                                                        <span>Sub Authors : </span><br/>
-                                                        <span>Keywords : </span><br/>
-
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-2 pull-right">
-                                                    <a href="downloads/3282E2E55115.pdf" target="_blank"><button type="button" style="margin-bottom: 10px" class="btn btn-w-m btn-default pull-right">Download as PDF</button></a>
-                                                    <a href="downloads/3282E2E55115.pdf" target="_blank"><button type="button" style="margin-bottom: 10px" class="btn btn-w-m btn-default pull-right">Submit to Review</button></a>
-                                                    <a href="downloads/3282E2E55115.pdf" target="_blank"><button type="button" style="margin-bottom: 10px" class="btn btn-w-m btn-default pull-right">Resend to Author</button></a>
-                                                </div>
-                                            </div>
-                                        </div> 
+                                                </div> 
+                                            <?php }endforeach; ?>
 
                                     </div>
+
+
                                     <div id="tab-4" class="tab-pane">
+                                        <?php foreach ($author_article as $article_data): ?>
+                                            <?php if ($article_data->status == "cameraready") { ?>
+                                                <div class="media well">
+                                                    <div class="media-body">
+                                                        <a href="#" style="//margin-right: 10px" class="pull-left"><img height="132" width="92px" alt="Bootstrap Media Preview" src="http://localhost/journalProto/imgs/two.jpg" class="media-object"></a>
+                                                        <div class="col-lg-8" >
+                                                            <div class="ibox-content">
+                                                                <h3 class="media-heading">
+                                                                    <?= $article_data->title ?>
+                                                                </h3> 
 
-                                        <div class="media well">
-                                            <div class="media-body">
-                                                <a href="#" style="//margin-right: 10px" class="pull-left"><img height="132" width="92px" alt="Bootstrap Media Preview" src="http://localhost/journalProto/imgs/five.jpg" class="media-object"></a>
-                                                <div class="col-lg-8" >
-                                                    <div class="ibox-content">
-                                                        <h3 class="media-heading">
-                                                            Seeking efficacy in L-asparaginase to combat acute lymphoblastic leukemia (ALL): A review
-                                                        </h3> 
+                                                                <span>Author :<?= $article_data->title ?> </span><br/>
+                                                                <span>Sub Authors : <?= $article_data->co_authors ?> </span><br/>
+                                                                <span>Keywords : <?= $article_data->keyword ?> </span><br/>
 
-                                                        <span>Author : </span><br/>
-                                                        <span>Sub Authors : </span><br/>
-                                                        <span>Keywords : </span><br/>
-
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-2 pull-right">
+                                                            <a href="<?php echo base_url(); ?>./uploads/FreshCopy/<?= $article_data->file_name ?>" target="_blank"><button type="button" style="margin-bottom: 10px" class="btn btn-w-m btn-default pull-right">Download PDF</button></a>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                                <div class="col-lg-2 pull-right">
-                                                    <a href="downloads/3282E2E55115.pdf" target="_blank"><button type="button" style="margin-bottom: 10px" class="btn btn-w-m btn-default pull-right">Download as PDF</button></a>
-                                                    <a href="downloads/3282E2E55115.pdf" target="_blank"><button type="button" style="margin-bottom: 10px" class="btn btn-w-m btn-default pull-right">Submit to Review</button></a>
-                                                    <a href="downloads/3282E2E55115.pdf" target="_blank"><button type="button" style="margin-bottom: 10px" class="btn btn-w-m btn-default pull-right">Resend to Author</button></a>
-                                                </div>
-                                            </div>
-                                        </div> 
 
-                                         <div class="media well">
-                                            <div class="media-body">
-                                                <a href="#" style="//margin-right: 10px" class="pull-left"><img height="132" width="92px" alt="Bootstrap Media Preview" src="http://localhost/journalProto/imgs/five.jpg" class="media-object"></a>
-                                                <div class="col-lg-8" >
-                                                    <div class="ibox-content">
-                                                        <h3 class="media-heading">
-                                                            Seeking efficacy in L-asparaginase to combat acute lymphoblastic leukemia (ALL): A review
-                                                        </h3> 
+                                                </div> 
+                                            <?php }endforeach; ?>
 
-                                                        <span>Author : </span><br/>
-                                                        <span>Sub Authors : </span><br/>
-                                                        <span>Keywords : </span><br/>
-
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-2 pull-right">
-                                                    <a href="downloads/3282E2E55115.pdf" target="_blank"><button type="button" style="margin-bottom: 10px" class="btn btn-w-m btn-default pull-right">Download as PDF</button></a>
-                                                    <a href="downloads/3282E2E55115.pdf" target="_blank"><button type="button" style="margin-bottom: 10px" class="btn btn-w-m btn-default pull-right">Submit to Review</button></a>
-                                                    <a href="downloads/3282E2E55115.pdf" target="_blank"><button type="button" style="margin-bottom: 10px" class="btn btn-w-m btn-default pull-right">Resend to Author</button></a>
-                                                </div>
-                                            </div>
-                                        </div> 
-                                        
-                                         <div class="media well">
-                                            <div class="media-body">
-                                                <a href="#" style="//margin-right: 10px" class="pull-left"><img height="132" width="92px" alt="Bootstrap Media Preview" src="http://localhost/journalProto/imgs/five.jpg" class="media-object"></a>
-                                                <div class="col-lg-8" >
-                                                    <div class="ibox-content">
-                                                        <h3 class="media-heading">
-                                                            Seeking efficacy in L-asparaginase to combat acute lymphoblastic leukemia (ALL): A review
-                                                        </h3> 
-
-                                                        <span>Author : </span><br/>
-                                                        <span>Sub Authors : </span><br/>
-                                                        <span>Keywords : </span><br/>
-
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-2 pull-right">
-                                                    <a href="downloads/3282E2E55115.pdf" target="_blank"><button type="button" style="margin-bottom: 10px" class="btn btn-w-m btn-default pull-right">Download as PDF</button></a>
-                                                    <a href="downloads/3282E2E55115.pdf" target="_blank"><button type="button" style="margin-bottom: 10px" class="btn btn-w-m btn-default pull-right">Submit to Review</button></a>
-                                                    <a href="downloads/3282E2E55115.pdf" target="_blank"><button type="button" style="margin-bottom: 10px" class="btn btn-w-m btn-default pull-right">Resend to Author</button></a>
-                                                </div>
-                                            </div>
-                                        </div> 
 
                                     </div>
                                 </div>
