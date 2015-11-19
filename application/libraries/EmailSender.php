@@ -129,4 +129,17 @@ class EmailSender
         return $this->send($to, "Invitation to register as a reviewer", $body_string);
     }
 
+    public function notify_editor_creation($to, $data)
+    {
+        $this->CI->load->library('parser');
+        $view_data = array(
+            'name' => $data['editor_name'],
+            'email' => $to,
+            'password' => $data['password']
+        );
+        $body_string = $this->CI->parser->parse('email/notify_editor_creation', $view_data, TRUE);
+
+        return $this->send($to, "User Creation Notification", $body_string);
+    }
+
 }

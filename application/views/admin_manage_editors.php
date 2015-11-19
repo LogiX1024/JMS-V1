@@ -54,7 +54,7 @@ add_editor() inserts an editor account, with a random generated p/w from random_
             <div class="row">
                 <div class="col-lg-12">
                     <div class="ibox float-e-margins">
-                        <div class="ibox-title"> 
+                        <div class="ibox-title">
                             <h5>Add Editors
                                 <small>Add Editors to the system</small>
                             </h5>
@@ -73,7 +73,7 @@ add_editor() inserts an editor account, with a random generated p/w from random_
                                 <div class="row">
                                     <div class="col-lg-6 col-md-6">
                                         <div class="form-group">
-                                            <label class="col-sm-3 control-label" >First Name</label>
+                                            <label class="col-sm-3 control-label">First Name</label>
 
                                             <div class="col-sm-9">
                                                 <input name="first_name" required="" type="text" class="form-control"
@@ -105,8 +105,17 @@ add_editor() inserts an editor account, with a random generated p/w from random_
                                             <div class="col-sm-9">
                                                 <select name="journals[]" id="journals"
                                                         class="chosen-select form-control" multiple>
-                                                    <option value="1">2015 Applied Journal</option>
-                                                    <option value="2">Biodiversity & Conservation Conference</option>
+
+                                                    <?php
+                                                    foreach ($journals as $journal):
+                                                        ?>
+                                                        <option
+                                                            value="<?= $journal->id ?>"><?= $journal->name ?></option>
+
+                                                    <?php
+                                                    endforeach;
+                                                    ?>
+
                                                 </select>
                                             </div>
                                         </div>
@@ -114,7 +123,8 @@ add_editor() inserts an editor account, with a random generated p/w from random_
                                 </div>
                                 <div class="form-group">
                                     <div class="col-sm-12 ">
-                                        <button class="btn btn-primary pull-right" type="submit">Add <span class="fa fa-plus"></span></button>
+                                        <button class="btn btn-primary pull-right" type="submit">Add <span
+                                                class="fa fa-plus"></span></button>
                                     </div>
                                 </div>
                             </form>
@@ -148,33 +158,23 @@ add_editor() inserts an editor account, with a random generated p/w from random_
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr>
-                                    <td>First Name Last Name</td>
-                                    <td>someone@example.com</td>
-                                    <td class="text-center">
-                                        <div class="btn-group btn-group-sm">
-                                            <button class="btn btn-sm btn-default btn-outline view" data-user-id="1">
-                                                View
-                                            </button>
-                                            <button class="btn btn-sm btn-danger btn-outline delete" data-user-id="1">
-                                                Delete
-                                            </button>
-                                        </div>
-                                    </td>
-                                </tr>
-                                 <?php  foreach ($users as $user): ?>
-                                 <tr> 
-                                 <td> 
-                                <?= $user->first_name . " " . $user->last_name ?> </td> 
-                                 <td><?= $user->email_address?></td> 
-                                 <td class="text-center"> 
-                                 <div class="btn-group btn-group-sm"> 
-                                 <button class="btn btn-sm btn-default btn-outline view" data-user-id="<?= $user->id ?>">View </button> 
-                                 <button class="btn btn-sm btn-danger delete" data-user-id="<?= $user->id ?>">Delete </button> 
-                                 </div> 
-                                 </td> 
-                                 </tr> 
-                                 <?php  endforeach; ?>
+                                <?php foreach ($users as $user): ?>
+                                    <tr>
+                                        <td>
+                                            <?= $user->first_name . " " . $user->last_name ?> </td>
+                                        <td><?= $user->email_address ?></td>
+                                        <td class="text-center">
+                                            <div class="btn-group btn-group-sm">
+                                                <button class="btn btn-sm btn-default btn-outline view"
+                                                        data-user-id="<?= $user->id ?>">View
+                                                </button>
+                                                <button class="btn btn-sm btn-danger delete"
+                                                        data-user-id="<?= $user->id ?>">Delete
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                <?php endforeach; ?>
 
 
                                 </tbody>
