@@ -30,7 +30,7 @@
             </div>
 
             <?php
-            if (isset($success_creating) && ($success_creating == TRUE)):
+            if (isset($success_upload) && ($success_upload == TRUE)):
                 ?>
                 <div class="alert alert-success alert-dismissable">
                     <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
