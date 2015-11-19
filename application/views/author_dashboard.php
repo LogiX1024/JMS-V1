@@ -74,7 +74,7 @@
                                                             </div>
                                                         </div>
                                                         <div class="col-lg-2 pull-right">
-                                                            <a href="downloads/3282E2E55115.pdf" target="_blank"><button type="button" style="margin-bottom: 10px" class="btn btn-w-m btn-default pull-right">Download PDF</button></a>
+                                                            <a href="<?php echo base_url(); ?>./uploads/FreshCopy.<?= $article_data->file_name ?>" target="_blank"><button type="button" style="margin-bottom: 10px" class="btn btn-w-m btn-default pull-right">Download PDF</button></a>
                                                             <a href="downloads/3282E2E55115.pdf" target="_blank"><button type="button" style="margin-bottom: 10px" class="btn btn-w-m btn-default pull-right">View in Journal</button></a>
                                                         </div>
                                                     </div>
@@ -97,8 +97,9 @@
                                                             </div>
                                                         </div>
                                                         <div class="col-lg-2 pull-right">
-                                                            <a href="downloads/3282E2E55115.pdf" target="_blank"><button type="button" style="margin-bottom: 10px" class="btn btn-w-m btn-default pull-right">Download PDF</button></a>
-                                                            <a href="downloads/3282E2E55115.pdf" target="_blank"><button type="button" style="margin-bottom: 10px" class="btn btn-w-m btn-default pull-right">View in Journal</button></a>
+                                                            <a href="<?php echo base_url(); ?>./uploads/FreshCopy.<?= $article_data->file_name ?>" target="_blank"><button type="button" style="margin-bottom: 10px" class="btn btn-w-m btn-default pull-right">Download PDF</button></a>
+                                                            <a href="" target="_blank"><button type="button" style="margin-bottom: 10px" class="btn btn-w-m btn-default pull-right">View Review</button></a>
+                                                            <a href="" target="_blank"><button type="button" style="margin-bottom: 10px" class="btn btn-w-m btn-default pull-right">Submit for Camera Ready</button></a>
                                                         </div>
                                                     </div>
 
@@ -120,8 +121,7 @@
                                                             </div>
                                                         </div>
                                                         <div class="col-lg-2 pull-right">
-                                                            <a href="downloads/3282E2E55115.pdf" target="_blank"><button type="button" style="margin-bottom: 10px" class="btn btn-w-m btn-default pull-right">Download PDF</button></a>
-                                                            <a href="downloads/3282E2E55115.pdf" target="_blank"><button type="button" style="margin-bottom: 10px" class="btn btn-w-m btn-default pull-right">View in Journal</button></a>
+                                                            <a href="<?php echo base_url(); ?>./uploads/FreshCopy.<?= $article_data->file_name ?>" target="_blank"><button type="button" style="margin-bottom: 10px" class="btn btn-w-m btn-default pull-right">Download PDF</button></a>
                                                         </div>
                                                     </div>
                                                 </div> 
@@ -149,7 +149,7 @@
                                                             </div>
                                                         </div>
                                                         <div class="col-lg-2 pull-right">
-                                                            <a href="downloads/3282E2E55115.pdf" target="_blank"><button type="button" style="margin-bottom: 10px" class="btn btn-w-m btn-default pull-right">Download PDF</button></a>
+                                                            <a href="<?php echo base_url(); ?>./uploads/FreshCopy.<?= $article_data->file_name ?>" target="_blank"><button type="button" style="margin-bottom: 10px" class="btn btn-w-m btn-default pull-right">Download PDF</button></a>
                                                             <a href="downloads/3282E2E55115.pdf" target="_blank"><button type="button" style="margin-bottom: 10px" class="btn btn-w-m btn-default pull-right">View in Journal</button></a>
                                                         </div>
                                                     </div>
@@ -180,8 +180,9 @@
                                                             </div>
                                                         </div>
                                                         <div class="col-lg-2 pull-right">
-                                                            <a href="downloads/3282E2E55115.pdf" target="_blank"><button type="button" style="margin-bottom: 10px" class="btn btn-w-m btn-default pull-right">Download PDF</button></a>
-                                                            <a href="downloads/3282E2E55115.pdf" target="_blank"><button type="button" style="margin-bottom: 10px" class="btn btn-w-m btn-default pull-right">View in Journal</button></a>
+                                                            <a href="<?php echo base_url(); ?>./uploads/FreshCopy.<?= $article_data->file_name ?>" target="_blank"><button type="button" style="margin-bottom: 10px" class="btn btn-w-m btn-default pull-right">Download PDF</button></a>
+                                                            <a href="" target="_blank"><button type="button" style="margin-bottom: 10px" class="btn btn-w-m btn-default pull-right">View Review</button></a>
+                                                            <a href="" target="_blank"><button type="button" style="margin-bottom: 10px" class="btn btn-w-m btn-default pull-right">Submit for Camera Ready</button></a>
                                                         </div>
                                                     </div>
 
@@ -210,8 +211,7 @@
                                                             </div>
                                                         </div>
                                                         <div class="col-lg-2 pull-right">
-                                                            <a href="downloads/3282E2E55115.pdf" target="_blank"><button type="button" style="margin-bottom: 10px" class="btn btn-w-m btn-default pull-right">Download PDF</button></a>
-                                                            <a href="downloads/3282E2E55115.pdf" target="_blank"><button type="button" style="margin-bottom: 10px" class="btn btn-w-m btn-default pull-right">View in Journal</button></a>
+                                                            <a href="<?php echo base_url(); ?>./uploads/FreshCopy.<?= $article_data->file_name ?>" target="_blank"><button type="button" style="margin-bottom: 10px" class="btn btn-w-m btn-default pull-right">Download PDF</button></a>
                                                         </div>
                                                     </div>
 
