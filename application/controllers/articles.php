@@ -7,7 +7,8 @@ class Articles extends CI_Controller {
 
     public function __construct() {
         parent::__construct();
-        $this->load->model('user');
+        $this->load->model('article');
+        $this->load->helper(array('form', 'url'));
         $this->load->library('form_validation');
     }
 
@@ -32,25 +33,30 @@ class Articles extends CI_Controller {
         $sub_auth_2 = $this->input->post("sub_auth_2");
         $keywords = $this->input->post("keywords");
 
-        $DataSet = array('author_id' => $user->id, 'journal_id' => $journal_id, 'title' => $title, 'status' => "assigned", 'co-authors' => $sub_auth_1 . "," . $sub_auth_2, 'keywords' => $keywords);
+        $DataSet = array('author_id' => $user->id, 'journal_id' => $journal_id, 'title' => $title, 'status' => "assigned", 'co_authors' => $sub_auth_1 . "," . $sub_auth_2, 'keyword' => $keywords);
 
-        $insert_id = $this->user->insertData("article", $DataSet);
+        $insert_id = $this->article->insertData("article", $DataSet);
 
 
         if ($insert_id > 0) {
 
             $config['upload_path'] = './uploads/';
             $config['allowed_types'] = 'pdf';
-            $config['file_name'] = $insert_id . 'pdf';
+            $config['file_name'] = $insert_id;
 
             $this->load->library('upload', $config);
-            if (!$this->upload->do_upload()) {
-                $error = array('error' => $this->upload->display_errors());
-                $this->load->view('author_submit_paper', $error);
-            } else {
-                $error = array('error' => "Error Upload!");
-                redirect(base_url() . 'index.php/Articles/', $error);
+            
+            if (!$this->upload->do_upload("upload_file")) {
+                echo $this->upload->display_errors();
+//                $error = array('error' => $this->upload->display_errors());
+//                $this->load->view('author_submit_paper', $error);
             }
+            
+            $file = $this->upload->data();
+
+            $DataSet = array('file_name'=>$file['file_name']);
+            $this->article->Update($DataSet, "article", $insert_id);
+
             $success = array('success' => "Successfully Added!");
             redirect(base_url() . 'index.php/Articles/', $success);
             //Todo; send email

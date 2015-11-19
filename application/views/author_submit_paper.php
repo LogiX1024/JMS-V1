@@ -57,10 +57,10 @@ and open the template in the editor.
                             $user = $this->session->userdata("user");
 
                             if (isset($error)) {
-                               // echo $error['error'];
+                                echo $error;
                             }
                             if (isset($success)) {
-                                //echo $success['success'];
+                                echo $success;
                             }
                             
                             ?>
@@ -86,7 +86,7 @@ and open the template in the editor.
                                                 <!--</div>-->
                                                 <div class="col-sm-9">
                                                     <div class="input-group">
-                                                        <input type="text" class="form-control" name="chief_author" readonly="readonly" value="<?= $user->first_name . " " . $user->last_name ?>" > 
+                                                        <input type="text" class="form-control" name="chief_author" readonly="readonly" value="<?=$user->first_name . " " . $user->last_name ?>" > 
                                                         <span class="input-group-btn"> 
                                                             <button type="button" class="btn btn-primary">Change</button> 
                                                         </span>
@@ -109,14 +109,15 @@ and open the template in the editor.
                                                 <label class="col-sm-2 control-label">Keywords</label>
                                                 <div class="col-sm-9">
                                                     <input name="keywords" required="" type="text" class="form-control" placeholder="Keywords">
-                                                    * Separated by commas'
+                                                    * Separated by commas
                                                 </div>
 
                                             </div>
                                             <div class="form-group">
                                                 <label class="col-sm-2 control-label">Upload File</label>
                                                 <div class="col-sm-9">
-                                                    <input name="upload" required="" type="file" class="form-control" placeholder="Upload">
+                                                    <input name="upload_file" required="" type="file" class="form-control" placeholder="Upload">
+                                                    * Upload pdf files only
                                                 </div>
                                             </div>
 
