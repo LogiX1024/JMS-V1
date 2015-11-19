@@ -104,7 +104,7 @@
                                                     </div>
 
                                                 </div> 
-                                            <?php } if ($article_data->status == "assigned") { ?>
+                                            <?php } if ($article_data->status == "assigned" || $article_data->status == "pending") { ?>
                                                 <div class="media well">
                                                     <div class="media-body">
                                                         <a href="#" style="//margin-right: 10px" class="pull-left"><img height="132" width="92px" alt="Bootstrap Media Preview" src="http://localhost/journalProto/imgs/two.jpg" class="media-object"></a>
@@ -194,7 +194,7 @@
 
                                     <div id="tab-4" class="tab-pane">
                                         <?php foreach ($author_article as $article_data): ?>
-                                            <?php if ($article_data->status == "assigned") { ?>
+                                            <?php if ($article_data->status == "assigned" || $article_data->status == "pending") { ?>
                                                 <div class="media well">
                                                     <div class="media-body">
                                                         <a href="#" style="//margin-right: 10px" class="pull-left"><img height="132" width="92px" alt="Bootstrap Media Preview" src="http://localhost/journalProto/imgs/two.jpg" class="media-object"></a>
