@@ -32,9 +32,8 @@
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label for="URL">Paper Submission URL: </label>
-                                <input type="text" name="URL" id="url" class="form-control disabled"
-                                       disabled
-                                       value=""/>
+                                <p id="url"></p>
+
 
                             </div>
                         </div>

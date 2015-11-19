@@ -164,7 +164,7 @@ $this->load->view('partial/modals/journal');
                     $('#journal-name').text(data.name);
                     $('#journal-name-small').text("Volume: " + data.volume + " Issue: " + data.issue);
                     $('#created_on').val(data.journal_created_date);
-                    $('#url').val("<?=base_url()?>index.php/submit_paper?journal=" + data.id);
+                    $('#url').text("<?=base_url()?>index.php/submit_paper?journal=" + data.id);
                     $('#chief-editor').val(data.first_name + " " +data.last_name);
                 }
             });

@@ -86,12 +86,12 @@ and open the template in the editor.
                                                 <!--<span class="input-group-btn">  <button class="btn btn-primary pull-right" type="submit">Edit</button></span>-->
                                                 <!--</div>-->
                                                 <div class="col-sm-9">
-                                                    <div class="input-group">
-                                                        <input type="text" class="form-control" name="chief_author" readonly="readonly" value="<?=$user->first_name . " " . $user->last_name ?>" > 
-                                                        <span class="input-group-btn"> 
-                                                            <button type="button" class="btn btn-primary">Change</button> 
-                                                        </span>
-                                                    </div>
+                                                        <input type="text" class="form-control" name="chief_author" readonly="readonly" value="<?=$user->first_name . " " . $user->last_name ?>" >
+<!--                                                    <div class="input-group">-->
+<!--                                                        <span class="input-group-btn">-->
+<!--                                                            <button type="button" class="btn btn-primary">Change</button>-->
+<!--                                                        </span>-->
+<!--                                                    </div>-->
                                                 </div>
                                             </div>
                                             <div class="form-group">
@@ -125,7 +125,7 @@ and open the template in the editor.
 
                                             <div class="form-group">
                                                 <div class="col-sm-11 ">
-                                                    <button class="btn btn-primary pull-right" type="submit">Create <span class="fa fa-plus"></span></button>
+                                                    <button class="btn btn-primary pull-right" type="submit">Submit <span class="fa fa-upload"></span></button>
                                                 </div>
                                             </div>  
                                         </div>
@@ -150,7 +150,7 @@ and open the template in the editor.
                                         <div class="ibox-content">
                                             <h1><b>Timeline</b></h1>
                                             <h3>Paper submit Deadline</h3>
-                                            <p>2015/12/12</p>
+                                            <p>2015/12/04</p>
                                             <h3>Camera Ready Deadline</h3>
                                             <p>2015/12/12</p>
                                         </div>

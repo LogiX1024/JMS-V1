@@ -200,7 +200,11 @@ class Users extends CI_Controller
     {
         $fieldset = array('id', 'email_address', 'first_name', 'last_name', 'title', 'mobile_no', 'address1', 'address2',
             'city', 'postal_code', 'country', 'role', 'security_question', 'security_answer', '');
-        $data['users'] = $this->user->getData($fieldset, 'user');
+
+        $data['users'] = $this->user->getData($fieldset, 'user', array('role' => 'Reviewer'));
+
+        $fieldset = array('id', 'email_address', 'first_name', 'last_name');
+        $data['invited'] = $this->user->getData($fieldset, 'invited_reviwer');
         $this->load->view("invite_reviewer", $data);
     }
 
@@ -216,7 +220,7 @@ class Users extends CI_Controller
         $this->load->library('parser');
         $data = array(
             'name' => $first_name . " " . $last_name,
-            'link' => 'http://www.google.com'
+            'link' => base_url() . "index.php/users/register_reviewer"
         );
         $body_string = $this->parser->parse('email/invite_reviewer', $data, TRUE);
 
