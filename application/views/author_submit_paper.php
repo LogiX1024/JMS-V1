@@ -136,10 +136,10 @@ and open the template in the editor.
                                             <label>Downloads</label>
                                         </div>
                                         <div>
-                                            <a href="" target="_blank" class="btn btn-primary">Paper Format</a>
+                                            <a href="<?php echo base_url(); ?>./handouts/PaperFormat_RUSL_E-JOURNAL.doc" target="_blank" class="btn btn-primary">Paper Format</a>
                                         </div>
                                         <div>
-                                            <a href="" target="_blank" class="btn btn-primary">Guideline</a>
+                                            <a href="<?php echo base_url(); ?>./handouts/Guideline - RUSL_E-JOURNAL.doc" target="_blank" class="btn btn-primary">Guideline</a>
                                         </div>
                                         <!--<div class="widget navy-bg p-lg text-left">-->
                                         <div>
