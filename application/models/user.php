@@ -73,4 +73,10 @@ class User extends CI_Model {
         return $this->db->get()->result();
     }
 
+    public function delete_user($email)
+    {
+        $this->db->where('email_address',$email);
+        $this->db->delete('user');
+    }
+
 }
