@@ -41,7 +41,7 @@ class Articles extends CI_Controller {
         if ($insert_id > 0) {
 
             $config['upload_path'] = './uploads/';
-            $config['allowed_types'] = 'pdf';
+            $config['allowed_types'] = 'doc|docx|odt';
             $config['file_name'] = $insert_id;
 
             $this->load->library('upload', $config);

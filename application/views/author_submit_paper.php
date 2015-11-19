@@ -117,7 +117,7 @@ and open the template in the editor.
                                                 <label class="col-sm-2 control-label">Upload File</label>
                                                 <div class="col-sm-9">
                                                     <input name="upload_file" required="" type="file" class="form-control" placeholder="Upload">
-                                                    * Upload pdf files only
+                                                    * Upload Document files only
                                                 </div>
                                             </div>
 
