@@ -63,12 +63,17 @@ class Users extends CI_Controller {
     }
 
     private function author_dashboard() {
-        $auther_articals = $this->article->getData("*", 'article','');
+        $author_id= array("author_id" => $this->USER_OBJ->id); 
+        //$fieldset = array('artical_id', 'journal_id', 'file_name');
+        $data['users'] = $this->user->getData('*', 'article',$author_id);
         
-        print_r($auther_articals);
-        die();
+        //$auther_articals = $this->article->getData("*", 'article','');
         
-        $this->load->view("author_dashboard", $auther_articals);
+        //print_r($auther_articals);
+        //var_dump($data);
+       // die();
+        
+        $this->load->view("author_dashboard", $data);
     }
 
     private function reviewer_dashboard() {

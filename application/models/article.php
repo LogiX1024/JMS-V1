@@ -15,11 +15,11 @@ class Article extends CI_Model {
     }
     
     
-    public function getData($fieldset, $tableName, $where = "") {
+    public function getData($fieldset, $tableName, $where = '') {
         if ($where == "") {
             $this->db->select($fieldset)->from($tableName);
         } else {
-            $this->db->select($fieldset)->from($tableName)->where("'author_id'=".$where);
+            $this->db->select($fieldset)->from($tableName)->where($where);
         }
         $query = $this->db->get();
         return $query->result();
