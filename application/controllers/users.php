@@ -60,7 +60,7 @@ class Users extends CI_Controller
     private function super_user_dashboard()
     {
         //Here shows the super users dashboard
-        $this->load->view("admin_create_journal");
+        redirect('/create_journal');
     }
 
     private function editor_dashboard()

@@ -21,8 +21,11 @@ class Journal extends CI_Controller
     public function create_journal()
     {
         if ($this->ua->check_login() == "Super") {
-            $this->load->view('admin_create_journal');
-        }else{
+            $editors = $this->user->get_editors();
+//            print_r($editors);
+//            die();
+            $this->load->view('admin_create_journal', array('editors' => $editors));
+        } else {
             $this->load->view('401');
         }
     }

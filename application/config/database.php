@@ -81,5 +81,23 @@ $db['mamp']['swap_pre'] = '';
 $db['mamp']['autoinit'] = TRUE;
 $db['mamp']['stricton'] = FALSE;
 
+//Database=appjmsA8MtmKm8qO;Data Source=ap-cdbr-azure-southeast-a.cloudapp.net;User Id=bba5de0f143fd2;Password=2fb89862
+
+
+$db['azure']['hostname'] = 'ap-cdbr-azure-southeast-a.cloudapp.net';
+$db['azure']['username'] = 'bba5de0f143fd2';
+$db['azure']['password'] = '2fb89862';
+$db['azure']['database'] = 'appjmsA8MtmKm8qO';
+$db['azure']['dbdriver'] = 'mysql';
+$db['azure']['dbprefix'] = '';
+$db['azure']['pconnect'] = TRUE;
+$db['azure']['db_debug'] = TRUE;
+$db['azure']['cache_on'] = FALSE;
+$db['azure']['cachedir'] = '';
+$db['azure']['char_set'] = 'utf8';
+$db['azure']['dbcollat'] = 'utf8_general_ci';
+$db['azure']['swap_pre'] = '';
+$db['azure']['autoinit'] = TRUE;
+$db['azure']['stricton'] = FALSE;
 /* End of file database.php */
 /* Location: ./application/config/database.php */

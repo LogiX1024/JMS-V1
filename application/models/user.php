@@ -66,5 +66,11 @@ class User extends CI_Model {
         $this->db->where('email_address', $email);
         $this->db->update('user', $data);
     }
+    
+    public function get_editors(){
+        $this->db->from('user');
+        $this->db->where('role',"Editor");
+        return $this->db->get()->result();
+    }
 
 }

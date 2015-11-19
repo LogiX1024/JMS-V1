@@ -1,4 +1,3 @@
-
 <?php $this->load->view('partial/header'); ?>
 <!-- Data Tables -->
 <link href="<?php echo base_url('assets'); ?>/css/plugins/dataTables/dataTables.bootstrap.css" rel="stylesheet">
@@ -48,7 +47,7 @@
         ?>
 
         <div class="wrapper wrapper-content animated fadeInRight">
-            
+
             <div class="row">
                 <div class="col-lg-12">
                     <div class="ibox float-e-margins">
@@ -74,27 +73,31 @@
                                     <th>Volume</th>
                                     <th style="width: 150px">Status</th>
                                     <th style="width: 150px">Action</th>
-                                    
+
                                 </tr>
                                 </thead>
                                 <tbody>
-                                 
-                                 <?php  foreach ($journals as $journal): ?>
-                                 <tr> 
-                                 <td><?= $journal->name   ?> </td> 
-                                 <td><?= $journal->issue ?> </td>
-                                 <td><?= $journal->volume ?></td>              
-                                 <td><?= $journal->status ?></td> 
-                                 <td class="text-center"> 
-                                 <div class="btn-group btn-group-sm"> 
-                                 <button class="btn btn-sm btn-default btn-outline view" data-user-id="<?= $journal->id ?>">View </button> 
-                                 <a href="<?php echo base_url() ?>index.php/Journal/edit_journal/<?= $journal->id ?>">
-                                 <button class="btn btn-sm btn-info" data-user-id="<?= $journal->id ?>">Edit </button> 
-                                     </a>
-                                 </div> 
-                                 </td>
-                                 </tr> 
-                                 <?php  endforeach; ?>
+
+                                <?php foreach ($journals as $journal): ?>
+                                    <tr>
+                                        <td><?= $journal->name ?> </td>
+                                        <td><?= $journal->issue ?> </td>
+                                        <td><?= $journal->volume ?></td>
+                                        <td><?= $journal->status ?></td>
+                                        <td class="text-center">
+                                            <div class="btn-group btn-group-sm">
+                                                <button class="btn btn-sm btn-default btn-outline view"
+                                                        data-journal-id="<?= $journal->id ?>">View
+                                                </button>
+                                                <a href="<?php echo base_url() ?>index.php/Journal/edit_journal/<?= $journal->id ?>">
+                                                    <button class="btn btn-sm btn-info"
+                                                            data-journal-id="<?= $journal->id ?>">Edit
+                                                    </button>
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                <?php endforeach; ?>
 
 
                                 </tbody>
@@ -113,43 +116,9 @@
 
 <!-- Model Editor -->
 <?php
-$this->load->view('partial/modals/editor');
+$this->load->view('partial/modals/journal');
 ?>
 
-<div class="modal inmodal" id="modelDelete" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog modal-sm">
-        <div class="modal-content animated fadeIn tada">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal"><span
-                        aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                <i class="fa fa-user-times modal-icon"></i>
-                <h4 id="cad-modal-title" class="modal-title">Delete User</h4>
-            </div>
-            <form action="<?php echo base_url('users/delete_user') ?>" method="POST">
-                <input type="text" id="delete-user-id" name="id" value="" hidden="hidden" class="hidden"/>
-
-                <div class="modal-body">
-                    <div class="row">
-                        <div class="col-md-12 col-lg-12 col-sm-12">
-                            <p class="text-danger text-center">Do you really want to delete the user?<br/>This cannot be
-                                reversed.</p>
-
-                            <div class="form-group">
-                                <label class="text-center" for="password">Please enter your password to continue</label>
-                                <input id="delete-user-password" type="password" class="form-control" name="password"
-                                       value=""/>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button id="delete-user-delete" type="submit" class="btn btn-danger">Delete</button>
-                    <button type="button" class="btn btn-white" data-dismiss="modal">Close</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
 
 
 <!-- Mainly scripts -->
@@ -177,7 +146,7 @@ $this->load->view('partial/modals/editor');
             '.chosen-select-no-single': {disable_search_threshold: 10},
             '.chosen-select-no-results': {no_results_text: 'Oops, nothing found!'},
             '.chosen-select-width': {width: "95%"}
-        }
+        };
         for (var selector in config) {
             $(selector).chosen(config[selector]);
         }
@@ -185,29 +154,25 @@ $this->load->view('partial/modals/editor');
 
         $('.view').click(function (e) {
             e.preventDefault();
-            var userId = $(this).data('user-id');
+            var journalID = $(this).data('journal-id');
+            alert(journalID);
 
             $.ajax({
                 type: "POST",
                 dataType: 'json',
-                url: "<?php echo base_url('/index.php/users/get_single_user/'); ?>",
-                data: {
-                    user_id: userId
-                }, success: function (data) {
-                    show_user_modal('admin_manage_users', data, 'editor');
+                url: "<?php echo base_url('/index.php/API/get_journal'); ?>/" + journalID,
+                success: function (data) {
+                    $('#journal-name').text(data.name);
+                    $('#journal-name-small').text("Volume: " + data.volume + " Issue: " + data.issue);
+                    $('#created_on').val(data.journal_created_date);
+                    $('#url').val("<?=base_url()?>index.php/submit_paper?journal=" + data.id);
+                    $('#chief-editor').val(data.first_name + " " +data.last_name);
                 }
             });
             var data = null;
-            show_user_modal('admin_manage_users', data, 'editor');
+            $('#modelJournal').modal('show');
 
         });
-        $('.delete').click(function (e) {
-            e.preventDefault();
-            var userId = $(this).data('user-id');
-            $('#delete-user-id').val(userId);
-            $('#modelDelete').modal('show');
-        });
-
 
         $('.dataTables-example').dataTable({
             responsive: true,
@@ -216,25 +181,6 @@ $this->load->view('partial/modals/editor');
                 "sSwfPath": "<?php echo base_url('assets'); ?>/js/plugins/dataTables/swf/copy_csv_xls_pdf.swf"
             }
         });
-
-        var success = <?= 'true' ?>;
-
-        toastr.options = {
-            "closeButton": true,
-            "progressBar": true
-        };
-
-        switch (success) {
-            case 1:
-                toastr.success('Successfully Deleted');
-                break;
-            case 2:
-                toastr.error('Wrong Password.');
-                break;
-            case 3:
-                toastr.success('Successfully Updated');
-                break;
-        }
 
     });
 </script>
