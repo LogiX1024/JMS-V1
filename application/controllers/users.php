@@ -3,11 +3,13 @@
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
-class Users extends CI_Controller {
+class Users extends CI_Controller
+{
 
     var $USER_OBJ = false;
 
-    public function __construct() {
+    public function __construct()
+    {
         parent::__construct();
         $this->load->model('user');
         $this->load->model('article');
@@ -16,7 +18,8 @@ class Users extends CI_Controller {
         $this->USER_OBJ = $this->session->userdata('user');
     }
 
-    public function index() {
+    public function index()
+    {
         if ($this->USER_OBJ != false) {
             //session exists
             redirect('/dashboard');
@@ -34,7 +37,8 @@ class Users extends CI_Controller {
 //        }
     }
 
-    public function dashboard() {
+    public function dashboard()
+    {
         switch ($this->ua->check_login()) {
             case "Super":
                 $this->super_user_dashboard();
@@ -53,35 +57,40 @@ class Users extends CI_Controller {
         }
     }
 
-    private function super_user_dashboard() {
+    private function super_user_dashboard()
+    {
         //Here shows the super users dashboard
         $this->load->view("admin_create_journal");
     }
 
-    private function editor_dashboard() {
+    private function editor_dashboard()
+    {
         $this->load->view("editor_submissions");
     }
 
-    private function author_dashboard() {
-        $author_id= array("author_id" => $this->USER_OBJ->id); 
+    private function author_dashboard()
+    {
+        $author_id = array("author_id" => $this->USER_OBJ->id);
         //$fieldset = array('artical_id', 'journal_id', 'file_name');
-        $data['author_article'] = $this->user->getData('*', 'article',$author_id);
-        
+        $data['author_article'] = $this->user->getData('*', 'article', $author_id);
+
         //$auther_articals = $this->article->getData("*", 'article','');
-        
+
         //print_r($auther_articals);
-       // var_dump($data);
-       //die();
-        
+        // var_dump($data);
+        //die();
+
         $this->load->view('author_dashboard', $data);
     }
 
-    private function reviewer_dashboard() {
+    private function reviewer_dashboard()
+    {
         $this->load->view("reviewer_dashboard");
     }
 
     // Login & Logout
-    public function login() {
+    public function login()
+    {
         $user_obj = $this->session->userdata('user');
         if ($user_obj != false) {
             redirect('/dashboard');
@@ -111,13 +120,15 @@ class Users extends CI_Controller {
         }
     }
 
-    public function logOut() {
+    public function logOut()
+    {
         $this->session->sess_destroy();
         $this->load->view('login');
     }
 
     // Editors Area
-    public function add_editor() {
+    public function add_editor()
+    {
         $first_name = $this->input->post("first_name", TRUE);
         $email = $this->input->post("email", TRUE);
         $last_name = $this->input->post("last_name", TRUE);
@@ -134,14 +145,16 @@ class Users extends CI_Controller {
         }
     }
 
-    public function new_editor() {
+    public function new_editor()
+    {
         $fieldset = array('id', 'email_address', 'first_name', 'last_name', 'title', 'mobile_no', 'address1', 'address2',
             'city', 'postal_code', 'country', 'role', 'security_question', 'security_answer', '');
         $data['users'] = $this->user->getData($fieldset, 'user');
         $this->load->view('admin_manage_editors', $data);
     }
 
-    function get_single_user() {
+    function get_single_user()
+    {
         $data = $this->input->post("user_id");
         $query = $this->db->get_where('user', array('id' => $data))->result()[0];
         //$a = $query['rows'];
@@ -149,19 +162,22 @@ class Users extends CI_Controller {
         //var_dump($a);
     }
 
-    public function delete_editor() {
-        
+    public function delete_editor()
+    {
+
     }
 
     // Reviewers Area
-    public function reviewers() {
+    public function reviewers()
+    {
         $fieldset = array('id', 'email_address', 'first_name', 'last_name', 'title', 'mobile_no', 'address1', 'address2',
             'city', 'postal_code', 'country', 'role', 'security_question', 'security_answer', '');
         $data['users'] = $this->user->getData($fieldset, 'user');
         $this->load->view("invite_reviewer", $data);
     }
 
-    public function invite_reviewer() {
+    public function invite_reviewer()
+    {
         $first_name = $this->input->post("first_name");
         $email = $this->input->post("email");
         $last_name = $this->input->post("last_name");
@@ -194,7 +210,8 @@ class Users extends CI_Controller {
         }
     }
 
-    public function accept_reviewer() {
+    public function accept_reviewer()
+    {
         // login userge pw eka check karanna oona
         // Reviewerge banded
         $id = $this->input->post("id");
@@ -207,7 +224,8 @@ class Users extends CI_Controller {
         }
     }
 
-    public function reject_reviewer() {
+    public function reject_reviewer()
+    {
         // login userge pw eka check karanna oona
         // Reviewerge banded
         $id = $this->session->userdata("id");
@@ -220,11 +238,13 @@ class Users extends CI_Controller {
         }
     }
 
-    public function register_reviewer() {
+    public function register_reviewer()
+    {
         $this->load->view("register_reviewer");
     }
 
-    public function reviewerRegistration() {
+    public function reviewerRegistration()
+    {
 
         $email = $this->input->post("username", TRUE);
         $pass = $this->input->post("password", TRUE);
@@ -289,26 +309,30 @@ class Users extends CI_Controller {
     }
 
     // Authors Area
-    public function register_author() {
-        $this->load->view("register_author");
+    public function register_author()
+    {
+        $journal_id = $this->input->get('journal');
+        $this->session->set_userdata('journal_id', $journal_id);
+        $this->load->view("register_author_url");
     }
 
-    public function view_author() {
+    public function view_author()
+    {
         $fieldset = array('id', 'first_name', 'last_name', 'email_address', 'title', 'mobile_no');
         $data['authors'] = $this->user->getData($fieldset, 'user');
         $this->load->view("admin_edit_author", $data);
     }
 
-    public function authorRegistration() {
+    public function authorRegistration()
+    {
 
-        $email = $this->input->post("username", TRUE);
+        $email = $this->input->post("email", TRUE);
         $pass = $this->input->post("password", TRUE);
         $pass2 = $this->input->post("password2", TRUE);
         if ($pass == $pass2) {
             $first_name = $this->input->post("first_name", TRUE);
             $last_name = $this->input->post("last_name", TRUE);
             $title = $this->input->post("title", TRUE);
-            $gender = $this->input->post("gender", TRUE);
             $mobile_no = $this->input->post("mobile_no", TRUE);
             $address1 = $this->input->post("address1", TRUE);
             $address2 = $this->input->post("address2");
@@ -317,26 +341,13 @@ class Users extends CI_Controller {
             $country = $this->input->post("country", TRUE);
             $sec_question = $this->input->post("sec_question", TRUE);
             $sec_answer = $this->input->post("sec_answer", TRUE);
-            // Uploading Part
-            $config['upload_path'] = './uploadimg/';
-            $config['allowed_types'] = 'jpg|png';
-            $config['max_size'] = 0;
-            $config['max_width'] = 1024;
-            $config['max_height'] = 768;
-            $config['encrypt_name'] = TRUE;
-            $this->load->library('upload', $config);
-            if (!$this->upload->do_upload('profile_picture')) {
-                $error = array('error' => $this->upload->display_errors());
-                $this->load->view('register_reviewer', $error);
-            } else {
-                $img_url = $this->upload->data('full_path');
-            }
 
-            $DataSet = array('first_name' => $first_name,
+            $DataSet = array(
+                'first_name' => $first_name,
                 'last_name' => $last_name,
                 'email_address' => $email,
                 'title' => $title,
-                'password' => $pass,
+                'password' => sha1($pass),
                 'mobile_no' => $mobile_no,
                 'address1' => $address1,
                 'address2' => $address2,
@@ -351,7 +362,7 @@ class Users extends CI_Controller {
 
             $insert_id = $this->user->insertData("user", $DataSet);
             if ($insert_id > 0) {
-                $this->load->view('login');
+                redirect('/login');
                 //Todo; send email
             } else {
                 $error = array('error' => "Error in InsertData");
@@ -364,11 +375,13 @@ class Users extends CI_Controller {
     }
 
     // Forgot Password Area
-    public function forgot_pass() {
+    public function forgot_pass()
+    {
         $this->load->view("forgot_password");
     }
 
-    public function forgot_pw() {
+    public function forgot_pw()
+    {
         $this->form_validation->set_rules('username', 'Email', 'required|valid_email|is_unique[user.email_address]');
         $email = $this->input->post('username');
         $id_email = $this->user->is_User($email);
@@ -381,12 +394,14 @@ class Users extends CI_Controller {
         }
     }
 
-    public function reset_password($email) {
+    public function reset_password($email)
+    {
         $data["emails"] = array("email" => $email);
         $this->load->view("password_reset", $data);
     }
 
-    public function reset() {
+    public function reset()
+    {
         $this->form_validation->set_rules('username', 'Email', 'required|valid_email|is_unique[user.email_address]');
         $this->form_validation->set_rules('password', 'Password', 'trim|required|sha1');
         $this->form_validation->set_rules('repassword', 'Password', 'trim|required|sha1');

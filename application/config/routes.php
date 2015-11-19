@@ -42,6 +42,7 @@ $route['default_controller'] = "Users";
 $route['404_override'] = '';
 
 $route['dashboard'] = "Users/dashboard";
+$route['login'] = "Users/login";
 
 
 /* End of file routes.php */
