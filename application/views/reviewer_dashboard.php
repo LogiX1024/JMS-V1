@@ -78,7 +78,7 @@ and open the template in the editor.
                                                     <a href="downloads/3282E2E55115.pdf" target="_blank"><button type="button" style="margin-bottom: 10px" class="btn btn-w-m btn-danger pull-right">Pending Review</button></a>
                                                     <button type="button" style="margin-bottom: 10px;color: #000" class="btn btn-w-m btn-default pull-right">Due Date : 10/12/2015</button>
                                                     <a href="downloads/3282E2E55115.pdf" target="_blank"><button type="button" style="margin-bottom: 10px;color: #000" class="btn btn-w-m btn-default pull-right">Download as PDF</button></a>
-                                                    <a href="downloads/3282E2E55115.pdf" target="_blank"><button type="button" style="margin-bottom: 10px;color: #000" class="btn btn-w-m btn-default pull-right">Upload Review</button></a>
+                                                    <a href="downloads/3282E2E55115.pdf" target="_blank"><button type="button" style="margin-bottom: 10px;color: #000" class="btn btn-w-m btn-default pull-right">Add Review</button></a>
                                                 </div>
                                             </div>
                                         </div> 
@@ -102,7 +102,7 @@ and open the template in the editor.
                                                     <a href="downloads/3282E2E55115.pdf" target="_blank"><button type="button" style="margin-bottom: 10px" class="btn btn-w-m btn-danger pull-right">Pending Review</button></a>
                                                     <button type="button" style="margin-bottom: 10px;color: #000" class="btn btn-w-m btn-default pull-right">Due Date : 10/12/2015</button>
                                                     <a href="downloads/3282E2E55115.pdf" target="_blank"><button type="button" style="margin-bottom: 10px;color: #000" class="btn btn-w-m btn-default pull-right">Download as PDF</button></a>
-                                                    <a href="downloads/3282E2E55115.pdf" target="_blank"><button type="button" style="margin-bottom: 10px;color: #000" class="btn btn-w-m btn-default pull-right">Upload Review</button></a>
+                                                    <a href="downloads/3282E2E55115.pdf" target="_blank"><button type="button" style="margin-bottom: 10px;color: #000" class="btn btn-w-m btn-default pull-right">Add Review</button></a>
                                                 </div>
                                             </div>
                                         </div> 
@@ -126,7 +126,7 @@ and open the template in the editor.
                                                     <a href="downloads/3282E2E55115.pdf" target="_blank"><button type="button" style="margin-bottom: 10px" class="btn btn-w-m btn-danger pull-right">Pending Review</button></a>
                                                     <button type="button" style="margin-bottom: 10px;color: #000" class="btn btn-w-m btn-default pull-right">Due Date : 10/12/2015</button>
                                                     <a href="downloads/3282E2E55115.pdf" target="_blank"><button type="button" style="margin-bottom: 10px;color: #000" class="btn btn-w-m btn-default pull-right">Download as PDF</button></a>
-                                                    <a href="downloads/3282E2E55115.pdf" target="_blank"><button type="button" style="margin-bottom: 10px;color: #000" class="btn btn-w-m btn-default pull-right">Upload Review</button></a>
+                                                    <a href="downloads/3282E2E55115.pdf" target="_blank"><button type="button" style="margin-bottom: 10px;color: #000" class="btn btn-w-m btn-default pull-right">Add Review</button></a>
                                                 </div>
                                             </div>
                                         </div> 
@@ -155,7 +155,7 @@ and open the template in the editor.
                                                     <a href="downloads/3282E2E55115.pdf" target="_blank"><button type="button" style="margin-bottom: 10px" class="btn btn-w-m btn-danger pull-right">Pending Review</button></a>
                                                     <button type="button" style="margin-bottom: 10px;color: #000" class="btn btn-w-m btn-default pull-right">Due Date : 10/12/2015</button>
                                                     <a href="downloads/3282E2E55115.pdf" target="_blank"><button type="button" style="margin-bottom: 10px;color: #000" class="btn btn-w-m btn-default pull-right">Download as PDF</button></a>
-                                                    <a href="downloads/3282E2E55115.pdf" target="_blank"><button type="button" style="margin-bottom: 10px;color: #000" class="btn btn-w-m btn-default pull-right">Upload Review</button></a>
+                                                    <a href="downloads/3282E2E55115.pdf" target="_blank"><button type="button" style="margin-bottom: 10px;color: #000" class="btn btn-w-m btn-default pull-right">Add Review</button></a>
                                                 </div>
                                             </div>
                                         </div> 
@@ -179,7 +179,7 @@ and open the template in the editor.
                                                     <a href="downloads/3282E2E55115.pdf" target="_blank"><button type="button" style="margin-bottom: 10px" class="btn btn-w-m btn-danger pull-right">Pending Review</button></a>
                                                     <button type="button" style="margin-bottom: 10px;color: #000" class="btn btn-w-m btn-default pull-right">Due Date : 10/12/2015</button>
                                                     <a href="downloads/3282E2E55115.pdf" target="_blank"><button type="button" style="margin-bottom: 10px;color: #000" class="btn btn-w-m btn-default pull-right">Download as PDF</button></a>
-                                                    <a href="downloads/3282E2E55115.pdf" target="_blank"><button type="button" style="margin-bottom: 10px;color: #000" class="btn btn-w-m btn-default pull-right">Upload Review</button></a>
+                                                    <a href="downloads/3282E2E55115.pdf" target="_blank"><button type="button" style="margin-bottom: 10px;color: #000" class="btn btn-w-m btn-default pull-right">Add Review</button></a>
                                                 </div>
                                             </div>
                                         </div> 
@@ -203,7 +203,7 @@ and open the template in the editor.
                                                     <a href="downloads/3282E2E55115.pdf" target="_blank"><button type="button" style="margin-bottom: 10px" class="btn btn-w-m btn-danger pull-right">Pending Review</button></a>
                                                     <button type="button" style="margin-bottom: 10px;color: #000" class="btn btn-w-m btn-default pull-right">Due Date : 10/12/2015</button>
                                                     <a href="downloads/3282E2E55115.pdf" target="_blank"><button type="button" style="margin-bottom: 10px;color: #000" class="btn btn-w-m btn-default pull-right">Download as PDF</button></a>
-                                                    <a href="downloads/3282E2E55115.pdf" target="_blank"><button type="button" style="margin-bottom: 10px;color: #000" class="btn btn-w-m btn-default pull-right">Upload Review</button></a>
+                                                    <a href="downloads/3282E2E55115.pdf" target="_blank"><button type="button" style="margin-bottom: 10px;color: #000" class="btn btn-w-m btn-default pull-right">Add Review</button></a>
                                                 </div>
                                             </div>
                                         </div> 
@@ -230,7 +230,7 @@ and open the template in the editor.
                                                     <a href="downloads/3282E2E55115.pdf" target="_blank"><button type="button" style="margin-bottom: 10px" class="btn btn-w-m btn-danger pull-right">Pending Review</button></a>
                                                     <button type="button" style="margin-bottom: 10px;color: #000" class="btn btn-w-m btn-default pull-right">Due Date : 10/12/2015</button>
                                                     <a href="downloads/3282E2E55115.pdf" target="_blank"><button type="button" style="margin-bottom: 10px;color: #000" class="btn btn-w-m btn-default pull-right">Download as PDF</button></a>
-                                                    <a href="downloads/3282E2E55115.pdf" target="_blank"><button type="button" style="margin-bottom: 10px;color: #000" class="btn btn-w-m btn-default pull-right">Upload Review</button></a>
+                                                    <a href="downloads/3282E2E55115.pdf" target="_blank"><button type="button" style="margin-bottom: 10px;color: #000" class="btn btn-w-m btn-default pull-right">Add Review</button></a>
                                                 </div>
                                             </div>
                                         </div> 
@@ -254,7 +254,7 @@ and open the template in the editor.
                                                     <a href="downloads/3282E2E55115.pdf" target="_blank"><button type="button" style="margin-bottom: 10px" class="btn btn-w-m btn-danger pull-right">Pending Review</button></a>
                                                     <button type="button" style="margin-bottom: 10px;color: #000" class="btn btn-w-m btn-default pull-right">Due Date : 10/12/2015</button>
                                                     <a href="downloads/3282E2E55115.pdf" target="_blank"><button type="button" style="margin-bottom: 10px;color: #000" class="btn btn-w-m btn-default pull-right">Download as PDF</button></a>
-                                                    <a href="downloads/3282E2E55115.pdf" target="_blank"><button type="button" style="margin-bottom: 10px;color: #000" class="btn btn-w-m btn-default pull-right">Upload Review</button></a>
+                                                    <a href="downloads/3282E2E55115.pdf" target="_blank"><button type="button" style="margin-bottom: 10px;color: #000" class="btn btn-w-m btn-default pull-right">Add Review</button></a>
                                                 </div>
                                             </div>
                                         </div> 
@@ -278,7 +278,7 @@ and open the template in the editor.
                                                     <a href="downloads/3282E2E55115.pdf" target="_blank"><button type="button" style="margin-bottom: 10px" class="btn btn-w-m btn-danger pull-right">Pending Review</button></a>
                                                     <button type="button" style="margin-bottom: 10px;color: #000" class="btn btn-w-m btn-default pull-right">Due Date : 10/12/2015</button>
                                                     <a href="downloads/3282E2E55115.pdf" target="_blank"><button type="button" style="margin-bottom: 10px;color: #000" class="btn btn-w-m btn-default pull-right">Download as PDF</button></a>
-                                                    <a href="downloads/3282E2E55115.pdf" target="_blank"><button type="button" style="margin-bottom: 10px;color: #000" class="btn btn-w-m btn-default pull-right">Upload Review</button></a>
+                                                    <a href="downloads/3282E2E55115.pdf" target="_blank"><button type="button" style="margin-bottom: 10px;color: #000" class="btn btn-w-m btn-default pull-right">Add Review</button></a>
                                                 </div>
                                             </div>
                                         </div> 
