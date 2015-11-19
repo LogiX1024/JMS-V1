@@ -43,12 +43,13 @@ class Users extends CI_Controller
                 $this->super_user_dashboard();
                 break;
             case "Editor":
-                echo "Editor";
+                $this->editor_dashboard();
                 break;
             case "Author":
-                echo "Author";
+                $this->author_dashboard();
                 break;
             case "Reviewer":
+                $this->reviewer_dashboard();
                 break;
             default:
                 $this->load->view('401');
