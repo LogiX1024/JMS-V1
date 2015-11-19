@@ -40,7 +40,7 @@ class Users extends CI_Controller
     {
         switch ($this->ua->check_login()) {
             case "Super":
-                echo "Super User";
+                $this->super_user_dashboard();
                 break;
             case "Editor":
                 echo "Editor";
@@ -58,6 +58,7 @@ class Users extends CI_Controller
 
     private function super_user_dashboard()
     {
+        //Here shows the super users dashboard
     }
 
 
