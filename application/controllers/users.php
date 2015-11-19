@@ -157,6 +157,8 @@ class Users extends CI_Controller
         $fieldset = array('id', 'email_address', 'first_name', 'last_name', 'title', 'mobile_no', 'address1', 'address2',
             'city', 'postal_code', 'country', 'role', 'security_question', 'security_answer', '');
         $data['users'] = $this->user->getData($fieldset, 'user');
+
+        $this->load->model('journalm');
         $this->load->view('admin_manage_editors', $data);
     }
 
