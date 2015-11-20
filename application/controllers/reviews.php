@@ -11,5 +11,9 @@ class Reviews extends CI_Controller {
         $this->load->helper(array('form', 'url'));
         $this->load->library('form_validation');
     }
+    
+    public function submit_review() {
+        
+    }
 
 }
