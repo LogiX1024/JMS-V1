@@ -41,22 +41,6 @@
                     
                 </ul>
             </li>
-            <li>
-                <a href="#"><i class="fa fa-th-large"></i> <span class="nav-label">Reviewer</span><span
-                        class="fa arrow"></span></a>
-                <ul class="nav nav-second-level">
-                    <li><a href="<?php echo base_url() ?>index.php/Users/reviewers">Add</a></li>
-                     
-                </ul>
-            </li>
-            <li>
-                <a href="#"><i class="fa fa-th-large"></i> <span class="nav-label">Author</span><span
-                        class="fa arrow"></span></a>
-                <ul class="nav nav-second-level">
-                    <li><a href="<?php echo base_url() ?>index.php/Users/register_author">Add</a></li>
-                    <li><a href="<?php echo base_url() ?>index.php/Users/view_author">Edit</a></li>
-                </ul>
-            </li>
         </ul>
 
     </div>

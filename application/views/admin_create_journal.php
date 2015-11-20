@@ -202,8 +202,15 @@ and open the template in the editor.
                                             <div class="col-sm-9">
                                                 <select name="editors[]" id="journals"
                                                         class="chosen-select form-control" multiple="multiple">
-                                                    <option value="1">Nimal Perera</option>
-                                                    <option value="2">Sunil Malewana</option>
+                                                    <?php
+                                                    foreach ($editors as $editor):
+                                                        ?>
+                                                        <option
+                                                            value="<?= $editor->id ?>"><?= $editor->first_name . " " . $editor->last_name ?></option>
+
+                                                    <?php
+                                                    endforeach;
+                                                    ?>
                                                 </select>
                                             </div>
                                         </div>

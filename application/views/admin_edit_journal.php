@@ -140,7 +140,7 @@ and open the template in the editor.
                                             </div>
 
                                             <div class="form-group">
-                                                <label class="col-sm-3 control-label">Chief Eeditor</label>
+                                                <label class="col-sm-3 control-label">Chief Editor</label>
                                                 <div class="col-sm-9">
                                                     <select name="chief_editor" id="journals" class="chosen-select form-control">
                                                         <option value="1">2015 Applied Journal</option>

@@ -14,7 +14,7 @@ class Articles extends CI_Controller
         $this->load->library('form_validation');
     }
 
-    public function index($success=null)
+    public function index($success = null)
     {
         $journal_id = 0;
         if (isset($_GET['journal'])) {
@@ -43,8 +43,9 @@ class Articles extends CI_Controller
         $sub_auth_1 = $this->input->post("sub_auth_1");
         $sub_auth_2 = $this->input->post("sub_auth_2");
         $keywords = $this->input->post("keywords");
+        $submitted_date = date("Y-m-d");
 
-        $DataSet = array('author_id' => $user->id, 'journal_id' => $journal_id, 'title' => $title, 'status' => "assigned", 'co_authors' => $sub_auth_1 . "," . $sub_auth_2, 'keyword' => $keywords);
+        $DataSet = array('author_id' => $user->id, 'journal_id' => $journal_id, 'title' => $title, 'status' => "assigned", 'co_authors' => $sub_auth_1 . "," . $sub_auth_2, 'keyword' => $keywords, 'submitted_date' => $submitted_date);
 
         $insert_id = $this->article->insertData("article", $DataSet);
 

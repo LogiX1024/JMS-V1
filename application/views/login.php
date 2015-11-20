@@ -52,7 +52,10 @@
 
                     <a href="<?= base_url('/index.php/users/forgot_pass') ?>">
                         <small>Forgot password?</small>
-                    </a>
+                    </a>                   
+                    <div><br/>
+                    <a href="<?= base_url('/index.php/users/register_author')  ?>" target="_blank" class="btn btn-primary block full-width m-b">New Author</a>
+                    </div>
                 </form>
 
             </div>

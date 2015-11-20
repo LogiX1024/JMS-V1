@@ -8,13 +8,19 @@ class journalm extends CI_Model
         $this->db->from('journal');
         $this->db->join('user', 'chief_editor_id = user.id', 'inner');
         $this->db->where('journal.id', $id);
-        
+
         $result = $this->db->get();
         if ($result->num_rows() > 0) {
             return $result->result()[0];
         } else {
             return null;
         }
+    }
+
+    public function get_journals()
+    {
+        $this->db->from('journal');
+        return $this->db->get()->result();
     }
 
 

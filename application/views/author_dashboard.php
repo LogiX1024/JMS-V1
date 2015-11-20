@@ -30,7 +30,7 @@
             </div>
 
             <?php
-            if (isset($success_creating) && ($success_creating == TRUE)):
+            if (isset($success_upload) && ($success_upload == TRUE)):
                 ?>
                 <div class="alert alert-success alert-dismissable">
                     <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
@@ -83,7 +83,7 @@
                                                             </div>
                                                         </div>
                                                         <div class="col-lg-2 pull-right">
-                                                            <a href="<?php echo base_url(); ?>./uploads/FreshCopy/<?= $article_data->file_name ?>" target="_blank"><button type="button" style="margin-bottom: 10px" class="btn btn-w-m btn-default pull-right">Download PDF</button></a>
+                                                            <a href="<?php echo base_url(); ?>./uploads/FreshCopy/<?= $article_data->file_name ?>" target="_blank"><button type="button" style="margin-bottom: 10px" class="btn btn-w-m btn-default pull-right">Download</button></a>
                                                             <a href="downloads/3282E2E55115.pdf" target="_blank"><button type="button" style="margin-bottom: 10px" class="btn btn-w-m btn-default pull-right">View in Journal</button></a>
                                                         </div>
                                                     </div>
@@ -105,7 +105,7 @@
                                                             </div>
                                                         </div>
                                                         <div class="col-lg-2 pull-right">
-                                                            <a href="<?php echo base_url(); ?>./uploads/FreshCopy/<?= $article_data->file_name ?>" target="_blank"><button type="button" style="margin-bottom: 10px" class="btn btn-w-m btn-default pull-right">Download PDF</button></a>
+                                                            <a href="<?php echo base_url(); ?>./uploads/FreshCopy/<?= $article_data->file_name ?>" target="_blank"><button type="button" style="margin-bottom: 10px" class="btn btn-w-m btn-default pull-right">Download</button></a>
                                                             <a href="" target="_blank"><button type="button" style="margin-bottom: 10px" class="btn btn-w-m btn-default pull-right">View Review</button></a>
                                                             <a href="" target="_blank"><button type="button" style="margin-bottom: 10px" class="btn btn-w-m btn-default pull-right">Submit for Camera Ready</button></a>
                                                         </div>
@@ -128,7 +128,7 @@
                                                             </div>
                                                         </div>
                                                         <div class="col-lg-2 pull-right">
-                                                            <a href="<?php echo base_url(); ?>./uploads/FreshCopy/<?= $article_data->file_name ?>" target="_blank"><button type="button" style="margin-bottom: 10px" class="btn btn-w-m btn-default pull-right">Download PDF</button></a>
+                                                            <a href="<?php echo base_url(); ?>./uploads/FreshCopy/<?= $article_data->file_name ?>" target="_blank"><button type="button" style="margin-bottom: 10px" class="btn btn-w-m btn-default pull-right">Download</button></a>
                                                         </div>
                                                     </div>
                                                 </div> 
@@ -155,7 +155,7 @@
                                                             </div>
                                                         </div>
                                                         <div class="col-lg-2 pull-right">
-                                                            <a href="<?php echo base_url(); ?>./uploads/FreshCopy/<?= $article_data->file_name ?>" target="_blank"><button type="button" style="margin-bottom: 10px" class="btn btn-w-m btn-default pull-right">Download PDF</button></a>
+                                                            <a href="<?php echo base_url(); ?>./uploads/FreshCopy/<?= $article_data->file_name ?>" target="_blank"><button type="button" style="margin-bottom: 10px" class="btn btn-w-m btn-default pull-right">Download</button></a>
                                                             <a href="downloads/3282E2E55115.pdf" target="_blank"><button type="button" style="margin-bottom: 10px" class="btn btn-w-m btn-default pull-right">View in Journal</button></a>
                                                         </div>
                                                     </div>
@@ -172,7 +172,6 @@
                                             <?php if ($article_data->status == "reviewed") { ?>
                                                 <div class="media well">
                                                     <div class="media-body">
-                                                        <a href="#" style="//margin-right: 10px" class="pull-left"><img height="132" width="92px" alt="Bootstrap Media Preview" src="http://localhost/journalProto/imgs/two.jpg" class="media-object"></a>
                                                         <div class="col-lg-8" >
                                                             <div class="ibox-content">
                                                                 <h3 class="media-heading">
@@ -186,7 +185,7 @@
                                                             </div>
                                                         </div>
                                                         <div class="col-lg-2 pull-right">
-                                                            <a href="<?php echo base_url(); ?>./uploads/FreshCopy/<?= $article_data->file_name ?>" target="_blank"><button type="button" style="margin-bottom: 10px" class="btn btn-w-m btn-default pull-right">Download PDF</button></a>
+                                                            <a href="<?php echo base_url(); ?>./uploads/FreshCopy/<?= $article_data->file_name ?>" target="_blank"><button type="button" style="margin-bottom: 10px" class="btn btn-w-m btn-default pull-right">Download</button></a>
                                                             <a href="" target="_blank"><button type="button" style="margin-bottom: 10px" class="btn btn-w-m btn-default pull-right">View Review</button></a>
                                                             <a href="" target="_blank"><button type="button" style="margin-bottom: 10px" class="btn btn-w-m btn-default pull-right">Submit for Camera Ready</button></a>
                                                         </div>
@@ -203,7 +202,6 @@
                                             <?php if ($article_data->status == "assigned" || $article_data->status == "pending") { ?>
                                                 <div class="media well">
                                                     <div class="media-body">
-                                                        <a href="#" style="//margin-right: 10px" class="pull-left"><img height="132" width="92px" alt="Bootstrap Media Preview" src="http://localhost/journalProto/imgs/two.jpg" class="media-object"></a>
                                                         <div class="col-lg-8" >
                                                             <div class="ibox-content">
                                                                 <h3 class="media-heading">
@@ -217,7 +215,7 @@
                                                             </div>
                                                         </div>
                                                         <div class="col-lg-2 pull-right">
-                                                            <a href="<?php echo base_url(); ?>./uploads/FreshCopy/<?= $article_data->file_name ?>" target="_blank"><button type="button" style="margin-bottom: 10px" class="btn btn-w-m btn-default pull-right">Download PDF</button></a>
+                                                            <a href="<?php echo base_url(); ?>./uploads/FreshCopy/<?= $article_data->file_name ?>" target="_blank"><button type="button" style="margin-bottom: 10px" class="btn btn-w-m btn-default pull-right">Download</button></a>
                                                         </div>
                                                     </div>
 

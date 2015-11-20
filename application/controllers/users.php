@@ -66,7 +66,7 @@ class Users extends CI_Controller
     private function editor_dashboard()
     {   //$author_id = array("author_id" => $this->USER_OBJ->id);
         $data['author_article'] = $this->user->getData('*', 'article');
-        $this->load->view('editor_submissions',$data);
+        $this->load->view('editor_submissions', $data);
     }
 
     private function author_dashboard()
@@ -89,7 +89,7 @@ class Users extends CI_Controller
         $this->load->view('author_dashboard', $data);
     }
 
-    
+
     private function reviewer_dashboard()
     {
         $this->load->view("reviewer_dashboard");
@@ -139,24 +139,45 @@ class Users extends CI_Controller
         $first_name = $this->input->post("first_name", TRUE);
         $email = $this->input->post("email", TRUE);
         $last_name = $this->input->post("last_name", TRUE);
-        $DataSet = array('first_name' => $first_name, 'last_name' => $last_name, 'email_address' => $email, 'role' => "Editor");
+        $password = $this->generateRandomString();
+        $DataSet = array('first_name' => $first_name, 'last_name' => $last_name, 'email_address' => $email, 'role' => "Editor", 'password' => sha1($password));
         //Query For Editor insertion
         $insert_id = $this->user->insertData("user", $DataSet);
         if ($insert_id > 0) {
+            $this->load->library('EmailSender');
+            $data = array(
+                'editor_name' => $first_name . " " . $last_name,
+                'password' => $password
+            );
+            $this->emailsender->notify_editor_creation($email, $data);
             $success = array('Success' => "Successfully Added!");
             redirect(base_url() . 'index.php/Users/new_editor', $success);
-            //Todo; send email
         } else {
             $Error = array('Error' => "Error Detected!");
             redirect(base_url() . 'index.php/Users/new_editor', $Error);
         }
     }
 
+    private function generateRandomString($length = 10)
+    {
+        $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $charactersLength = strlen($characters);
+        $randomString = '';
+        for ($i = 0; $i < $length; $i++) {
+            $randomString .= $characters[rand(0, $charactersLength - 1)];
+        }
+        return $randomString;
+    }
+
     public function new_editor()
     {
         $fieldset = array('id', 'email_address', 'first_name', 'last_name', 'title', 'mobile_no', 'address1', 'address2',
             'city', 'postal_code', 'country', 'role', 'security_question', 'security_answer', '');
-        $data['users'] = $this->user->getData($fieldset, 'user');
+        $data['users'] = $this->user->getData($fieldset, 'user', array('role' => 'Editor'));
+
+        $this->load->model('journalm');
+
+        $data['journals'] = $this->journalm->get_journals();
         $this->load->view('admin_manage_editors', $data);
     }
 
@@ -179,7 +200,11 @@ class Users extends CI_Controller
     {
         $fieldset = array('id', 'email_address', 'first_name', 'last_name', 'title', 'mobile_no', 'address1', 'address2',
             'city', 'postal_code', 'country', 'role', 'security_question', 'security_answer', '');
-        $data['users'] = $this->user->getData($fieldset, 'user');
+
+        $data['users'] = $this->user->getData($fieldset, 'user', array('role' => 'Reviewer'));
+
+        $fieldset = array('id', 'email_address', 'first_name', 'last_name');
+        $data['invited'] = $this->user->getData($fieldset, 'invited_reviwer');
         $this->load->view("invite_reviewer", $data);
     }
 
@@ -195,7 +220,7 @@ class Users extends CI_Controller
         $this->load->library('parser');
         $data = array(
             'name' => $first_name . " " . $last_name,
-            'link' => 'http://www.google.com'
+            'link' => base_url() . "index.php/users/register_reviewer"
         );
         $body_string = $this->parser->parse('email/invite_reviewer', $data, TRUE);
 
@@ -318,8 +343,6 @@ class Users extends CI_Controller
     // Authors Area
     public function register_author()
     {
-        $journal_id = $this->input->get('journal');
-        $this->session->set_userdata('journal_id', $journal_id);
         $this->load->view("register_author_url");
     }
 
