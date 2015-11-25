@@ -204,7 +204,7 @@ class Users extends CI_Controller
         $data['users'] = $this->user->getData($fieldset, 'user', array('role' => 'Reviewer'));
 
         $fieldset = array('id', 'email_address', 'first_name', 'last_name');
-        $data['invited'] = $this->user->getData($fieldset, 'invited_reviwer');
+        $data['invited'] = $this->user->getData($fieldset, 'invited_reviewers');
         $this->load->view("invite_reviewer", $data);
     }
 
@@ -213,7 +213,7 @@ class Users extends CI_Controller
         $first_name = $this->input->post("first_name");
         $email = $this->input->post("email");
         $last_name = $this->input->post("last_name");
-        $journal = $this->input->post("journals[]");
+        //$journal = $this->input->post("journals[]");
         //ToDO send this data as a mail to reviver
         $this->load->library('EmailSender');
 
@@ -228,10 +228,9 @@ class Users extends CI_Controller
 
             $DataSet = array('first_name' => $first_name,
                 'last_name' => $last_name,
-                'email_address' => $email,
-                'journal' => $journal);
+                'email_address' => $email);
 
-            $insert_id = $this->user->insertData("invited_reviwer", $DataSet);
+            $insert_id = $this->user->insertData("invited_reviewers", $DataSet);
             $success = array('Success' => "Successfully Invited!");
             redirect(base_url() . 'index.php/Users/reviewers', $success);
             //echo "Success";
