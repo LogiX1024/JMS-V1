@@ -3,6 +3,8 @@
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
+ 
+
 class Articles extends CI_Controller
 {
 
@@ -13,7 +15,9 @@ class Articles extends CI_Controller
         $this->load->helper(array('form', 'url'));
         $this->load->library('form_validation');
     }
-
+    
+    
+    
     public function index($success = null)
     {
         $journal_id = 0;
@@ -40,13 +44,13 @@ class Articles extends CI_Controller
         $title = $this->input->post("title");
         $journal_id = $this->session->userdata('journal_id');
 //        $chf_author = $this->input->post("chief_author");
-        $sub_auth_1 = $this->input->post("sub_auth_1");
-        $sub_auth_2 = $this->input->post("sub_auth_2");
+        //$sub_auth_1 = $this->input->post("sub_auth_1");
+        //$sub_auth_2 = $this->input->post("sub_auth_2");
         $keywords = $this->input->post("keywords");
         $submitted_date = date("Y-m-d");
 
         $DataSet = array('author_id' => $user->id, 'journal_id' => $journal_id, 'title' => $title,
-            'status' => "assigned",  'submit_date' => $submitted_date, 'journal_id' => "6");
+            'status' => "assigned",  'submit_date' => $submitted_date, 'journal_id' => "9");
 
         $insert_id = $this->article->insertData("article", $DataSet);
         //$insert_id = $this->article->insertData("article", $DataSet);
@@ -80,6 +84,9 @@ class Articles extends CI_Controller
             $error = array('error' => "Error Detected!");
             redirect(base_url() . 'index.php/Articles/', $error);
         }
+        
     }
+    
+    
 
 }
