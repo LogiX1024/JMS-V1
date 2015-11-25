@@ -10,6 +10,10 @@ and open the template in the editor.
 <link href="<?php echo base_url('assets'); ?>/css/plugins/dataTables/dataTables.responsive.css" rel="stylesheet">
 <link href="<?php echo base_url('assets'); ?>/css/plugins/dataTables/dataTables.tableTools.min.css" rel="stylesheet">
 
+<link href="<?php echo base_url('assets'); ?>/css/bootstrap.min.css" rel="stylesheet">
+<link href="<?php echo base_url('assets'); ?>/font-awesome/css/font-awesome.css" rel="stylesheet">
+<link href="<?php echo base_url('assets'); ?>/css/animate.css" rel="stylesheet">
+<link href="<?php echo base_url('assets'); ?>/css/style.css" rel="stylesheet">
 
 </head>
 <body>
@@ -63,7 +67,6 @@ and open the template in the editor.
                             if (isset($success)) {
 //                                echo $success;
                             }
-                            
                             ?>
 
                             <div class="ibox-content">
@@ -86,25 +89,24 @@ and open the template in the editor.
                                                 <!--<span class="input-group-btn">  <button class="btn btn-primary pull-right" type="submit">Edit</button></span>-->
                                                 <!--</div>-->
                                                 <div class="col-sm-9">
-                                                        <input type="text" class="form-control" name="chief_author" readonly="readonly" value="<?=$user->first_name . " " . $user->last_name ?>" >
-<!--                                                    <div class="input-group">-->
-<!--                                                        <span class="input-group-btn">-->
-<!--                                                            <button type="button" class="btn btn-primary">Change</button>-->
-<!--                                                        </span>-->
-<!--                                                    </div>-->
+                                                    <input type="text" class="form-control" name="chief_author" readonly="readonly" value="<?= $user->first_name . " " . $user->last_name ?>" >
+                                                    <!--                                                    <div class="input-group">-->
+                                                    <!--                                                        <span class="input-group-btn">-->
+                                                    <!--                                                            <button type="button" class="btn btn-primary">Change</button>-->
+                                                    <!--                                                        </span>-->
+                                                    <!--                                                    </div>-->
                                                 </div>
                                             </div>
                                             <div class="form-group">
-                                                <label class="col-sm-2 control-label">Sub Author 1</label>
+                                                <label class="col-sm-2 control-label">Sub Author </label>
                                                 <div class="col-sm-9">
-                                                    <input name="sub_auth_1" type="text" class="form-control" placeholder="Sub Author1">
+                                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+                                                        Add Sub Author  <span class="fa fa-plus"></span>
+                                                    </button>
                                                 </div>
                                             </div>
                                             <div class="form-group">
-                                                <label class="col-sm-2 control-label">Sub Author 2</label>
-                                                <div class="col-sm-9">
-                                                    <input name="sub_auth_2" type="text" class="form-control" placeholder="Sub Author2">
-                                                </div>
+
                                             </div>
                                             <div class="form-group">
                                                 <label class="col-sm-2 control-label">Keywords</label>
@@ -167,13 +169,63 @@ and open the template in the editor.
             </div>
         </div>
     </div>
+    <div class="modal inmodal" id="myModal" tabindex="-1" role="dialog" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content animated bounceInRight">
+                                                <div class="modal-header">
+                                                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                                                    <i class="fa fa-book modal-icon fa-2x"></i>
+                                                    <h4 class="modal-title">Add Sub Author</h4>
+                                                    <small class="font-bold">Add Sub Authors to the paper.</small>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <div class="form-group">
+                                                        <label>First name: </label> 
+                                                        <input type="email" placeholder="Enter First Name" class="form-control">
+                                                    </div>
+                                                    <div class="form-group"><label>Last Name:</label> 
+                                                        <input type="email" placeholder="Enter Last Name" class="form-control">
+                                                    </div>
+                                                    <div class="form-group"><label>Affiliation:</label> 
+                                                        <input type="email" placeholder="Enter Affiliation" class="form-control">
+                                                    </div>
+                                                    <div class="form-group"><label>Email:</label> 
+                                                        <input type="email" placeholder="Enter Email" class="form-control">
+                                                    </div>
 
+                                                    <div class="modal-footer">
+                                                    <button type="button" class="btn btn-white" data-dismiss="modal">Close</button>
+                                                    <button type="button" class="btn btn-primary">Add </button>
+                                                    </div>
+                                                </div>
+                                                
+                                            </div>
+                                            
+                                        </div>
+                                        
+                                    </div>
+    
+
+    <div>
+
+
+         
+
+    </div>
+
+
+</div>
+</div>
+
+
+
+</div>
 
 <?php $this->load->view('partial/common_js'); ?>
 
-    <!-- Custom and plugin javascript -->
-    <script src="<?php echo base_url('assets'); ?>/js/inspinia.js"></script>
-    <script src="<?php echo base_url('assets'); ?>/js/plugins/pace/pace.min.js"></script>
+<!-- Custom and plugin javascript -->
+<script src="<?php echo base_url('assets'); ?>/js/inspinia.js"></script>
+<script src="<?php echo base_url('assets'); ?>/js/plugins/pace/pace.min.js"></script>
 
 </body>
 </html>
