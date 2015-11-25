@@ -45,9 +45,11 @@ class Articles extends CI_Controller
         $keywords = $this->input->post("keywords");
         $submitted_date = date("Y-m-d");
 
-        $DataSet = array('author_id' => $user->id, 'journal_id' => $journal_id, 'title' => $title, 'status' => "assigned", 'co_authors' => $sub_auth_1 . "," . $sub_auth_2, 'keyword' => $keywords, 'submitted_date' => $submitted_date);
+        $DataSet = array('author_id' => $user->id, 'journal_id' => $journal_id, 'title' => $title,
+            'status' => "assigned",  'submit_date' => $submitted_date, 'journal_id' => "6");
 
         $insert_id = $this->article->insertData("article", $DataSet);
+        //$insert_id = $this->article->insertData("article", $DataSet);
 
 
         if ($insert_id > 0) {
@@ -67,7 +69,7 @@ class Articles extends CI_Controller
             $file = $this->upload->data();
 
             $DataSet = array('file_name' => $file['file_name']);
-            $this->article->Update($DataSet, "article", $insert_id);
+            //$this->article->Update($DataSet, "article", $insert_id);
             $this->session->set_flashdata('upload', 'success');
 
             redirect('/dashboard');

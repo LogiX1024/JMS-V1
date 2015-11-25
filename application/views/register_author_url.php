@@ -54,7 +54,9 @@
                                                 <select id="title" class="form-control">
                                                     <option value="Mr">Mr.</option>
                                                     <option value="Mrs.">Mrs.</option>
+                                                    <option value="Miss.">Miss.</option>
                                                     <option value="Dr.">Dr.</option>
+                                                    <option value="Prof.">Prof.</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -92,7 +94,7 @@
                                                            class="form-control"/>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label>Address 1</label>
+                                                    <label>Address Line 1</label>
                                                     <input type="text" name="address1" class="form-control"/>
                                                 </div>
                                                 <div class="form-group">
@@ -100,21 +102,17 @@
                                                     <input type="text" name="city" placeholder="Enter city"
                                                            class="form-control"/>
                                                 </div>
-                                                <div class="form-group">
+                                                
+
+                                            </div>
+                                            <div class="col-lg-6">
+                                                 <div class="form-group">
                                                     <label>Country</label>
                                                     <input type="text" name="country" placeholder="Enter country"
                                                            class="form-control"/>
                                                 </div>
-
-                                            </div>
-                                            <div class="col-lg-6">
                                                 <div class="form-group">
-                                                    <label>Mobile No *</label>
-                                                    <input type="text" name="mobile" placeholder="Enter Mobile No"
-                                                           class="form-control"/>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label>Address 2</label>
+                                                    <label>Address Line 2</label>
                                                     <input type="text" name="address2" class="form-control"/>
                                                 </div>
                                                 <div class="form-group">

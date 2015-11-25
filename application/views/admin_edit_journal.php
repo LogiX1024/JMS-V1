@@ -36,7 +36,7 @@ and open the template in the editor.
                     </ol>
                 </div>
             </div>
-            
+
             <div class="wrapper wrapper-content animated fadeInRight">
                 <div class="row">
                     <div class="col-lg-12">
@@ -55,7 +55,7 @@ and open the template in the editor.
                                 </div>
                             </div>
 
-                             
+
                             <div class="ibox-content">
                                 <form name="create_jurnal" method="post" id="add_cad_user" class="form-horizontal"
                                       action="<?= base_url('/index.php/Journal/update_journal') ?>">
@@ -64,37 +64,37 @@ and open the template in the editor.
                                             <div class="form-group">
                                                 <label class="col-sm-3 control-label" >Name</label>
                                                 <div class="col-sm-9">
-                                                    <input name="name" required="" type="text" value="<?php echo $JournalData->name ; ?>" class="form-control" >
+                                                    <input name="name" required="" type="text" value="<?php echo $JournalData->name; ?>" class="form-control" >
                                                 </div>
                                             </div>
                                             <div class="form-group">
                                                 <label class="col-sm-3 control-label">Issue</label>
                                                 <div class="col-sm-9">
-                                                    <input name="issue" required="" type="text" value="<?php echo $JournalData->issue ; ?>" class="form-control"  >
+                                                    <input name="issue" required="" type="text" value="<?php echo $JournalData->issue; ?>" class="form-control"  >
                                                 </div>
                                             </div>
                                             <div class="form-group">
                                                 <label class="col-sm-3 control-label">Volume</label>
                                                 <div class="col-sm-9">
-                                                    <input name="volume" required="" type="text" value="<?php echo $JournalData->volume ; ?>"class="form-control"  >
+                                                    <input name="volume" required="" type="text" value="<?php echo $JournalData->volume; ?>"class="form-control"  >
                                                 </div>
                                             </div>
                                             <div class="form-group">
                                                 <label class="col-sm-3 control-label">Aim</label>
                                                 <div class="col-sm-9">
-                                                    <textarea name="aim" value="<?php echo $JournalData->aim ; ?>" class="form-control" ></textarea>
+                                                    <textarea name="aim" value="<?php echo $JournalData->aim; ?>" class="form-control" ></textarea>
                                                 </div>
                                             </div>
                                             <div class="form-group">
                                                 <label class="col-sm-3 control-label">Objective</label>
                                                 <div class="col-sm-9">
-                                                    <textarea name="objective" value="<?php echo $JournalData->objective ; ?>" class="form-control"  ></textarea>
+                                                    <textarea name="objective" value="<?php echo $JournalData->objective; ?>" class="form-control"  ></textarea>
                                                 </div>
                                             </div>
                                             <div class="form-group">
                                                 <label class="col-sm-3 control-label">Scope</label>
                                                 <div class="col-sm-9">
-                                                    <textarea name="scope" value="<?php echo $JournalData->scope ; ?>" class="form-control"  ></textarea>
+                                                    <textarea name="scope" value="<?php echo $JournalData->scope; ?>" class="form-control"  ></textarea>
                                                 </div>
                                             </div>
                                             <div class="form-group">
@@ -108,8 +108,8 @@ and open the template in the editor.
                                             </div>
                                             <div class="form-group">
                                                 <div class=" panel-body">
-                                <input value="<?php echo $JournalData->id; ?>" type="hidden" name="hdnID" id="hdnID">
-                            </div>
+                                                    <input value="<?php echo $JournalData->id; ?>" type="hidden" name="hdnID" id="hdnID">
+                                                </div>
                                             </div>
                                         </div>
 
@@ -117,25 +117,31 @@ and open the template in the editor.
                                             <div class="form-group">
                                                 <label class="col-sm-3 control-label">Keywords</label>
                                                 <div class="col-sm-9">
-                                                    <input name="keywords" required="" type="text" value="<?php echo $JournalData->keywords ; ?>" class="form-control">
+                                                    <input name="keywords" required="" type="text" value="<?php
+                                                    $str = '';
+                                                    foreach ($JournalData->keywords as $value) {
+                                                        $str = $str . $value->keyword . ", ";
+                                                    }
+                                                    echo substr($str, 0, -2);
+                                                    ?>" class="form-control">
                                                 </div>
                                             </div>
                                             <div class="form-group">
                                                 <label class="col-sm-3 control-label">End of Paper Submition Date</label>
                                                 <div class="col-sm-9">
-                                                    <input name="submition_date" required="" type="date" value="<?php echo $JournalData->camera_rady_date ; ?>" class="form-control" >
+                                                    <input name="submition_date" required="" type="date" value="<?php echo $JournalData->camera_rady_date; ?>" class="form-control" >
                                                 </div>
                                             </div>
                                             <div class="form-group">
                                                 <label class="col-sm-3 control-label">Camera Ready Date</label>
                                                 <div class="col-sm-9">
-                                                    <input name="camera_ready_date" required="" type="date" value="<?php echo $JournalData->collection_date ; ?>" class="form-control" >
+                                                    <input name="camera_ready_date" required="" type="date" value="<?php echo $JournalData->collection_date; ?>" class="form-control" >
                                                 </div>
                                             </div>
                                             <div class="form-group">
                                                 <label class="col-sm-3 control-label">Publish Date</label>
                                                 <div class="col-sm-9">
-                                                    <input name="publish_date" required="" type="date" value="<?php echo $JournalData->collection_date ; ?>" class="form-control" >
+                                                    <input name="publish_date" required="" type="date" value="<?php echo $JournalData->collection_date; ?>" class="form-control" >
                                                 </div>
                                             </div>
 

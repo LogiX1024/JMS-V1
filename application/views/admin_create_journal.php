@@ -114,10 +114,16 @@ and open the template in the editor.
                                             <div class="col-sm-9">
                                                 <select name="category" id="journals"
                                                         class="chosen-select form-control">
-                                                    <option value="1">2015 Applied Journal</option>
-                                                    <option value="2">Bio-diversity & Conservation Conference</option>
-                                                    <option value="2">Ubi-media Journal</option>
-                                                    <option value="2">Journal on Insects</option>
+                                                    <?php
+                                                    foreach ($categories as $category):
+                                                        ?>
+                                                        <option
+                                                            value="<?= $category->id ?>"><?= $category->category ?></option>
+
+                                                    <?php
+                                                    endforeach;
+                                                    ?>
+
                                                 </select>
                                             </div>
                                         </div>

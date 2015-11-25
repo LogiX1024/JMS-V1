@@ -171,7 +171,7 @@ class Users extends CI_Controller
 
     public function new_editor()
     {
-        $fieldset = array('id', 'email_address', 'first_name', 'last_name', 'title', 'mobile_no', 'address1', 'address2',
+        $fieldset = array('id', 'email_address', 'first_name', 'last_name', 'title', 'address_1', 'address_2',
             'city', 'postal_code', 'country', 'role', 'security_question', 'security_answer', '');
         $data['users'] = $this->user->getData($fieldset, 'user', array('role' => 'Editor'));
 
@@ -198,7 +198,7 @@ class Users extends CI_Controller
     // Reviewers Area
     public function reviewers()
     {
-        $fieldset = array('id', 'email_address', 'first_name', 'last_name', 'title', 'mobile_no', 'address1', 'address2',
+        $fieldset = array('id', 'email_address', 'first_name', 'last_name', 'title', 'address_1', 'address_2',
             'city', 'postal_code', 'country', 'role', 'security_question', 'security_answer', '');
 
         $data['users'] = $this->user->getData($fieldset, 'user', array('role' => 'Reviewer'));
@@ -286,7 +286,6 @@ class Users extends CI_Controller
             $last_name = $this->input->post("last_name", TRUE);
             $title = $this->input->post("title", TRUE);
             $gender = $this->input->post("gender", TRUE);
-            $mobile_no = $this->input->post("mobile_no", TRUE);
             $address1 = $this->input->post("address1", TRUE);
             $address2 = $this->input->post("address2");
             $city = $this->input->post("city", TRUE);
@@ -314,9 +313,8 @@ class Users extends CI_Controller
                 'email_address' => $email,
                 'title' => $title,
                 'password' => $pass,
-                'mobile_no' => $mobile_no,
-                'address1' => $address1,
-                'address2' => $address2,
+                'address_1' => $address1,
+                'address_2' => $address2,
                 'city' => $city,
                 'postal_code' => $postal_code,
                 'country' => $country,
@@ -348,7 +346,7 @@ class Users extends CI_Controller
 
     public function view_author()
     {
-        $fieldset = array('id', 'first_name', 'last_name', 'email_address', 'title', 'mobile_no');
+        $fieldset = array('id', 'first_name', 'last_name', 'email_address', 'title', );
         $data['authors'] = $this->user->getData($fieldset, 'user');
         $this->load->view("admin_edit_author", $data);
     }
@@ -363,7 +361,6 @@ class Users extends CI_Controller
             $first_name = $this->input->post("first_name", TRUE);
             $last_name = $this->input->post("last_name", TRUE);
             $title = $this->input->post("title", TRUE);
-            $mobile_no = $this->input->post("mobile_no", TRUE);
             $address1 = $this->input->post("address1", TRUE);
             $address2 = $this->input->post("address2");
             $city = $this->input->post("city", TRUE);
@@ -371,16 +368,16 @@ class Users extends CI_Controller
             $country = $this->input->post("country", TRUE);
             $sec_question = $this->input->post("sec_question", TRUE);
             $sec_answer = $this->input->post("sec_answer", TRUE);
-
+            
+            
             $DataSet = array(
                 'first_name' => $first_name,
                 'last_name' => $last_name,
                 'email_address' => $email,
                 'title' => $title,
                 'password' => sha1($pass),
-                'mobile_no' => $mobile_no,
-                'address1' => $address1,
-                'address2' => $address2,
+                'address_1' => $address1,
+                'address_2' => $address2,
                 'city' => $city,
                 'postal_code' => $postal_code,
                 'country' => $country,
@@ -389,7 +386,8 @@ class Users extends CI_Controller
                 'role' => "Author",
                 'deleted' => 0,
                 'banned' => 1);
-
+            
+            
             $insert_id = $this->user->insertData("user", $DataSet);
             if ($insert_id > 0) {
                 redirect('/login');

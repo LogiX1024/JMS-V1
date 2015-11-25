@@ -10,6 +10,7 @@ class Journal extends CI_Controller
     {
         parent::__construct();
         $this->load->model('user');
+        $this->load->model('journalm');
         $this->load->library('form_validation');
     }
 
@@ -22,9 +23,10 @@ class Journal extends CI_Controller
     {
         if ($this->ua->check_login() == "Super") {
             $editors = $this->user->get_editors();
-//            print_r($editors);
-//            die();
-            $this->load->view('admin_create_journal', array('editors' => $editors));
+            $categories = $this->journalm->get_category();
+ //           print_r($categories);
+ //           die();
+            $this->load->view('admin_create_journal', array('editors' => $editors,'categories' => $categories));
         } else {
             $this->load->view('401');
         }
@@ -44,11 +46,19 @@ class Journal extends CI_Controller
         $camera_ready_date = $this->input->post("camera_ready_date", TRUE);
         $chief_editor = $this->input->post("chief_editor", TRUE);
         $editors = $this->input->post("editors[]", TRUE);
-        $DataSet = array('name' => $name, 'issue' => $issue, 'volume' => $volume, 'aim' => $aim, 'objective' => $objective,
-            'scope' => $scope, 'category' => $category, 'keywords' => $keywords, 'collection_date' => $submition_date,
-            'camera_rady_date' => $camera_ready_date, 'chief_editor_id' => $chief_editor, 'editor' => $editors);
+        $DataSet = array('name' => $name, 'issue' => $issue, 'volume' => $volume, 'aim' => $aim, 
+            'objective' => $objective,
+            'scope' => $scope, 'category' => $category, 'collection_date' => $submition_date,
+            'camera_rady_date' => $camera_ready_date, 'chief_editor_id' => $chief_editor);
         //Query For Editor insertion 
         $insert_id = $this->user->insertData("journal", $DataSet);
+        $journal_id = mysql_insert_id();
+        
+        
+        $keyword_data = array('journal_id' => $journal_id,'keyword' => $keywords);
+        
+        $this->user->insertData("journal_keywords",$keyword_data);
+        
         if ($insert_id > 0) {
             $success = array('Success' => "Successfully Added!");
             redirect(base_url() . 'index.php/journal', $success);
@@ -63,20 +73,18 @@ class Journal extends CI_Controller
     public function journal_manager()
     {
         $fieldset = array('id', 'name', 'issue', 'volume', 'aim', 'objective',
-            'scope', 'category', 'keywords', 'collection_date',
-            'camera_rady_date', 'chief_editor_id', 'editor', 'status');
+            'scope', 'category', 'collection_date',
+            'camera_rady_date', 'chief_editor_id', 'status');
         $data['journals'] = $this->user->getData($fieldset, 'journal');
         $this->load->view('admin_journal_manager', $data);
     }
 
     public function edit_journal($id)
     {
-        $whereArr = array("id" => $id);
-        $result = $this->user->getData('id,name,issue,volume,aim,objective,scope,category,'
-            . 'keywords,collection_date,camera_rady_date,chief_editor_id,editor,status',
-            'journal', $whereArr);
-        $editdata['JournalData'] = $result[0];
-        $editdata["id"] = $id;
+        
+        $editdata['JournalData'] = $this->journalm->get_journal($id);
+        //var_dump($editdata);
+        //die();
         $this->load->view("admin_edit_journal", $editdata, $id);
 
     }
@@ -95,16 +103,20 @@ class Journal extends CI_Controller
         $submition_date = $this->input->post("submition_date", TRUE);
         $camera_ready_date = $this->input->post("camera_ready_date", TRUE);
         $chief_editor = $this->input->post("chief_editor", TRUE);
-        $editors = $this->input->post("editors[]", TRUE);
+        //-$editors = $this->input->post("editors[]", TRUE);
         $id = $this->input->post("hdnID", TRUE);
 
         $DataSet = array('name' => $name, 'issue' => $issue, 'volume' => $volume, 'aim' => $aim, 'objective' => $objective,
-            'scope' => $scope, 'category' => $category, 'keywords' => $keywords, 'collection_date' => $submition_date,
-            'camera_rady_date' => $camera_ready_date, 'chief_editor_id' => $chief_editor, 'editor' => $editors);
+            'scope' => $scope, 'category' => $category,  'collection_date' => $submition_date,
+            'camera_rady_date' => $camera_ready_date, 'chief_editor_id' => $chief_editor);
+        $DataSet2 = array('keyword' => $keywords);
         //Initialise the correct ID for the Update
         $whereArr = array("id" => $id);
+        
         //Query For Employee Update
         $result = $this->user->Update($DataSet, "journal", $id);
+        $result = $this->journalm->UpdateJournal_keywords($DataSet2, "journal_keywords",$id);
+        //$result = $this->user->Update($DataSet, "journal", $id);
         redirect(base_url() . 'index.php/Journal');
 
     }
