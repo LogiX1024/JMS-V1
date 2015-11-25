@@ -46,7 +46,7 @@ and open the template in the editor.
                     </h3>
                 </div>
                 <div class="ibox ibox-content">
-                    <form name="reviews" method="post" action="" enctype="multipart/form-data">
+                    <form name="reviews" method="post" action="<?= base_url('/index.php/reviews/submit_review') ?>" enctype="multipart/form-data">
                         <div class="form-group">
                             <div class="row">
                                 <input type="hidden" name="article_id" value="1">
