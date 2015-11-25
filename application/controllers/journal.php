@@ -47,16 +47,30 @@ class Journal extends CI_Controller {
             'camera_rady_date' => $camera_ready_date, 'chief_editor_id' => $chief_editor);
         //Query For Editor insertion 
         $insert_id = $this->user->insertData("journal", $DataSet);
-        $journal_id = mysql_insert_id();
 
+        // Keyword save
         $keyword_arry = explode(",", $keywords);
-
         foreach ($keyword_arry as $word) {
-            $keyword_data = array('journal_id' => $journal_id, 'keyword' => $word);
+            $keyword_data = array('journal_id' => $insert_id, 'keyword' => $word);
             $this->user->insertData("journal_keywords", $keyword_data);
         }
 
         if ($insert_id > 0) {
+
+            $config['upload_path'] = './journal_img';
+            $config['allowed_types'] = 'jpg';
+            $config['file_name'] = $insert_id;
+
+            $this->load->library('upload', $config);
+
+            if (!$this->upload->do_upload("jurnal_img")) {
+                echo $this->upload->display_errors();
+                die();
+//                $error = array('error' => $this->upload->display_errors());
+//                $this->load->view('author_submit_paper', $error);
+            }
+
+
             $success = array('Success' => "Successfully Added!");
             redirect(base_url() . 'index.php/journal', $success);
             //Todo; send email
