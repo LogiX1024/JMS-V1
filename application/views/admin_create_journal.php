@@ -132,6 +132,7 @@ and open the template in the editor.
 
                                                 <div class="col-sm-9">
                                                     <input type="file" name="jurnal_img" placeholder="Upload Journal Image" />
+                                                    * Upload .jpg image only. 
                                                 </div>
                                             </div>
                                         </div>
@@ -211,16 +212,13 @@ and open the template in the editor.
                                             </div>
                                             <div class="form-group">
                                                 <label class="col-sm-3 control-label">Editors</label>
-
                                                 <div class="col-sm-9">
-                                                    <select name="editors[]" id="journals"
+                                                    <select name="editors" id="journals"
                                                             class="chosen-select form-control" multiple="multiple">
                                                                 <?php
                                                                 foreach ($editors as $editor):
                                                                     ?>
-                                                            <option
-                                                                value="<?= $editor->id ?>"><?= $editor->first_name . " " . $editor->last_name ?></option>
-
+                                                            <option value="<?= $editor->id ?>"><?= $editor->first_name . " " . $editor->last_name ?></option>
                                                             <?php
                                                         endforeach;
                                                         ?>

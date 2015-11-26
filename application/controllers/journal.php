@@ -40,19 +40,24 @@ class Journal extends CI_Controller {
         $submition_date = $this->input->post("submition_date", TRUE);
         $camera_ready_date = $this->input->post("camera_ready_date", TRUE);
         $chief_editor = $this->input->post("chief_editor", TRUE);
-        $editors = $this->input->post("editors[]", TRUE);
+        $editors = $this->input->post("editors", TRUE);
         $DataSet = array('name' => $name, 'issue' => $issue, 'volume' => $volume, 'aim' => $aim,
             'objective' => $objective,
             'scope' => $scope, 'category' => $category, 'collection_date' => $submition_date,
             'camera_rady_date' => $camera_ready_date, 'chief_editor_id' => $chief_editor);
         //Query For Editor insertion 
-        $insert_id = $this->user->insertData("journal", $DataSet);
+        $insert_id = $this->journalm->insertData("journal", $DataSet);
 
+        // Save sub-editors
+        foreach ($editors as $editor) {
+            $editor_data = array('journal_id' => $insert_id, 'editor_id' => $editor);
+            $this->journalm->insertData("journal_keywords", $editor_data);
+        }
         // Keyword save
         $keyword_arry = explode(",", $keywords);
         foreach ($keyword_arry as $word) {
             $keyword_data = array('journal_id' => $insert_id, 'keyword' => $word);
-            $this->user->insertData("journal_keywords", $keyword_data);
+            $this->journalm->insertData("journal_keywords", $keyword_data);
         }
 
         if ($insert_id > 0) {
@@ -84,16 +89,20 @@ class Journal extends CI_Controller {
         $fieldset = array('id', 'name', 'issue', 'volume', 'aim', 'objective',
             'scope', 'category', 'collection_date',
             'camera_rady_date', 'chief_editor_id', 'status');
-        $data['journals'] = $this->user->getData($fieldset, 'journal');
+        $data['journals'] = $this->journalm->getData($fieldset, 'journal');
         $this->load->view('admin_journal_manager', $data);
     }
 
     public function edit_journal($id) {
 
-        $editdata['JournalData'] = $this->journalm->get_journal($id);
+        $JournalData = $this->journalm->get_journal($id);
         //var_dump($editdata);
         //die();
-        $this->load->view("admin_edit_journal", $editdata, $id);
+        $editors = $this->user->get_editors();
+        $categories = $this->journalm->get_category();
+        $sub_editors = $this->journalm->get_sub_editors($id);
+
+        $this->load->view("admin_edit_journal", array('JournalData' => $JournalData, 'editors' => $editors, 'categories' => $categories, 'sub_editors'=>$sub_editors));
     }
 
     public function update_journal() {
@@ -109,19 +118,51 @@ class Journal extends CI_Controller {
         $submition_date = $this->input->post("submition_date", TRUE);
         $camera_ready_date = $this->input->post("camera_ready_date", TRUE);
         $chief_editor = $this->input->post("chief_editor", TRUE);
-        //-$editors = $this->input->post("editors[]", TRUE);
+        $editors = $this->input->post("editors", TRUE);
         $id = $this->input->post("hdnID", TRUE);
 
         $DataSet = array('name' => $name, 'issue' => $issue, 'volume' => $volume, 'aim' => $aim, 'objective' => $objective,
             'scope' => $scope, 'category' => $category, 'collection_date' => $submition_date,
             'camera_rady_date' => $camera_ready_date, 'chief_editor_id' => $chief_editor);
-        $DataSet2 = array('keyword' => $keywords);
+//        $DataSet2 = array('keyword' => $keywords);
         //Initialise the correct ID for the Update
-        $whereArr = array("id" => $id);
-
+//        $whereArr = array("id" => $id);
         //Query For Employee Update
         $result = $this->user->Update($DataSet, "journal", $id);
-        $result = $this->journalm->UpdateJournal_keywords($DataSet2, "journal_keywords", $id);
+
+//        $result = $this->journalm->UpdateJournal_keywords($DataSet2, "journal_keywords", $id);
+        //Delete Sub Editors
+        $this->journalm->del_editors($id);
+        foreach ($editors as $editor) {
+            $editor_data = array('journal_id' => $id, 'editor_id' => $editor);
+            $this->journalm->insertData("journal_keywords", $editor_data);
+        }
+
+        //Delete Keywords
+        $this->journalm->del_keywords($id);
+        // Keyword save
+        $keyword_arry = explode(",", $keywords);
+        foreach ($keyword_arry as $word) {
+            $keyword_data = array('journal_id' => $id, 'keyword' => $word);
+            $this->journalm->insertData("journal_keywords", $keyword_data);
+        }
+
+        //Update Journal Image
+        $config['upload_path'] = './journal_img';
+        $config['allowed_types'] = 'jpg';
+        $config['file_name'] = $id;
+        $config['overwrite'] = TRUE;
+
+        $this->load->library('upload', $config);
+
+        if (!$this->upload->do_upload("jurnal_img")) {
+            echo $this->upload->display_errors();
+            die();
+//                $error = array('error' => $this->upload->display_errors());
+//                $this->load->view('author_submit_paper', $error);
+        }
+
+
         //$result = $this->user->Update($DataSet, "journal", $id);
         redirect(base_url() . 'index.php/Journal');
     }
@@ -132,7 +173,7 @@ class Journal extends CI_Controller {
         $category = $this->journalm->get_category_by_id($id);
 //            print_r($category);
 //            die();
-        $message=NULL;
+        $message = NULL;
         switch ($msg) {
             case 1:$message = "Successfully Added.";
                 break;
