@@ -126,4 +126,51 @@ class Journal extends CI_Controller {
         redirect(base_url() . 'index.php/Journal');
     }
 
+    public function category($id = 0, $msg = 0) {
+//        if ($id > 0) {
+        $categories = $this->journalm->get_category();
+        $category = $this->journalm->get_category_by_id($id);
+//            print_r($category);
+//            die();
+        $message=NULL;
+        switch ($msg) {
+            case 1:$message = "Successfully Added.";
+                break;
+            case 2:$message = "Successfully Updated.";
+                break;
+            case 3:$message = "Successfully Deleted.";
+                break;
+        }
+
+        $this->load->view("admin_add_category", array('category' => $category, 'categories' => $categories, 'message' => $message));
+//        }else if ($id==0) {
+//            $categories = $this->journalm->get_category();
+//            $this->load->view("admin_add_category", array('category' => NULL, 'categories' => $categories));
+//        }
+    }
+
+    public function add_category() {
+        $category = $this->input->post("name", TRUE);
+        $id = $this->journalm->insertData("categories", array("category" => $category));
+        if ($id > 0) {
+            redirect(base_url() . 'index.php/Journal/category/0/1');
+        }
+    }
+
+    public function update_category() {
+        $id = $this->input->post("id", TRUE);
+        $category = $this->input->post("name", TRUE);
+        $dataset = array('category' => $category);
+        $this->journalm->update($dataset, "categories", $id);
+        redirect(base_url() . 'index.php/Journal/category/0/2');
+    }
+
+    public function del_category($id) {
+//        $id = $this->input->post("id",TRUE);
+//        $category = $this->input->post("name",TRUE);
+        $dataset = array('deleted' => 1);
+        $this->journalm->update($dataset, "categories", $id);
+        redirect(base_url() . 'index.php/Journal/category/0/3');
+    }
+
 }
