@@ -106,7 +106,17 @@ and open the template in the editor.
                                                 </div>
                                             </div>
                                             <div class="form-group">
+                                                <label class="col-sm-2 control-label">Sub Author Details: </label>
+                                                <div class="col-sm-9">
+                                                    <table id="people" border="1" class="table table-striped table-bordered table-hover " name="sub_auth_1">
+                                                    <thead>
+                                                    
+                                                    </thead>
+                                                    <tbody>
 
+                                                    </tbody>
+                                                </table>
+                                                </div>
                                             </div>
                                             <div class="form-group">
                                                 <label class="col-sm-2 control-label">Keywords</label>
@@ -170,48 +180,42 @@ and open the template in the editor.
         </div>
     </div>
     <div class="modal inmodal" id="myModal" tabindex="-1" role="dialog" aria-hidden="true">
-                                        <div class="modal-dialog">
-                                            <div class="modal-content animated bounceInRight">
-                                                <div class="modal-header">
-                                                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                                                    <i class="fa fa-book modal-icon fa-2x"></i>
-                                                    <h4 class="modal-title">Add Sub Author</h4>
-                                                    <small class="font-bold">Add Sub Authors to the paper.</small>
-                                                </div>
-                                                <div class="modal-body">
-                                                    <div class="form-group">
-                                                        <label>First name: </label> 
-                                                        <input type="email" placeholder="Enter First Name" class="form-control">
-                                                    </div>
-                                                    <div class="form-group"><label>Last Name:</label> 
-                                                        <input type="email" placeholder="Enter Last Name" class="form-control">
-                                                    </div>
-                                                    <div class="form-group"><label>Affiliation:</label> 
-                                                        <input type="email" placeholder="Enter Affiliation" class="form-control">
-                                                    </div>
-                                                    <div class="form-group"><label>Email:</label> 
-                                                        <input type="email" placeholder="Enter Email" class="form-control">
-                                                    </div>
+        <div class="modal-dialog">
+            <div class="modal-content animated bounceInRight">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <i class="fa fa-book modal-icon fa-2x"></i>
+                    <h4 class="modal-title">Add Sub Author</h4>
+                    <small class="font-bold">Add Sub Authors to the paper.</small>
+                </div>
+                <div class="modal-body">
 
-                                                    <div class="modal-footer">
-                                                    <button type="button" class="btn btn-white" data-dismiss="modal">Close</button>
-                                                    <button type="button" class="btn btn-primary">Add </button>
-                                                    </div>
-                                                </div>
-                                                
-                                            </div>
-                                            
-                                        </div>
-                                        
-                                    </div>
-    
+                    <div class="form-group">
+                        <label>First name: </label> 
+                        <input name="fname" id="fname" placeholder="Enter First Name" class="form-control">
+                    </div>
+                    <div class="form-group"><label>Last Name:</label> 
+                        <input name="lname" id="lname" placeholder="Enter Last Name" class="form-control">
+                    </div>
+                    <div class="form-group"><label>Affiliation:</label> 
+                        <input name="affiliation" id="affiliation" placeholder="Enter Affiliation" class="form-control">
+                    </div>
+                    <div class="form-group"><label>Email:</label> 
+                        <input name="email" id="email" placeholder="Enter Email" class="form-control">
+                    </div>
 
-    <div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-white" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary " id="addsubauthor" >Add </button>
+                    </div>
+                </div>
 
+            </div>
 
-         
+        </div>
 
     </div>
+ 
 
 
 </div>
@@ -226,6 +230,45 @@ and open the template in the editor.
 <!-- Custom and plugin javascript -->
 <script src="<?php echo base_url('assets'); ?>/js/inspinia.js"></script>
 <script src="<?php echo base_url('assets'); ?>/js/plugins/pace/pace.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $('#addsubauthor').click(function (e) {
+            e.preventDefault();
+            var fname = $('#fname').val();
+            var lname = $('#lname').val();
+            var affiliation = $('#affiliation').val();
+            var email = $('#email').val();
+            ;
+
+            $.ajax({
+                type: "POST",
+                dataType: 'json',
+                url: "<?php echo base_url('/index.php/API/add_sub_author'); ?>",
+                data: {fname: fname, lname: lname, affiliation: affiliation, email: email},
+                success: function (data) {
+                   
+                    var peopleHTML = "";
+                    //peopleHTML += "<th>First Name</th><th>Last Name</th>th>Status</th>";
+                
+                    for (var key in data) {
+                        if (data.hasOwnProperty(key)) {
+                            peopleHTML += "<tr>";
+                            peopleHTML += "<td>" + data[key]["firstname"] + "</td>";
+                            peopleHTML += "<td>" + data[key]["lastname"] + "</td>";
+                            peopleHTML += "<td><center><button type='button'  class='btn btn-danger btn-sm'><span class='fa fa-minus-circle'></span></button></center></td>";
+                            peopleHTML += "</tr>";
+                        }
+                    }
+                    $("#people tbody").html(peopleHTML);
+                }
+            });
+            var data = null;
+            $('#myModal').modal('hide');
+
+        });
+    });
+</script>
 
 </body>
 </html>

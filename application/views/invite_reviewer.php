@@ -95,17 +95,7 @@ accept_user() should accept the id of the user to be rejected and password of th
                                                        placeholder="Last Name">
                                             </div>
                                         </div>
-                                        <div class="form-group">
-                                            <label class="col-sm-3 control-label">Add to Journals</label>
-
-                                            <div class="col-sm-9">
-                                                <select name="journals[]" id="journals"
-                                                        class="chosen-select form-control" multiple>
-                                                    <option value="1">2015 Applied Journal</option>
-                                                    <option value="2">Biodiversity & Conservation Conference</option>
-                                                </select>
-                                            </div>
-                                        </div>
+                                         
 
                                     </div>
                                 </div>
@@ -264,7 +254,7 @@ $this->load->view('partial/modals/reviewer');
                 <i class="fa fa-user-plus modal-icon"></i>
                 <h4 id="cad-modal-title" class="modal-title">Accept Reviewer</h4>
             </div>
-            <form action="<?php echo base_url('users/accept_reviewer') ?>" method="POST">
+            <form action="<?php echo base_url('index.php/users/accept_reviewer') ?>" method="POST">
                 <input type="text" id="accept-user-id" name="id" value="" hidden="hidden" class="hidden"/>
 
                 <div class="modal-body">
