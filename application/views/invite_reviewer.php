@@ -339,8 +339,9 @@ accept_user() should accept the id of the user to be rejected and password of th
                 dataType: 'json',
                 url: "<?php echo base_url('/index.php/API/get_reviewer'); ?>/" + userId,
                  success: function (data) {
-                    $('#reviewer-name-large').text(data.user.first_name + " " +data.user.last_name);
-                    $('#reviewer-name').val(data.user.first_name + " " +data.user.last_name);
+                     //alert(data.address_1);
+                    $('#reviewer-name-large').text(data.first_name + " " +data.last_name);
+                    $('#reviewer-name').val(data.first_name + " " +data.last_name);
                     $('#reviewer-address1').val(data.address_1);
                     $('#reviewer-address2').val(data.address_2);
                     $('#reviewer-city').val(data.city);
