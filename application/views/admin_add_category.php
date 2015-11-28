@@ -96,9 +96,7 @@
                     </div>
                 </div>
             </div>
-        </div>
 
-        <div class="wrapper wrapper-content animated fadeInRight">
             <div class="row">
                 <div class="col-lg-12">
                     <div class="ibox float-e-margins">
@@ -168,7 +166,7 @@
                 <h4 id="cad-modal-title" class="modal-title">Delete Category</h4>
             </div>
             <div class="modal-body">
-               <center> <h4 class="">Do you really want to delete the category?</h4></center>
+                <center><h4 class="">Do you really want to delete the category?</h4></center>
             </div>
             <div class="modal-footer">
                 <a id="delete-button" href="" class="btn btn-danger">Delete</a>
