@@ -250,7 +250,7 @@ and open the template in the editor.
                    
                     var peopleHTML = "";
                     //peopleHTML += "<th>First Name</th><th>Last Name</th>th>Status</th>";
-                
+                //i=0;
                     for (var key in data) {
                         if (data.hasOwnProperty(key)) {
                             peopleHTML += "<tr>";
@@ -258,13 +258,16 @@ and open the template in the editor.
                             peopleHTML += "<td>" + data[key]["lastname"] + "</td>";
                             peopleHTML += "<td><center><button type='button'  class='btn btn-danger btn-sm'><span class='fa fa-minus-circle'></span></button></center></td>";
                             peopleHTML += "</tr>";
+                           // i++;
                         }
                     }
                     $("#people tbody").html(peopleHTML);
+                    
                 }
             });
             var data = null;
             $('#myModal').modal('hide');
+            
 
         });
     });

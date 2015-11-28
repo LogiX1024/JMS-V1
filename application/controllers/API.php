@@ -28,8 +28,16 @@ class API extends CI_Controller {
 
         $this->load->view('json', array('data' => $view_data));
     }
+    
+    public function get_reviewer($user_id){
+        $this->load->model('reviewer');
 
-    public function add_sub_author() {
+        $view_data = $this->reviewer->get_reviewer($user_id);
+
+        $this->load->view('json', array('data' => $view_data));
+    }
+
+        public function add_sub_author() {
         $fname = $this->input->post("fname");
         $lname = $this->input->post("lname");
         $affiliation = $this->input->post("affiliation");

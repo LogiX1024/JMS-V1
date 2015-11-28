@@ -161,9 +161,10 @@ $this->load->view('partial/modals/journal');
                 dataType: 'json',
                 url: "<?php echo base_url('/index.php/API/get_journal'); ?>/" + journalID,
                 success: function (data) {
-                    $('#journal-name').text(data.name);
+                    //alert(data.first_name);
+                    $('#journal-name').text(data.id);
                     $('#journal-name-small').text("Volume: " + data.volume + " Issue: " + data.issue);
-                    $('#created_on').val(data.journal_created_date);
+                    $('#created_on').val(data.started_date);
                     $('#url').text("<?=base_url()?>index.php/submit_paper?journal=" + data.id);
                     $('#chief-editor').val(data.first_name + " " +data.last_name);
                 }
