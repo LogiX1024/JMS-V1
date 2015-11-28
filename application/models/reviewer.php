@@ -23,11 +23,7 @@ class Reviewer extends CI_Model {
             $this->db->from('reviewer');
             $this->db->where('id', $id);
 
-            $Reviewer->keywords = $this->db->get()->result();
-            var_dump($Reviewer);
-            die();
-            //echo json_encode($Reviewer);
-            //die();
+            $Reviewer->expertise = $this->db->get()->result();
 
             return $Reviewer;
         } else {
