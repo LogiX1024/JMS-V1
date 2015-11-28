@@ -44,7 +44,7 @@ class Journal extends CI_Controller {
         $DataSet = array('name' => $name, 'issue' => $issue, 'volume' => $volume, 'aim' => $aim,
             'objective' => $objective,
             'scope' => $scope, 'category' => $category, 'collection_date' => $submition_date,
-            'camera_rady_date' => $camera_ready_date, 'chief_editor_id' => $chief_editor);
+            'camera_ready_date' => $camera_ready_date, 'chief_editor_id' => $chief_editor);
         //Query For Editor insertion 
         $insert_id = $this->journalm->insertData("journal", $DataSet);
 
@@ -88,7 +88,7 @@ class Journal extends CI_Controller {
     public function journal_manager() {
         $fieldset = array('id', 'name', 'issue', 'volume', 'aim', 'objective',
             'scope', 'category', 'collection_date',
-            'camera_rady_date', 'chief_editor_id', 'status');
+            'camera_ready_date', 'chief_editor_id', 'status');
         $data['journals'] = $this->journalm->getData($fieldset, 'journal');
         $this->load->view('admin_journal_manager', $data);
     }
@@ -123,7 +123,7 @@ class Journal extends CI_Controller {
 
         $DataSet = array('name' => $name, 'issue' => $issue, 'volume' => $volume, 'aim' => $aim, 'objective' => $objective,
             'scope' => $scope, 'category' => $category, 'collection_date' => $submition_date,
-            'camera_rady_date' => $camera_ready_date, 'chief_editor_id' => $chief_editor);
+            'camera_ready_date' => $camera_ready_date, 'chief_editor_id' => $chief_editor);
 //        $DataSet2 = array('keyword' => $keywords);
         //Initialise the correct ID for the Update
 //        $whereArr = array("id" => $id);

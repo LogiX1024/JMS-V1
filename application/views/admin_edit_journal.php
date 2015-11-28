@@ -175,8 +175,8 @@ and open the template in the editor.
                                                                     class="fa fa-calendar"></i></span>
                                                             <input name="camera_ready_date" type="text"
                                                                    class="form-control" value="<?php
-                                                                   if ($JournalData->camera_rady_date != "0000-00-00 00:00:00") {
-                                                                       echo $JournalData->camera_rady_date;
+                                                                   if ($JournalData->camera_ready_date != "0000-00-00 00:00:00") {
+                                                                       echo $JournalData->camera_ready_date;
                                                                    }
                                                                    ?>"
                                                                    placeholder="Camera Ready Submission Date">

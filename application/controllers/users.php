@@ -92,7 +92,20 @@ class Users extends CI_Controller
 
     private function reviewer_dashboard()
     {
-        $this->load->view("reviewer_dashboard");
+        if ($this->USER_OBJ != false) {
+            //session exists
+
+            $this->load->model('reviewer');
+            $assigned_articles = $this->reviewer->get_assigned_articles($this->USER_OBJ->id);
+            $view_data = array('assigned_articles' => $assigned_articles);
+
+            $this->load->view("reviewer_dashboard", $view_data);
+        } else {
+            //session expired or DNE
+            $this->load->view('login');
+        }
+
+
     }
 
     // Login & Logout
@@ -358,7 +371,7 @@ class Users extends CI_Controller
 
     public function view_author()
     {
-        $fieldset = array('id', 'first_name', 'last_name', 'email_address', 'title', );
+        $fieldset = array('id', 'first_name', 'last_name', 'email_address', 'title',);
         $data['authors'] = $this->user->getData($fieldset, 'user');
         $this->load->view("admin_edit_author", $data);
     }
@@ -380,8 +393,8 @@ class Users extends CI_Controller
             $country = $this->input->post("country", TRUE);
             $sec_question = $this->input->post("sec_question", TRUE);
             $sec_answer = $this->input->post("sec_answer", TRUE);
-            
-            
+
+
             $DataSet = array(
                 'first_name' => $first_name,
                 'last_name' => $last_name,
@@ -398,8 +411,8 @@ class Users extends CI_Controller
                 'role' => "Author",
                 'deleted' => 0,
                 'banned' => 1);
-            
-            
+
+
             $insert_id = $this->user->insertData("user", $DataSet);
             if ($insert_id > 0) {
                 redirect('/login');

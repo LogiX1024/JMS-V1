@@ -45,13 +45,13 @@
 | the active record class
 */
 
-$active_group = 'default';
+$active_group = 'azure';
 $active_record = TRUE;
 
 $db['default']['hostname'] = '127.0.0.1:3306';
 $db['default']['username'] = 'root';
 $db['default']['password'] = '';
-$db['default']['database'] = 'jms_v1';
+$db['default']['database'] = 'jms';
 $db['default']['dbdriver'] = 'mysql';
 $db['default']['dbprefix'] = '';
 $db['default']['pconnect'] = TRUE;
