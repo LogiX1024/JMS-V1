@@ -223,11 +223,11 @@ class Users extends CI_Controller
 
     // Reviewers Area
     public function reviewers()
-    {
+    {   
         $fieldset = array('id', 'email_address', 'first_name', 'last_name', 'title', 'address_1', 'address_2',
-            'city', 'postal_code', 'country', 'role', 'security_question', 'security_answer', '');
+            'city', 'postal_code', 'country', 'role', 'security_question', 'security_answer');
 
-        $data['users'] = $this->user->getData($fieldset, 'user', array('role' => 'Reviewer'));
+        $data['users'] = $this->user->getData($fieldset, 'user', array('role' => 'Reviewer', 'banned' => '1' ,'deleted' => '0'));
 
         $fieldset = array('id', 'email_address', 'first_name', 'last_name');
         $data['invited'] = $this->user->getData($fieldset, 'invited_reviewers');
@@ -259,39 +259,52 @@ class Users extends CI_Controller
             $insert_id = $this->user->insertData("invited_reviewers", $DataSet);
             $success = array('Success' => "Successfully Invited!");
             redirect(base_url() . 'index.php/Users/reviewers', $success);
-            //echo "Success";
+            
         } else {
             $Error = array('Error' => "Error Detected!");
             redirect(base_url() . 'index.php/Users/reviewers', $Error);
-            //echo "Failed";
+            
         }
     }
 
     public function accept_reviewer()
     {
-        // login userge pw eka check karanna oona
-        // Reviewerge banded
         $id = $this->input->post("id");
-        $user_password = $this->session->userdata("id");
+        $user = $this->session->userdata('user');
+        $user_password = $user->password ;
         $password = $this->input->post("password");
         $password = sha1($password);
+       
         if ($user_password === $password) {
             $fieldset = array('banned' => 0);
             $this->user->Update($fieldset, "user", $id);
+            $success = array('Success' => "Successfully Added!");
+            redirect(base_url() . 'index.php/Users/reviewers', $success);
+        }
+        else{
+            $Error = array('Error' => "Error Detected!");
+            
+            redirect(base_url() . 'index.php/Users/reviewers', $Error);
         }
     }
 
     public function reject_reviewer()
-    {
-        // login userge pw eka check karanna oona
-        // Reviewerge banded
-        $id = $this->session->userdata("id");
-        $user_password = $this->session->userdata("id");
+    {   
+        $id = $this->input->post("id");
+        $user = $this->session->userdata('user');
+        $user_password = $user->password ;
+           
         $password = $this->input->post("password");
         $password = sha1($password);
         if ($user_password === $password) {
             $fieldset = array('deleted' => 1);
             $this->user->Update($fieldset, "user", $id);
+            $success = array('Success' => "Successfully Rejected!");
+            redirect(base_url() . 'index.php/Users/reviewers', $success);
+        }
+        else{
+            $Error = array('Error' => "Error Detected!");            
+            redirect(base_url() . 'index.php/Users/reviewers', $Error);
         }
     }
 

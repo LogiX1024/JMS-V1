@@ -196,12 +196,10 @@ accept_user() should accept the id of the user to be rejected and password of th
                                                                 data-user-type="<?= $user->role ?>">View
                                                         </button>
                                                         <button class="btn btn-sm btn-success btn-outline accept"
-                                                                data-user-id="2">
-                                                            Accept
+                                                                data-user-id="<?= $user->id ?>">Accept
                                                         </button>
-                                                        <button class="btn btn-sm btn-danger delete"
-                                                                data-user-id="
-                                                                <?= $user->id ?>">Delete
+                                                        <button class="btn btn-sm btn-danger  btn-outline reject"
+                                                                data-user-id="<?= $user->id ?>">Delete
                                                         </button>
                                                     </div>
                                                 </td>
@@ -271,7 +269,7 @@ accept_user() should accept the id of the user to be rejected and password of th
                     <i class="fa fa-user-times modal-icon"></i>
                     <h4 id="cad-modal-title" class="modal-title">Reject Reviewer</h4>
                 </div>
-                <form action="<?php echo base_url('users/reject_reviewer') ?>" method="POST">
+                <form action="<?php echo base_url('index.php/users/reject_reviewer') ?>" method="POST">
                     <input type="text" id="reject-user-id" name="id" value="" hidden="hidden" class="hidden"/>
 
                     <div class="modal-body">
@@ -339,7 +337,7 @@ accept_user() should accept the id of the user to be rejected and password of th
                 dataType: 'json',
                 url: "<?php echo base_url('/index.php/API/get_reviewer'); ?>/" + userId,
                  success: function (data) {
-                     //alert(data.address_1);
+                    // alert((data.expertise)->expertise;
                     $('#reviewer-name-large').text(data.first_name + " " +data.last_name);
                     $('#reviewer-name').val(data.first_name + " " +data.last_name);
                     $('#reviewer-address1').val(data.address_1);
