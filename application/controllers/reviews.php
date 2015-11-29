@@ -57,7 +57,7 @@ class Reviews extends CI_Controller
             'materials_and_methods_suggession' => $materials_sug,
             'results_and_discussion' => $result,
             'results_and_discussion_suggession' => $result_sug,
-            'decision' => $decision,
+            'decision' => $decision
         );
 
         $review_id = $this->article->submit_review($article_id, $insert_data);
@@ -71,6 +71,14 @@ class Reviews extends CI_Controller
 //                echo $this->upload->display_errors();
                 $this->load->view('500');
             } else {
+
+                if ($this->article->get_pending_reviews_count($article_id) == 0) {
+                    //the 3rd reviewer reviewed
+                    //change the status of the article to reviewed
+                    $this->article->change_article_status($article_id, 'Reviewed');
+                }
+
+
                 $this->session->set_flashdata('flash_message', 'Review Submission successful.');
                 redirect('/dashboard');
             }

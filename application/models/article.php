@@ -50,8 +50,26 @@ class Article extends CI_Model
         $this->db->update('assigned_review');
 
         return $review_id;
+    }
 
+    /**
+     * @param $article_id
+     * @return int: count of the pending reviews of the article
+     */
+    public function get_pending_reviews_count($article_id)
+    {
+        return $this->db->query("SELECT COUNT(*) as count FROM assigned_review WHERE article_id = ? AND review_id is NULL", $article_id)->result()[0]->count;
+    }
 
+    /**
+     * @param $id : article ID
+     * @param $status : new status of the article
+     */
+    public function change_article_status($id, $status)
+    {
+        $this->db->set('status', $status);
+        $this->db->where('id', $id);
+        $this->db->update('article');
     }
 
 }
