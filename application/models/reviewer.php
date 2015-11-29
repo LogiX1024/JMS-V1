@@ -34,14 +34,36 @@ class Reviewer extends CI_Model
         }
     }
 
-    public function get_assigned_articles($id)
+    public function get_assigned_articles($id, $status = null)
     {
-        $this->db->select('assigned_review.assigned_date, article.id, article.title, article.submit_date, article.`status`, article.author_id, journal.`name`, journal.issue, journal.volume');
+        $this->db->select('assigned_review.assigned_date, assigned_review.review_id, article.id, article.title, article.submit_date, article.`status`, article.author_id, article.journal_id, journal.`name`, journal.issue, journal.volume');
         $this->db->from('assigned_review');
         $this->db->join('article', 'assigned_review.article_id = article.id', 'inner');
         $this->db->join('journal', 'article.journal_id = journal.id', 'inner');
         $this->db->where('`assigned_review`.reviewer_id', $id);
-        return $this->db->get()->result();
+        if ($status != null) {
+            if ($status == 'pending') {
+                $this->db->where('assigned_review.review_id', null);
+            } elseif ($status == 'reviewed') {
+                $this->db->select('review.review_date');
+                $this->db->join('review', 'assigned_review.review_id = review.id', 'inner');
+                $this->db->where('assigned_review.review_id !=','null');
+            }
+        }
+
+        $articles = $this->db->get()->result();
+
+        $i = 0;
+        foreach ($articles as $article) {
+            $this->db->select('keyword');
+            $this->db->from('article_keywords');
+            $this->db->where('article_id', $article->id);
+            $articles[$i]->keywords = $this->db->get()->result();
+            $i++;
+        }
+
+        return $articles;
+
     }
 
 

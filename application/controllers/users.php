@@ -7,6 +7,7 @@ class Users extends CI_Controller
 {
 
     var $USER_OBJ = false;
+    var $REVIEWING_TIME = 21;
 
     public function __construct()
     {
@@ -16,6 +17,7 @@ class Users extends CI_Controller
         $this->load->library('form_validation');
 
         $this->USER_OBJ = $this->session->userdata('user');
+        date_default_timezone_set('Asia/Colombo');
     }
 
     public function index()
@@ -96,8 +98,19 @@ class Users extends CI_Controller
             //session exists
 
             $this->load->model('reviewer');
-            $assigned_articles = $this->reviewer->get_assigned_articles($this->USER_OBJ->id);
-            $view_data = array('assigned_articles' => $assigned_articles);
+
+
+            $view_data = array(
+                'pending_articles' => $this->reviewer->get_assigned_articles($this->USER_OBJ->id, 'pending'),
+                'reviewed_articles' => $this->reviewer->get_assigned_articles($this->USER_OBJ->id, 'reviewed'),
+                'reviewing_time' => $this->REVIEWING_TIME
+            );
+
+            $flash_message = $this->session->flashdata('flash_message');
+
+            if ($flash_message != null) {
+                $view_data['flash_message'] = $flash_message;
+            }
 
             $this->load->view("reviewer_dashboard", $view_data);
         } else {

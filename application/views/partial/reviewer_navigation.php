@@ -25,7 +25,7 @@
             </li>
 
             <li>
-                <a href="<?php echo base_url() ?>index.php/test/test2/reviewer_dashboard"><i class="fa fa-th-large"></i> <span class="nav-label">To-Do Reviews</span></span></a>
+                <a href="<?php echo site_url('dashboard') ?>"><i class="fa fa-th-large"></i> <span class="nav-label">To-Do Reviews</span></span></a>
             </li>
 <!--            <li>
                 <a href="#"><i class="fa fa-th-large"></i> <span class="nav-label">Submit Reviews</span> </a>
