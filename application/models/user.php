@@ -1,12 +1,15 @@
 <?php
 
-class User extends CI_Model {
+class User extends CI_Model
+{
 
-    function __construct() {
+    function __construct()
+    {
         parent::__construct();
     }
 
-    function get_pass($email) {
+    function get_pass($email)
+    {
         $this->db->select('id, password, first_name, last_name, title,  role');
         $this->db->from('user');
         $this->db->where('email_address', $email);
@@ -19,18 +22,22 @@ class User extends CI_Model {
         }
     }
 
-    function loginLogSave($uid, $ipadd) {
+    function loginLogSave($uid, $ipadd)
+    {
+        $uid = intval($uid);
         $data = array('user_id' => $uid, 'ip' => $ipadd);
         $this->db->insert('login_log', $data);
     }
 
-    public function insertData($table, $data) {
+    public function insertData($table, $data)
+    {
         $this->db->insert($table, $data);
         $insert_id = $this->db->insert_id();
         return $insert_id;
     }
 
-    public function getData($fieldset, $tableName, $where = '') {
+    public function getData($fieldset, $tableName, $where = '')
+    {
         if ($where == "") {
             $this->db->select($fieldset)->from($tableName);
         } else {
@@ -40,12 +47,14 @@ class User extends CI_Model {
         return $query->result();
     }
 
-    public function Update($fieldset, $tableName, $id) {
+    public function Update($fieldset, $tableName, $id)
+    {
         $this->db->where('id', $id);
         $this->db->update($tableName, $fieldset);
     }
-     
-    public function is_User($email) {
+
+    public function is_User($email)
+    {
         if (isset($email)) {
             $this->db->select('id,email_address');
             $this->db->from('user');
@@ -60,22 +69,24 @@ class User extends CI_Model {
         }
     }
 
-    public function reset_pw($email, $password) {
+    public function reset_pw($email, $password)
+    {
         $password = sha1($password);
         $data = array('password' => $password);
         $this->db->where('email_address', $email);
         $this->db->update('user', $data);
     }
-    
-    public function get_editors(){
+
+    public function get_editors()
+    {
         $this->db->from('user');
-        $this->db->where('role',"Editor");
+        $this->db->where('role', "Editor");
         return $this->db->get()->result();
     }
 
     public function delete_user($email)
     {
-        $this->db->where('email_address',$email);
+        $this->db->where('email_address', $email);
         $this->db->delete('user');
     }
 
