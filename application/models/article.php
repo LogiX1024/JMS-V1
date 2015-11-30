@@ -72,4 +72,9 @@ class Article extends CI_Model
         $this->db->update('article');
     }
 
+    public function insert_sub_authors($insert_data)
+    {
+        $this->db->insert_batch('sub_authors', $insert_data);
+    }
+
 }

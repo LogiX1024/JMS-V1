@@ -42,9 +42,6 @@ class Articles extends CI_Controller
         $user = $this->session->userdata("user");
         $title = $this->input->post("title");
         $journal_id = $this->session->userdata('journal_id');
-//        $chf_author = $this->input->post("chief_author");
-        //$sub_auth_1 = $this->input->post("sub_auth_1");
-        //$sub_auth_2 = $this->input->post("sub_auth_2");
         $keywords = $this->input->post("keywords");
         $submitted_date = date("Y-m-d");
 
@@ -52,7 +49,6 @@ class Articles extends CI_Controller
             'status' => "assigned", 'submit_date' => $submitted_date, 'journal_id' => "9");
 
         $insert_id = $this->article->insertData("article", $DataSet);
-        //$insert_id = $this->article->insertData("article", $DataSet);
 
 
         if ($insert_id > 0) {
@@ -65,19 +61,33 @@ class Articles extends CI_Controller
 
             if (!$this->upload->do_upload("upload_file")) {
                 echo $this->upload->display_errors();
-//                $error = array('error' => $this->upload->display_errors());
-//                $this->load->view('author_submit_paper', $error);
             }
+
+
+            $AuthorArray_JSON = $this->session->userdata("subauthors");
+            $AuthorArray = json_decode($AuthorArray_JSON);
+
+            $insert_data = array();
+
+            foreach ($AuthorArray as $sub_author) {
+                $sub_author_data = array(
+                    'article_id' => $insert_id,
+                    'first_name' => $sub_author->firstname,
+                    'last_name' => $sub_author->lastname,
+                    'affiliation' => $sub_author->afilliation,
+                    'email' => $sub_author->email
+                );
+                array_push($insert_data, $sub_author_data);
+            }
+
+            $this->article->insert_sub_authors($insert_data);
 
             $file = $this->upload->data();
 
             $DataSet = array('file_name' => $file['file_name']);
-            //$this->article->Update($DataSet, "article", $insert_id);
             $this->session->set_flashdata('upload', 'success');
 
             redirect('/dashboard');
-//            $success = array('success' => "Successfully Added!");
-//            redirect(base_url() . 'index.php/Articles/', $success);
             //Todo; send email
         } else {
             $error = array('error' => "Error Detected!");
