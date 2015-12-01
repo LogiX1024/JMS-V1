@@ -200,22 +200,13 @@ class Users extends CI_Controller {
 
     public function delete_editor() {
         $id = $this->input->post("id", TRUE);
-        $password = $this->input->post("password", TRUE);
-        $password = sha1($password);
-        $user = $this->session->userdata("user");
-        
-        if ($user->password != $password) {
-            $message = array('true' => 2);
-            redirect(base_url() . 'index.php/Users/new_editor', $message);
-        }
-        
         $flag = $this->user->deleteEditor($id);
+        
         if ($flag == 0) {
-            $success = array('true' => 1);
-            redirect(base_url() . 'index.php/Users/new_editor', $success);
+            redirect(base_url() . 'index.php/Users/new_editor');
         } else {
-            $Error = array('true' => 2);
-            redirect(base_url() . 'index.php/Users/new_editor', $Error);
+            echo "Error";
+            die();
         }
     }
 

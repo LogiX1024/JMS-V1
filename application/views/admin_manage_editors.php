@@ -24,7 +24,7 @@ add_editor() inserts an editor account, with a random generated p/w from random_
 
     <div id="wrapper">
 
-        <!--    --><?php //$this->load->view('partial/admin_navigation', array('user' => $user, 'position' => $position));     ?>
+        <!--    --><?php //$this->load->view('partial/admin_navigation', array('user' => $user, 'position' => $position));       ?>
         <?php $this->load->view('partial/admin_navigation'); ?>
         <?php // $this->load->view('partial/chefEditor_navigation'); ?>
         <?php // $this->load->view('partial/editor_navigation'); ?>
@@ -208,19 +208,14 @@ add_editor() inserts an editor account, with a random generated p/w from random_
                     <div class="modal-body">
                         <div class="row">
                             <div class="col-sm-12">
-                                <p class="text-danger text-center">Do you really want to delete the user?<br/>This cannot be
-                                    reversed.</p>
-
-                                <div class="form-group">
-                                    <label class="text-center" for="password">Please enter your password to continue</label>
-                                    <input id="delete-user-password" type="password" class="form-control" name="password" value=""/>
-                                </div>
+                                <h3 class="text-danger text-center">Do you really want to delete the user?<br/>This cannot be
+                                    reversed. </h3>
                             </div>
                         </div>
                     </div>
                     <div class="modal-footer">
                         <button id="delete-user-delete" type="submit" class="btn btn-danger">Delete</button>
-                        <button type="button" class="btn btn-white" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                     </div>
                 </form>
             </div>
@@ -243,7 +238,7 @@ add_editor() inserts an editor account, with a random generated p/w from random_
 
     <!-- Chosen -->
     <script src="<?php echo base_url('assets'); ?>/js/plugins/chosen/chosen.jquery.js"></script>
-    
+
 
     <script>
         $(document).ready(function () {
