@@ -199,7 +199,7 @@ class Users extends CI_Controller
     {
         $fieldset = array('id', 'email_address', 'first_name', 'last_name', 'title', 'address_1', 'address_2',
             'city', 'postal_code', 'country', 'role', 'security_question', 'security_answer', '');
-        $data['users'] = $this->user->getData($fieldset, 'user', array('role' => 'Editor'));
+        $data['users'] = $this->user->getData($fieldset, 'user', array('role' => 'Editor','banned'=>0,'deleted'=>0));
 
         $this->load->model('journalm');
 
@@ -210,7 +210,7 @@ class Users extends CI_Controller
     function get_single_user()
     {
         $data = $this->input->post("user_id");
-        $query = $this->db->get_where('user', array('id' => $data))->result()[0];
+        $query = $this->db->get_where('user', array('id' => $data,'banned'=>0,'deleted'=>0))->result()[0];
         //$a = $query['rows'];
         echo json_encode($query);
         //var_dump($a);

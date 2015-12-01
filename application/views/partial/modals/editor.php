@@ -43,6 +43,14 @@
                                        class="form-control disabled"
                                        value="071-4232885"/>
                             </div>
+                            <div class="form-group">
+                                <label for="contact_no">Chief Editor For</label>
+                                <div>
+                                    <select name="chief_editor_for" id="chief_editor_for" multiple="">
+
+                                    </select>
+                                </div>
+                            </div>
                         </div>
                     </div>
 

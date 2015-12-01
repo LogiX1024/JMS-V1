@@ -34,12 +34,7 @@
             </li>
             
             <li>
-                <a href="<?php echo base_url() ?>index.php/Users/new_editor"><i class="fa fa-th-large"></i> <span class="nav-label">Editors</span><span
-                        class="fa arrow"></span></a>
-<!--                <ul class="nav nav-second-level">
-                    <li><a href="<?php // echo base_url() ?>index.php/Users/new_editor">Add</a></li>
-                    
-                </ul>-->
+                <a href="<?php echo base_url() ?>index.php/Users/new_editor"><i class="fa fa-th-large"></i> <span class="nav-label">Editors</span></a>
             </li>
             
             <li>
