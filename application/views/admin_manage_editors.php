@@ -24,7 +24,7 @@ add_editor() inserts an editor account, with a random generated p/w from random_
 
     <div id="wrapper">
 
-        <!--    --><?php //$this->load->view('partial/admin_navigation', array('user' => $user, 'position' => $position));   ?>
+        <!--    --><?php //$this->load->view('partial/admin_navigation', array('user' => $user, 'position' => $position));     ?>
         <?php $this->load->view('partial/admin_navigation'); ?>
         <?php // $this->load->view('partial/chefEditor_navigation'); ?>
         <?php // $this->load->view('partial/editor_navigation'); ?>
@@ -202,7 +202,7 @@ add_editor() inserts an editor account, with a random generated p/w from random_
                     <i class="fa fa-user-times modal-icon"></i>
                     <h4 id="cad-modal-title" class="modal-title">Delete User</h4>
                 </div>
-                <form action="<?php echo base_url('users/delete_user') ?>" method="POST">
+                <form action="<?php echo base_url('/index.php/Users/delete_editor') ?>" method="POST">
                     <input type="text" id="delete-user-id" name="id" value="" hidden="hidden" class="hidden"/>
 
                     <div class="modal-body">
@@ -213,8 +213,7 @@ add_editor() inserts an editor account, with a random generated p/w from random_
 
                                 <div class="form-group">
                                     <label class="text-center" for="password">Please enter your password to continue</label>
-                                    <input id="delete-user-password" type="password" class="form-control" name="password"
-                                           value=""/>
+                                    <input id="delete-user-password" type="password" class="form-control" name="password" value=""/>
                                 </div>
                             </div>
                         </div>
@@ -244,6 +243,7 @@ add_editor() inserts an editor account, with a random generated p/w from random_
 
     <!-- Chosen -->
     <script src="<?php echo base_url('assets'); ?>/js/plugins/chosen/chosen.jquery.js"></script>
+    
 
     <script>
         $(document).ready(function () {
@@ -315,6 +315,9 @@ add_editor() inserts an editor account, with a random generated p/w from random_
 
         });
     </script>
+
+
+
 
 </body>
 

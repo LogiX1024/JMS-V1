@@ -89,5 +89,12 @@ class User extends CI_Model
         $this->db->where('email_address', $email);
         $this->db->delete('user');
     }
+    
+    public function deleteEditor($id) {
+        $data = array('deleted' => 1);
+        $this->db->where('id',$id);
+        $this->db->update('user', $data);
+        return 0;
+    }
 
 }
