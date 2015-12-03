@@ -12,7 +12,7 @@
     <div id="wrapper">
 
         <?php //$this->load->view('partial/admin_navigation', array('user' => $user, 'position' => $position));   ?>
-        <?php $this->load->view('partial/admin_navigation'); ?>
+        <?php $this->load->view('partial/author_navigation'); ?>
 
         <div id="page-wrapper" class="gray-bg">
             <div class="row border-bottom">
