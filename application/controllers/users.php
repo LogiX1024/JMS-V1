@@ -144,7 +144,17 @@ class Users extends CI_Controller {
         $this->session->sess_destroy();
         redirect('/');
     }
-
+    
+    public function profile_author()
+            {
+        $this->load->view('profile_author');
+    }
+    
+    public function update_profile_author()
+            {
+        //$this->load->view('profile_author');
+    }
+    
     // Editors Area
     public function add_editor() {
         $first_name = $this->input->post("first_name", TRUE);
