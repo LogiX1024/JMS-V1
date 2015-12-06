@@ -144,7 +144,52 @@ class Users extends CI_Controller {
         $this->session->sess_destroy();
         redirect('/');
     }
-    
+
+    /**
+     * common function for the user profile.
+     */
+    public function profile()
+    {
+        switch ($this->ua->check_login()) {
+            case "Super":
+                $this->super_user_dashboard();
+                break;
+            case "Editor":
+                $this->editor_profile();
+                break;
+            case "Author":
+                $this->author_profile();
+                break;
+            case "Reviewer":
+                $this->reviewer_profile();
+                break;
+            default:
+                $this->load->view('401');
+        }
+    }
+
+    /**
+     * opens the editor profile view
+     * Load the data from model and show in the view.
+     *
+     */
+    private function editor_profile()
+    {
+
+
+    }
+
+    private function author_profile()
+    {
+        $this->load->view('profile_author');
+    }
+
+    private function reviewer_profile()
+    {
+
+    }
+
+    // following function can be disregarded.
     public function profile_author()
             {
         $this->load->view('profile_author');
