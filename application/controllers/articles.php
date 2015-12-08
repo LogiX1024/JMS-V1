@@ -45,8 +45,7 @@ class Articles extends CI_Controller
         $keywords = $this->input->post("keywords");
         $submitted_date = date("Y-m-d");
 
-        $DataSet = array('author_id' => $user->id, 'journal_id' => $journal_id, 'title' => $title,
-            'status' => "assigned", 'submit_date' => $submitted_date, 'journal_id' => "9");
+        $DataSet = array('author_id' => $user->id, 'journal_id' => $journal_id, 'title' => $title, 'submit_date' => $submitted_date, 'journal_id' => "9");
 
         $insert_id = $this->article->insertData("article", $DataSet);
 
@@ -81,6 +80,14 @@ class Articles extends CI_Controller
             }
 
             $this->article->insert_sub_authors($insert_data);
+
+
+            // Keyword save
+            $keyword_array = explode(", ", $keywords);
+            foreach ($keyword_array as $word) {
+                $keyword_data = array('article_id' => $insert_id, 'keyword' => $word);
+                $this->journalm->insertData("article_keywords", $keyword_data);
+            }
 
             $file = $this->upload->data();
 
