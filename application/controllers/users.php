@@ -297,7 +297,7 @@ class Users extends CI_Controller {
                 'editor_name' => $first_name . " " . $last_name,
                 'password' => $password
             );
-            $this->emailsender->notify_editor_creation($email, $data);
+//            $this->emailsender->notify_editor_creation($email, $data);
             $success = array('Success' => "Successfully Added!");
             redirect(base_url() . 'index.php/Users/new_editor', $success);
         } else {
