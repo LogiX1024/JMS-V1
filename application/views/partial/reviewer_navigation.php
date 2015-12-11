@@ -3,17 +3,17 @@
         <ul class = "nav" id = "side-menu">
             <li class="nav-header">
                 <div class="dropdown profile-element"> <span>
-                        <img alt="image" class="img-circle" src="<?php echo base_url('assets'); ?>/img/a4.jpg" width="65px"/>
+                        <img alt="image" class="img-circle" src="<?php echo base_url('assets'); ?>/img/logo9.png" width="170px"/>
                     </span>
                     <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                         <span class="clear"> <span class="block m-t-xs"> <strong class="font-bold">
-                                    <!--                                        --><?//= $user->first_name . " " . $user->last_name ?>
+                                     
                                 </strong>
                             </span> <span class="text-muted text-xs block">
-                                <!--                                    --><?//= $position ?><!-- -->
+                                 
                                 <b class="caret"></b></span> </span> </a>
                     <ul class="dropdown-menu animated fadeInUp m-t-xs">
-                        <li><a href="profile.html">Profile</a></li>
+                        <li><a href="<?php echo base_url() ?>index.php/Users/profile" target="_blank">Profile</a></li>
                         <li><a href="mailbox.html">Mailbox</a></li>
                         <li class="divider"></li>
                         <li><a href="login.html">Logout</a></li>

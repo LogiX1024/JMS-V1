@@ -66,7 +66,20 @@ class Reviewer extends CI_Model
 
     }
 
-
+    public function getReviewerData($where)
+    {   
+        $this->db->select('id,title,first_name,last_name,email_address,country,address_1,address_2,city,postal_code,'
+                . 'password,security_question,security_answer');
+        $this->db->from('user');
+        $this->db->where('id',$where);
+        return $this->db->get()->result()[0];
+    }
+    
+    public function UpdateAuthorData($fieldset, $tableName,$where)
+    {   
+        $this->db->where('id', $where);
+        $this->db->update($tableName, $fieldset);
+    }
 }
 
 ?>

@@ -12,6 +12,8 @@ class Users extends CI_Controller {
         parent::__construct();
         $this->load->model('user');
         $this->load->model('article');
+        $this->load->model('author');
+        $this->load->model('reviewer');
         $this->load->library('form_validation');
 
         $this->USER_OBJ = $this->session->userdata('user');
@@ -180,13 +182,17 @@ class Users extends CI_Controller {
     }
 
     private function author_profile()
-    {
-        $this->load->view('profile_author');
+    {   $user_obj = $this->session->userdata('user');
+        $wheararray = $user_obj->id;
+        $data['authors'] = $this->author->getAuthorData($wheararray );
+        $this->load->view('profile_author',$data);
     }
 
     private function reviewer_profile()
-    {
-
+    {   $user_obj = $this->session->userdata('user');
+        $wheararray = $user_obj->id;    
+        $data['reviewer'] = $this->reviewer->getReviewerData($wheararray); 
+        $this->load->view('profile_reviewer',$data);
     }
 
     // following function can be disregarded.
@@ -197,8 +203,83 @@ class Users extends CI_Controller {
     
     public function update_profile_author()
             {
-        //$this->load->view('profile_author');
+         $id = $this->input->post("id", TRUE);
+        $email = $this->input->post("email", TRUE);
+        
+        $pass = $this->input->post("password", TRUE);
+        $pass2 = $this->input->post("password2", TRUE);
+        if ($pass == $pass2) {
+            $first_name = $this->input->post("first_name", TRUE);
+            $last_name = $this->input->post("last_name", TRUE);
+            $title = $this->input->post("title", TRUE);
+            $address1 = $this->input->post("address1", TRUE);
+            $address2 = $this->input->post("address2");
+            $city = $this->input->post("city", TRUE);
+            $postal_code = $this->input->post("postal_code", TRUE);
+            $country = $this->input->post("country", TRUE);
+            $sec_question = $this->input->post("sec_question", TRUE);
+            $sec_answer = $this->input->post("sec_answer", TRUE);
+            
+            $DataSet = array(
+                'first_name' => $first_name,
+                'last_name' => $last_name,
+                'email_address' => $email,
+                'title' => $title,
+                'password' => sha1($pass),
+                'address_1' => $address1,
+                'address_2' => $address2,
+                'city' => $city,
+                'postal_code' => $postal_code,
+                'country' => $country,
+                'security_question' => $sec_question,
+                'security_answer' => $sec_answer,
+                'role' => "Author",
+                'deleted' => 0,
+                'banned' => 1);           
+        $this->author->UpdateAuthorData($DataSet,"user", $id);
+        redirect('/dashboard');
     }
+            }
+            
+            public function update_profile_reviewer()
+            {
+        $id = $this->input->post("id", TRUE);
+        $email = $this->input->post("email", TRUE);
+        
+        $pass = $this->input->post("password", TRUE);
+        $pass2 = $this->input->post("password2", TRUE);
+        if ($pass == $pass2) {
+            $first_name = $this->input->post("first_name", TRUE);
+            $last_name = $this->input->post("last_name", TRUE);
+            $title = $this->input->post("title", TRUE);
+            $address1 = $this->input->post("address1", TRUE);
+            $address2 = $this->input->post("address2");
+            $city = $this->input->post("city", TRUE);
+            $postal_code = $this->input->post("postal_code", TRUE);
+            $country = $this->input->post("country", TRUE);
+            $sec_question = $this->input->post("sec_question", TRUE);
+            $sec_answer = $this->input->post("sec_answer", TRUE);
+            
+            $DataSet = array(
+                'first_name' => $first_name,
+                'last_name' => $last_name,
+                'email_address' => $email,
+                'title' => $title,
+                'password' => sha1($pass),
+                'address_1' => $address1,
+                'address_2' => $address2,
+                'city' => $city,
+                'postal_code' => $postal_code,
+                'country' => $country,
+                'security_question' => $sec_question,
+                'security_answer' => $sec_answer,
+                'role' => "Reviewer",
+                'deleted' => 0,
+                'banned' => 1);           
+        $this->reviewer->UpdateAuthorData($DataSet,"user", $id);
+        redirect('/dashboard');
+    }
+            }
     
     // Editors Area
     public function add_editor() {

@@ -26,7 +26,7 @@
                             <a href="index.html">Home</a>
                         </li>
                         <li class="active">
-                            <strong>Author's Profile</strong>
+                            <strong>Reviewer's Profile</strong>
                         </li>
                     </ol>
                 </div>
@@ -39,7 +39,7 @@
                     <div class="col-lg-12">
                         <div class="ibox float-e-margins">
                             <div class="ibox-title">
-                                <h5>Author's Profile</h5>
+                                <h5>Reviewer's Profile</h5>
                                 <div class="ibox-tools">
                                     <a class="collapse-link">
                                         <i class="fa fa-chevron-up"></i>
@@ -53,7 +53,7 @@
                             <div class="ibox-content">
                                 
                                 <form method="post" id="add_cad_user" class="form-horizontal"
-                                      action="<?= base_url('/index.php/users/update_profile_author') ?>">
+                                      action="<?= base_url('/index.php/users/update_profile_reviewer') ?>">
                                     <div class="panel-body">
                                         <div class="panel-group" id="accordion">
                                             <div class="panel panel-default">
@@ -90,7 +90,7 @@
 
                                                                         <div class="col-sm-9">
                                                                             <input name="first_name" required="" type="text" class="form-control"
-                                                                                   value="<?php echo "$authors->first_name";?>"     placeholder="First Name">
+                                                                                   value="<?php echo "$reviewer->first_name";?>"     placeholder="First Name">
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -100,7 +100,7 @@
                                                                 <div class="form-group">
                                                                      <div class="col-sm-9">
                                                                          <input name="id"  type="hidden" class="form-control"
-                                                                                   value="<?php echo "$authors->id";?>"    >
+                                                                                   value="<?php echo "$reviewer->id";?>"    >
                                                                         </div>
 
                                                                     <div class="col-sm-9">
@@ -113,7 +113,7 @@
 
                                                                     <div class="col-sm-9">
                                                                         <input name="last_name" required="" type="text" class="form-control"
-                                                                            value="<?php echo "$authors->last_name";?>"   placeholder="Last Name">
+                                                                            value="<?php echo "$reviewer->last_name";?>"   placeholder="Last Name">
                                                                     </div>
                                                                 </div>
 
@@ -141,7 +141,7 @@
 
                                                                     <div class="col-sm-9">
                                                                         <input name="email" required="" type="email" class="form-control"
-                                                                        value="<?php echo "$authors->email_address";?>"       placeholder="E-Mail Address">
+                                                                        value="<?php echo "$reviewer->email_address";?>"       placeholder="E-Mail Address">
                                                                     </div>
                                                                 </div>
 
@@ -150,7 +150,7 @@
 
                                                                     <div class="col-sm-9">
                                                                         <input name="address1" required="" type="text" class="form-control"
-                                                                        value="<?php echo "$authors->address_1";?>"   placeholder="Address Line 1">
+                                                                        value="<?php echo "$reviewer->address_1";?>"   placeholder="Address Line 1">
                                                                     </div>
                                                                 </div>
 
@@ -159,7 +159,7 @@
 
                                                                     <div class="col-sm-9">
                                                                         <input name="address2" required="" type="text" class="form-control"
-                                                                        value="<?php echo "$authors->address_2";?>"        placeholder="Address Line 2">
+                                                                        value="<?php echo "$reviewer->address_2";?>"        placeholder="Address Line 2">
                                                                     </div>
                                                                 </div>
 
@@ -171,7 +171,7 @@
 
                                                                     <div class="col-sm-9">
                                                                         <input name="city" required="" type="text" class="form-control"
-                                                                        value="<?php echo "$authors->city";?>"        placeholder="Enter City">
+                                                                        value="<?php echo "$reviewer->city";?>"        placeholder="Enter City">
                                                                     </div>
                                                                 </div>
 
@@ -180,7 +180,7 @@
 
                                                                     <div class="col-sm-9">
                                                                         <input name="country" required="" type="text" class="form-control"
-                                                                        value="<?php echo "$authors->country";?>"        placeholder="Enter Country">
+                                                                        value="<?php echo "$reviewer->country";?>"        placeholder="Enter Country">
                                                                     </div>
                                                                 </div>
 
@@ -189,7 +189,7 @@
 
                                                                     <div class="col-sm-9">
                                                                         <input name="postal_code" required="" type="text" class="form-control"
-                                                                        value="<?php echo "$authors->postal_code";?>"        placeholder="Postal Code">
+                                                                        value="<?php echo "$reviewer->postal_code";?>"        placeholder="Postal Code">
                                                                     </div>
                                                                 </div>
 
@@ -242,7 +242,7 @@
 
                                                                     <div class="col-sm-9">
                                                                         <input name="sec_question" required="" type="text" class="form-control"
-                                                                        value="<?php echo "$authors->security_question";?>"        placeholder="Enter security question">
+                                                                        value="<?php echo "$reviewer->security_question";?>"        placeholder="Enter security question">
                                                                     </div>
                                                                 </div>
 
@@ -251,7 +251,7 @@
 
                                                                     <div class="col-sm-9">
                                                                         <input name="sec_answer" required="" type="text" class="form-control"
-                                                                        value="<?php echo "$authors->security_answer";?>"        placeholder="Enter Answer">
+                                                                        value="<?php echo "$reviewer->security_answer";?>"        placeholder="Enter Answer">
                                                                     </div>
                                                                 </div>
 

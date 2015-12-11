@@ -14,7 +14,7 @@
                                 <!--                                    --> <!-- -->
                                 <b class="caret"></b></span> </span> </a>
                     <ul class="dropdown-menu animated fadeInUp m-t-xs">
-                        <li><a href="<?php echo base_url() ?>index.php/Users/profile_author" target="_blank">Profile</a></li>
+                        <li><a href="<?php echo base_url() ?>index.php/Users/profile" target="_blank">Profile</a></li>
                         <li><a href="mailbox.html">Mailbox</a></li>
                         <li class="divider"></li>
                         <li><a href="login.html">Logout</a></li>
