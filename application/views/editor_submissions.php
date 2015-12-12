@@ -121,7 +121,9 @@ and open the template in the editor.
                                                             </div>
                                                         </div>
                                                         <div class="col-lg-2 pull-right">
-                                                            <a href="<?php echo base_url(); ?>./uploads/FreshCopy/<?= $article_data->file_name ?>" target="_blank"><button type="button" style="margin-bottom: 10px" class="btn btn-w-m btn-default pull-right">Download PDF</button></a>
+                                                            <a href="<?php echo base_url(); ?>./uploads/FreshCopy/<?= $article_data->id.".docx" ?>" target="_blank"><button type="button" style="margin-bottom: 10px" class="btn btn-w-m btn-default pull-right">Download PDF</button></a>
+                                                             <a href="<?= site_url('articles/reviewer_assigning/' . $article_data->id) ?>" ><button type="button" style="margin-bottom: 10px" class="btn btn-w-m btn-default pull-right">Add Reviewers</button></a>
+                                                             
                                                         </div>
                                                     </div>
                                                 </div> 
@@ -226,13 +228,13 @@ and open the template in the editor.
             </div>
         </div>
     </div>
-
+ 
 
     <?php $this->load->view('partial/common_js'); ?>
 
     <!-- Custom and plugin javascript -->
     <script src="<?php echo base_url('assets'); ?>/js/inspinia.js"></script>
     <script src="<?php echo base_url('assets'); ?>/js/plugins/pace/pace.min.js"></script>
-
+ 
 </body>
 </html>

@@ -68,7 +68,7 @@ and open the template in the editor.
                         <div class="panel-body">
                             <div class="tab-content">
                                 <div id="pending" class="tab-pane active">
-
+                                     
                                     <?php
                                     foreach ($pending_articles as $article):
                                         $due_date = date('Y-m-d', strtotime($article->assigned_date . " + $reviewing_time days"));
@@ -126,8 +126,7 @@ and open the template in the editor.
 
                                     endforeach;
 
-                                    ?>
-
+                                    ?> 
                                 </div>
                                 <div id="reviewed" class="tab-pane">
 

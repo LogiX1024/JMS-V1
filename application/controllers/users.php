@@ -63,6 +63,7 @@ class Users extends CI_Controller {
     }
 
     private function editor_dashboard() {   //$author_id = array("author_id" => $this->USER_OBJ->id);
+        
         $data['author_article'] = $this->user->getData('*', 'article');
         $this->load->view('editor_submissions', $data);
     }

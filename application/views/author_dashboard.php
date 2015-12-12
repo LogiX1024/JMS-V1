@@ -76,14 +76,14 @@
                                                                     <?= $article_data->title ?>
                                                                 </h3> 
 
-                                                                <span>Author :<?= $article_data->title ?> </span><br/>
+                                                                <span>Author :<?= $article_data->id ?> </span><br/>
                                                                 <span>Sub Authors : <?= $article_data->co_authors ?> </span><br/>
                                                                 <span>Keywords : <?= $article_data->keyword ?> </span><br/>
 
                                                             </div>
                                                         </div>
                                                         <div class="col-lg-2 pull-right">
-                                                            <a href="<?php echo base_url(); ?>./uploads/FreshCopy/<?= $article_data->file_name ?>" target="_blank"><button type="button" style="margin-bottom: 10px" class="btn btn-w-m btn-default pull-right">Download</button></a>
+                                                            <a href="<?php echo base_url(); ?>./uploads/FreshCopy/<?= $article_data->id.'.docx' ?>" target="_blank"><button type="button" style="margin-bottom: 10px" class="btn btn-w-m btn-default pull-right">Download</button></a>
                                                             <a href="downloads/3282E2E55115.pdf" target="_blank"><button type="button" style="margin-bottom: 10px" class="btn btn-w-m btn-default pull-right">View in Journal</button></a>
                                                         </div>
                                                     </div>
@@ -105,7 +105,7 @@
                                                             </div>
                                                         </div>
                                                         <div class="col-lg-2 pull-right">
-                                                            <a href="<?php echo base_url(); ?>./uploads/FreshCopy/<?= $article_data->file_name ?>" target="_blank"><button type="button" style="margin-bottom: 10px" class="btn btn-w-m btn-default pull-right">Download</button></a>
+                                                            <a href="<?php echo base_url(); ?>./uploads/FreshCopy/<?= $article_data->id.'.docx' ?>" target="_blank"><button type="button" style="margin-bottom: 10px" class="btn btn-w-m btn-default pull-right">Download</button></a>
                                                             <a href="" target="_blank"><button type="button" style="margin-bottom: 10px" class="btn btn-w-m btn-default pull-right">View Review</button></a>
                                                             <a href="" target="_blank"><button type="button" style="margin-bottom: 10px" class="btn btn-w-m btn-default pull-right">Submit for Camera Ready</button></a>
                                                         </div>

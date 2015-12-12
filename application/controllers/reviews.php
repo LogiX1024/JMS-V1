@@ -3,23 +3,19 @@
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
-class Reviews extends CI_Controller
-{
+class Reviews extends CI_Controller {
+
     var $USER_OBJ = false;
 
-
-    public function __construct()
-    {
+    public function __construct() {
         parent::__construct();
         $this->load->model('article');
         $this->load->helper(array('form', 'url'));
         $this->load->library('form_validation');
         $this->USER_OBJ = $this->session->userdata('user');
-
     }
 
-    public function submit_review()
-    {
+    public function submit_review() {
         date_default_timezone_set("Asia/Colombo");
 
         $this->load->helper('date');
@@ -83,7 +79,32 @@ class Reviews extends CI_Controller
                 redirect('/dashboard');
             }
         }
-
-
     }
+
+    public function assigned_review() {
+        date_default_timezone_set("Asia/Colombo");
+
+        $this->load->helper('date');
+
+
+        $article_id = $this->input->post('article_id');
+        $r1 = $this->input->post('R1');
+        $r2 = $this->input->post('R2');
+        $r3 = $this->input->post('R3');
+        $data =  array(
+                'assigned_date' => date("Y-m-d"),
+                'reviewer_id' => $r1,
+                'article_id' => $article_id
+            ); 
+        $review_assign = $this->article->assign_review($article_id, $data);
+        if($review_assign > 0){
+            $this->load->view('500');
+        }else{
+            $this->session->set_flashdata('flash_message', 'Reviewers assigning successful.');
+                redirect('/dashboard');
+        }
+        
+ 
+    }
+
 }

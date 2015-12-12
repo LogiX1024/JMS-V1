@@ -80,6 +80,17 @@ class Reviewer extends CI_Model
         $this->db->where('id', $where);
         $this->db->update($tableName, $fieldset);
     }
+    
+    public function getData($fieldset, $tableName, $where = '')
+    {
+        if ($where == "") {
+            $this->db->select($fieldset)->from($tableName);
+        } else {
+            $this->db->select($fieldset)->from($tableName)->where($where);
+        }
+        $query = $this->db->get();
+        return $query->result();
+    }
 }
 
 ?>

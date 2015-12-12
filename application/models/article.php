@@ -51,7 +51,16 @@ class Article extends CI_Model
 
         return $review_id;
     }
+    
+    public function assign_review($article_id, $data)
+    {
+        $this->db->insert('assigned_review', $data[]);
+        $review_id = $this->db->insert_id();
 
+         
+        return $review_id;
+    }
+    
     /**
      * @param $article_id
      * @return int: count of the pending reviews of the article

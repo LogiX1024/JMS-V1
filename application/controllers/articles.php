@@ -11,6 +11,7 @@ class Articles extends CI_Controller
     {
         parent::__construct();
         $this->load->model('article');
+         $this->load->model('reviewer');
         $this->load->helper(array('form', 'url'));
         $this->load->library('form_validation');
     }
@@ -115,6 +116,21 @@ class Articles extends CI_Controller
             $this->load->view('401');
         }
     }
+    
+    public function reviewer_assigning($id)
+    {   
+        if ($this->ua->check_login() == "Editor") {
+            $role = array("role" => "Reviewer");
+            $article = array("id" => $id); 
+            $view_data['article'] = $this->article->getData('*', 'article',$article);
+            $view_data['reviewer'] = $this->reviewer->getData('*', 'user',$role);
+            //var_dump($view_data);die();
+            $this->load->view('reviewers_assigning ', $view_data);
+        } else {
+            $this->load->view('401');
+        }
+    }
+  
 
 
 }
