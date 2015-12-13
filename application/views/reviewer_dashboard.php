@@ -164,14 +164,16 @@ and open the template in the editor.
                                                         </button>
                                                     </a>
                                                     <button style="margin-top: 5px;width: 100%"
-                                                            class="btn btn-info">
+                                                            class="btn btn-info view"
+                                                            data-article-id="<?= $article->id ?>"
+                                                                data-user-type="<?= $article->id ?>">
                                                         <span class="glyphicon glyphicon-eye-open"></span> View
                                                         Review
                                                     </button>
                                                 </div>
                                             </div>
                                         </div>
-
+ 
                                     <?php
 
                                     endforeach;
@@ -239,12 +241,82 @@ and open the template in the editor.
         </div>
     </div>
 </div>
+<div class="modal inmodal" id="modelReviewedArticle" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content animated fadeIn">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span
+                        aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <i class="fa fa-user modal-icon"></i>
+                <h4 class="modal-title" id="reviewer-name-large"></h4>
+                <small id="reviewed-article-title">Article - Title</small>
+            </div>
+            <form>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-6 col-lg-6 col-sm-12">
+                            <div class="form-group">
+                                <label class="control-label">Title Acceptable : <br/></label>
+                                <input type="radio" id="title_acceptable" value="1" name="title">
+                            </div>
+                            <div class="form-group">
+                                <div class="radio i-checks"><label> <input type="radio"  value="1" name="title"> <i></i>
+                                        Acceptable </label></div>
+                                <div class="radio i-checks"><label> <input type="radio" value="2" name="title"> <i></i>
+                                        Need Modification </label></div>
+                            </div>
+                            <div class="form-group">
+                                <label for="name">Name </label>
+                                <input id="reviewer-name" type="text" class="form-control disabled" name="name" disabled/>
+                            </div>
+                            <div class="form-group">
+                                <label for="address">Address </label>
+                                <input type="text" name="address1" id="reviewer-address1" class="form-control disabled"
+                                       disabled
+                                       />
+                                <input type="text" name="address2" id="reviewer-address2" class="form-control disabled"
+                                       disabled
+                                       />
+                                <input type="text" name="city" id="reviewer-city" class="form-control disabled" disabled
+                                       />
+                                    <input type="text" name="postal_code" id="reviewer-postal-code"
+                                       class="form-control disabled" disabled
+                                       />
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-lg-6 col-sm-12">
+                            <div class="form-group">
+                                <label for="email-address">E-Mail Address </label>
+                                <input name="email-address" id="reviewer-email-address" disabled type="email"
+                                       class="form-control disabled"
+                                       />
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="contact_no">Expertise </label>
+                                <input name="contact_no" id="reviewer-expertise" disabled type="text"
+                                       class="form-control disabled"
+                                       />
+                            </div>
+                        </div>
+                    </div>
 
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-white" data-dismiss="modal">Close</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 <?php $this->load->view('partial/common_js'); ?>
 
 <!-- Custom and plugin javascript -->
 <script src="<?php echo base_url('assets'); ?>/js/inspinia.js"></script>
 <script src="<?php echo base_url('assets'); ?>/js/plugins/pace/pace.min.js"></script>
+    
+<!-- Chosen -->
+<script src="<?php echo base_url('assets'); ?>/js/plugins/chosen/chosen.jquery.js"></script>
 
 <script type="text/javascript">
     $(document).ready(function () {
@@ -273,5 +345,64 @@ and open the template in the editor.
     });
 </script>
 
+    <script>
+        $(document).ready(function () {
+
+            var config = {
+                '.chosen-select': {},
+                '.chosen-select-deselect': {allow_single_deselect: true},
+                '.chosen-select-no-single': {disable_search_threshold: 10},
+                '.chosen-select-no-results': {no_results_text: 'Oops, nothing found!'},
+                '.chosen-select-width': {width: "95%"}
+            }
+            for (var selector in config) {
+                $(selector).chosen(config[selector]);
+            }
+
+
+            $('.view').click(function (e) {
+                e.preventDefault();
+                var articleId = $(this).data('article-id');
+                //alert(articleId);
+                $.ajax({
+                type: "POST",
+                dataType: 'json',
+                url: "<?php echo base_url('/index.php/API/get_reviewed_details'); ?>/" + articleId,
+                 success: function (data) {
+                     //alert(data.article_title);
+                     $('#reviewed-article-title').text(data.title);
+                     $('#title_acceptable').text(data.title_acceptable);
+                } 
+                });
+                
+                var data = null;
+                $('#modelReviewedArticle').modal('show');
+                //show_user_modal('invite_reviewer', data, 'reviewer');
+
+            });
+            
+
+
+            var success = <?= 'true' ?>;
+
+            toastr.options = {
+                "closeButton": true,
+                "progressBar": true
+            };
+
+            switch (success) {
+                case 1:
+                    toastr.success('Successfully Deleted');
+                    break;
+                case 2:
+                    toastr.error('Wrong Password.');
+                    break;
+                case 3:
+                    toastr.success('Successfully Updated');
+                    break;
+            }
+
+        });
+    </script>
 </body>
 </html>

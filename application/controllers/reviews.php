@@ -38,6 +38,7 @@ class Reviews extends CI_Controller {
         $decision = $this->input->post('decision');
 
         $insert_data = array(
+            'article_id' => $article_id,
             'review_date' => date("Y-m-d"),
             'reviewer_id' => $this->USER_OBJ->id,
             'title_acceptable' => $title,

@@ -60,7 +60,7 @@ and open the template in the editor.
                                 <label class="control-label">Title Acceptable : <br/></label>
                             </div>
                             <div class="col-sm-9">
-                                <div class="radio i-checks"><label> <input type="radio" value="1" name="title"> <i></i>
+                                <div class="radio i-checks"><label> <input type="radio"  value="1" name="title"> <i></i>
                                         Acceptable </label></div>
                                 <div class="radio i-checks"><label> <input type="radio" value="2" name="title"> <i></i>
                                         Need Modification </label></div>

@@ -41,7 +41,16 @@ class API extends CI_Controller
 
         $this->load->view('json', array('data' => $view_data));
     }
+    
+    public function get_reviewed_details($article_id)
+    {
+        $this->load->model('article');
 
+        $view_data = $this->article->get_reviewed_article($article_id);
+
+        $this->load->view('json', array('data' => $view_data));
+    }
+    
     public function add_sub_author()
     {
         $fname = $this->input->post("fname");
@@ -65,7 +74,28 @@ class API extends CI_Controller
         $this->session->set_userdata("subauthors", json_encode($AuthorArray));
         $this->load->view('json', array('data' => $AuthorArray));
     }
+    
+    
+    public function add_reviewers()
+    {
+        $fname = $this->input->post("reviewer");
+         
+        $subauthor = new SubAuthors($fname);
+ 
+        $AuthorArray_JSON = $this->session->userdata("subauthors");
 
+        if (!$AuthorArray_JSON) {
+            $AuthorArray = array($subauthor);
+
+        } else {
+            $AuthorArray = json_decode($AuthorArray_JSON);
+            array_push($AuthorArray, $subauthor);
+
+        }
+        $this->session->set_userdata("subauthors", json_encode($AuthorArray));
+        $this->load->view('json', array('data' => $AuthorArray));
+    }
+    
     public function remove_sub_author($index)
     {
 

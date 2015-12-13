@@ -188,7 +188,7 @@ accept_user() should accept the id of the user to be rejected and password of th
                                                 <td>
                                                     <?= $user->first_name . " " . $user->last_name ?></td>
                                                 <td>
-                                                    <?= ucfirst($user->role) ?></td>
+                                                    <?= ucfirst($user->email_address) ?></td>
                                                 <td class="text-center">
                                                     <div class="btn-group btn-group-sm">
                                                         <button class="btn btn-sm btn-default btn-outline view"
@@ -331,7 +331,7 @@ accept_user() should accept the id of the user to be rejected and password of th
             $('.view').click(function (e) {
                 e.preventDefault();
                 var userId = $(this).data('user-id');
-                
+                //alert(userId); 
                 $.ajax({
                 type: "POST",
                 dataType: 'json',
