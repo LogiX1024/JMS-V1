@@ -24,7 +24,7 @@ accept_user() should accept the id of the user to be rejected and password of th
 
     <div id="wrapper">
 
-        <!--    --><?php //$this->load->view('partial/admin_navigation', array('user' => $user, 'position' => $position));   ?>
+        <!--    --><?php //$this->load->view('partial/admin_navigation', array('user' => $user, 'position' => $position));    ?>
         <?php $this->load->view('partial/editor_navigation'); ?>
 
         <div id="page-wrapper" class="gray-bg">
@@ -333,22 +333,26 @@ accept_user() should accept the id of the user to be rejected and password of th
                 var userId = $(this).data('user-id');
                 //alert(userId); 
                 $.ajax({
-                type: "POST",
-                dataType: 'json',
-                url: "<?php echo base_url('/index.php/API/get_reviewer'); ?>/" + userId,
-                 success: function (data) {
-                    // alert((data.expertise)->expertise;
-                    $('#reviewer-name-large').text(data.first_name + " " +data.last_name);
-                    $('#reviewer-name').val(data.first_name + " " +data.last_name);
-                    $('#reviewer-address1').val(data.address_1);
-                    $('#reviewer-address2').val(data.address_2);
-                    $('#reviewer-city').val(data.city);
-                    $('#reviewer-postal-code').val(data.postal_code);
-                    $('#reviewer-email-address').val(data.email_address);
-                    $('#reviewer-expertise').val(data.expertise);
-                } 
+                    type: "POST",
+                    dataType: 'json',
+                    url: "<?php echo base_url('/index.php/API/get_reviewer'); ?>/" + userId,
+                    success: function (data) {
+                        var expertise = "";
+                        $('#reviewer-name-large').text(data.first_name + " " + data.last_name);
+                        $('#reviewer-name').val(data.first_name + " " + data.last_name);
+                        $('#reviewer-address1').val(data.address_1);
+                        $('#reviewer-address2').val(data.address_2);
+                        $('#reviewer-city').val(data.city);
+                        $('#reviewer-postal-code').val(data.postal_code);
+                        $('#reviewer-email-address').val(data.email_address);
+                        $.each(data.expertise, function () {
+                            expertise += this.expertise + ", ";
+                        });
+                        $('#reviewer-expertise').val(expertise);
+                    }
+               
                 });
-                
+
                 var data = null;
                 $('#modelReviewer').modal('show');
                 //show_user_modal('invite_reviewer', data, 'reviewer');

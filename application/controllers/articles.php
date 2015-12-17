@@ -117,7 +117,7 @@ class Articles extends CI_Controller
         }
     }
     
-    public function reviewer_assigning($id)
+    public function reviewer_assigning_last($id)
     {   
         if ($this->ua->check_login() == "Editor") {
             $role = array("role" => "Reviewer");
@@ -126,6 +126,20 @@ class Articles extends CI_Controller
             $view_data['reviewer'] = $this->reviewer->getData('*', 'user',$role);
             //var_dump($view_data);die();
             $this->load->view('reviewers_assigning ', $view_data);
+        } else {
+            $this->load->view('401');
+        }
+    }
+    
+    public function reviewer_assigning($id)
+    {   
+        if ($this->ua->check_login() == "Editor") {
+            $role = array("role" => "Reviewer");
+            $article = array("id" => $id); 
+            $view_data['article'] = $this->article->getData('*', 'article',$article);
+            $view_data['reviewer'] = $this->reviewer->getData('*', 'user',$role);
+            //var_dump($view_data); die();
+            $this->load->view('reviewers_assigning_datalist', $view_data);
         } else {
             $this->load->view('401');
         }
