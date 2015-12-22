@@ -84,24 +84,22 @@ class Reviews extends CI_Controller {
 
     public function assigned_review() {
         date_default_timezone_set("Asia/Colombo");
-
         $this->load->helper('date');
 
-
         $article_id = $this->input->post('article_id');
-        $r1 = $this->input->post('R1');
-        $r2 = $this->input->post('R2');
-        $r3 = $this->input->post('R3');
+        $reviewer_id = $this->input->post('id');
+        
         $data =  array(
                 'assigned_date' => date("Y-m-d"),
-                'reviewer_id' => $r1,
+                'reviewer_id' => $reviewer_id,
                 'article_id' => $article_id
             ); 
+             
         $review_assign = $this->article->assign_review($article_id, $data);
         if($review_assign > 0){
             $this->load->view('500');
         }else{
-            $this->session->set_flashdata('flash_message', 'Reviewers assigning successful.');
+            //$this->session->set_flashdata('flash_message', 'Reviewers assigning successful.');
                 redirect('/dashboard');
         }
         

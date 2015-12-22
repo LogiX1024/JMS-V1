@@ -257,7 +257,7 @@ endforeach;
                                 </div>
                                 <div class="form-group">
                                     <label class="control-label">Suggestions : <br/></label>
-                                    <label id="title_suggession"></label>
+                                    <label id="title_suggession" class="control-label"></label>
                                 </div>
                                 <div class="form-group">
                                     <label class="control-label">Introduction :</label>
@@ -434,7 +434,10 @@ endforeach;
                         }if(data.results_and_discussion  == "2") {$('#results_and_discussion ').text("Need Modification");
                         }
                         $('#results_and_discussion_suggession').text(data.results_and_discussion_suggession);
-                        $('#decision').text(data.decision);
+                        if (data.decision  == "1") {$('#decision ').text("Accepted");
+                        }if(data.decision  == "2") {$('#decision ').text("Accept with Miner Corrections");
+                        }if(data.decision  == "3") {$('#decision ').text("Rejected");
+                        }
                          
                                                
                     }

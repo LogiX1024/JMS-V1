@@ -66,8 +66,8 @@ and open the template in the editor.
                                         </tr>
                                     </thead>
                                     <tbody>
-
-                                        <?php foreach ($reviewer as $reviewer_data): ?>
+                                            
+                                        <?php foreach ($reviewer as $reviewer_data):?>
                                             <tr>
                                                 <td>
                                                     <?= $reviewer_data->first_name . " " . $reviewer_data->last_name ?></td>
@@ -86,7 +86,7 @@ and open the template in the editor.
                                                     </div>
                                                 </td>
                                             </tr>
-                                        <?php endforeach; ?>
+                                        <?php endforeach; ?> 
 
 
                                     </tbody>
@@ -101,7 +101,7 @@ and open the template in the editor.
     
     <!-- Model Editor -->
     <?php
-    $this->load->view('partial/modals/reviewer');
+    $this->load->view('partial/modals/assigning_reviewer');
     ?>
 
     <div class="modal inmodal" id="modelAccept" tabindex="-1" role="dialog" aria-hidden="true">
@@ -113,20 +113,17 @@ and open the template in the editor.
                     <i class="fa fa-user-plus modal-icon"></i>
                     <h4 id="cad-modal-title" class="modal-title">Accept Reviewer</h4>
                 </div>
-                <form action="<?php echo base_url('index.php/users/accept_reviewer') ?>" method="POST">
+                <form action="<?php echo base_url('index.php/reviews/assigned_review') ?>" method="POST">
                     <input type="text" id="accept-user-id" name="id" value="" hidden="hidden" class="hidden"/>
-
+                    <input type="text" id="accept-article-id" name="article_id" value="" hidden="hidden" class="hidden"/>
+                    
+                    <label id="accept-article-id"></label>
                     <div class="modal-body">
-                        <div class="row">
+                        <div class="row"><?php foreach ($article as $article_data): ?>
                             <div class="col-md-12 col-lg-12 col-sm-12">
-                                <p class="text-center">Do you really want to accept the reviewer?</p>
+                                <p class="text-center">Do you really want to assign <label id="accept-user-name"></label> to "<?php echo$article_data->title?>"?</p>
 
-                                <div class="form-group">
-                                    <label class="text-center" for="password">Please enter your password to continue</label>
-                                    <input id="delete-user-password" type="password" class="form-control" name="password"
-                                           value=""/>
-                                </div>
-                            </div>
+                            </div><?php endforeach; ?> 
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -180,6 +177,7 @@ and open the template in the editor.
                     dataType: 'json',
                     url: "<?php echo base_url('/index.php/API/get_reviewer'); ?>/" + userId,
                     success: function (data) {
+                        //alert(data.first_name);
                         var expertise = "";
                         $('#reviewer-name-large').text(data.first_name + " " + data.last_name);
                         $('#reviewer-name').val(data.first_name + " " + data.last_name);
@@ -198,22 +196,32 @@ and open the template in the editor.
 
                 var data = null;
                 $('#modelReviewer').modal('show');
-                //show_user_modal('invite_reviewer', data, 'reviewer');
+                
 
             });
+            
+            
             $('.accept').click(function (e) {
                 e.preventDefault();
                 var userId = $(this).data('user-id');
+                //alert(userId);
                 $('#accept-user-id').val(userId);
+                $.ajax({
+                    type: "POST",
+                    dataType: 'json',
+                    url: "<?php echo base_url('/index.php/API/get_reviewer'); ?>/" + userId,
+                    success: function (data) {
+                       //alert(data.id);
+                        $('#accept-user-name').text(data.first_name + " " + data.last_name);
+                        $('#accept-article-id').val(data.id);
+                        //$('#accept-article-id').text(data.id);
+                    }
+               
+                });
                 $('#modelAccept').modal('show');
             });
 
-            $('.reject').click(function (e) {
-                e.preventDefault();
-                var userId = $(this).data('user-id');
-                $('#reject-user-id').val(userId);
-                $('#modelReject').modal('show');
-            });
+            
 
             $('.dataTables-example').dataTable({
                 responsive: true,

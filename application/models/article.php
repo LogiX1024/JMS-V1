@@ -75,7 +75,7 @@ article.title');
         return $review_id;
     }
 
-    public function assign_review($article_id, $data) {
+    public function assign_review( $data) {
         $this->db->insert('assigned_review', $data[]);
         $review_id = $this->db->insert_id();
 
