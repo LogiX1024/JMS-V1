@@ -75,11 +75,10 @@ article.title');
         return $review_id;
     }
 
-    public function assign_review( $data) {
-        $this->db->insert('assigned_review', $data[]);
+    public function assign_review($data) {
+        //var_dump($data); die();
+        $this->db->insert('assigned_review', $data);
         $review_id = $this->db->insert_id();
-
-
         return $review_id;
     }
 

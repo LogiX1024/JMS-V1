@@ -66,8 +66,8 @@ and open the template in the editor.
                                         </tr>
                                     </thead>
                                     <tbody>
-                                            
-                                        <?php foreach ($reviewer as $reviewer_data):?>
+
+                                        <?php foreach ($reviewer as $reviewer_data): ?>
                                             <tr>
                                                 <td>
                                                     <?= $reviewer_data->first_name . " " . $reviewer_data->last_name ?></td>
@@ -82,7 +82,6 @@ and open the template in the editor.
                                                         <button class="btn btn-sm btn-success btn-outline accept"
                                                                 data-user-id="<?= $reviewer_data->id ?>">Assign
                                                         </button>
-                                                         
                                                     </div>
                                                 </td>
                                             </tr>
@@ -98,7 +97,7 @@ and open the template in the editor.
             </div>
         </div>
     </div>
-    
+
     <!-- Model Editor -->
     <?php
     $this->load->view('partial/modals/assigning_reviewer');
@@ -113,44 +112,48 @@ and open the template in the editor.
                     <i class="fa fa-user-plus modal-icon"></i>
                     <h4 id="cad-modal-title" class="modal-title">Accept Reviewer</h4>
                 </div>
-                <form action="<?php echo base_url('index.php/reviews/assigned_review') ?>" method="POST">
-                    <input type="text" id="accept-user-id" name="id" value="" hidden="hidden" class="hidden"/>
-                    <input type="text" id="accept-article-id" name="article_id" value="" hidden="hidden" class="hidden"/>
-                    
-                    <label id="accept-article-id"></label>
-                    <div class="modal-body">
-                        <div class="row"><?php foreach ($article as $article_data): ?>
-                            <div class="col-md-12 col-lg-12 col-sm-12">
-                                <p class="text-center">Do you really want to assign <label id="accept-user-name"></label> to "<?php echo$article_data->title?>"?</p>
 
-                            </div><?php endforeach; ?> 
-                        </div>
+                <input type="text" id="accept-user-id" name="id" value="" hidden="hidden" class="hidden"/>
+                <?php foreach ($article as $article_data): ?>
+                    <input type="text" id="article_id" name="article_id" value="<?php echo$article_data->id ?>" hidden="hidden" class="hidden"/>
+                <?php endforeach; ?> 
+                <label id="accept-article-id"></label>
+                <div class="modal-body">
+                    <div class="row">
+                        <?php foreach ($article as $article_data): ?>
+                            <div class="col-md-12 col-lg-12 col-sm-12">
+                                <p class="text-center">Do you really want to assign 
+                                    <label id="accept-user-name"></label> to "<?php echo$article_data->title ?>"?
+                                </p>
+                            </div>
+                        <?php endforeach; ?> 
                     </div>
-                    <div class="modal-footer">
-                        <button id="accept-user-accept" type="submit" class="btn btn-success">Accept</button>
-                        <button type="button" class="btn btn-white" data-dismiss="modal">Close</button>
-                    </div>
-                </form>
+                </div>
+                <div class="modal-footer">
+                    <button id="accept-user-accept" type="submit" class="btn btn-success">Accept</button>
+                    <button type="button" class="btn btn-white" data-dismiss="modal">Close</button>
+                </div>
+
             </div>
         </div>
     </div>
 
-    
-    
+
+
     <?php $this->load->view('partial/common_js'); ?>
 
     <!-- Custom and plugin javascript -->
     <script src="<?php echo base_url('assets'); ?>/js/inspinia.js"></script>
     <script src="<?php echo base_url('assets'); ?>/js/plugins/pace/pace.min.js"></script>
-    
-     <!-- Data Tables -->
+
+    <!-- Data Tables -->
     <script src="<?php echo base_url('assets'); ?>/js/plugins/dataTables/jquery.dataTables.js"></script>
     <script src="<?php echo base_url('assets'); ?>/js/plugins/dataTables/dataTables.bootstrap.js"></script>
     <script src="<?php echo base_url('assets'); ?>/js/plugins/dataTables/dataTables.responsive.js"></script>
     <script src="<?php echo base_url('assets'); ?>/js/plugins/dataTables/dataTables.tableTools.min.js"></script>
 
 
-        <!-- Chosen -->
+    <!-- Chosen -->
     <script src="<?php echo base_url('assets'); ?>/js/plugins/chosen/chosen.jquery.js"></script>
 
     <script>
@@ -191,16 +194,39 @@ and open the template in the editor.
                         });
                         $('#reviewer-expertise').val(expertise);
                     }
-               
+
                 });
 
                 var data = null;
                 $('#modelReviewer').modal('show');
-                
+
 
             });
-            
-            
+
+
+
+            $('#accept-user-accept').click(function (e) {
+                e.preventDefault();
+                var acceptid = $('#accept-user-id').val();
+                var articleid = $('#article_id').val();
+
+                $.ajax({
+                    type: "POST",
+                    dataType: 'json',
+                    url: "<?php echo base_url('/index.php/API/assigned_review'); ?>",
+                    data: {acceptid: acceptid, articleid: articleid},
+                    success: function (data) {
+                        $(this).prop('disabled', true);
+                        //$("#accept-user-accept").attr("disabled", true);
+                        //document.getElementById("accept-user-accept").disabled = true;    
+                    }
+                });
+                $('#modelAccept').modal('hide');
+            });
+
+
+
+
             $('.accept').click(function (e) {
                 e.preventDefault();
                 var userId = $(this).data('user-id');
@@ -211,17 +237,17 @@ and open the template in the editor.
                     dataType: 'json',
                     url: "<?php echo base_url('/index.php/API/get_reviewer'); ?>/" + userId,
                     success: function (data) {
-                       //alert(data.id);
+                        //alert(data.id);
                         $('#accept-user-name').text(data.first_name + " " + data.last_name);
                         $('#accept-article-id').val(data.id);
                         //$('#accept-article-id').text(data.id);
                     }
-               
+
                 });
                 $('#modelAccept').modal('show');
             });
 
-            
+
 
             $('.dataTables-example').dataTable({
                 responsive: true,
@@ -252,6 +278,6 @@ and open the template in the editor.
 
         });
     </script>
-     
+
 </body>
 </html>
