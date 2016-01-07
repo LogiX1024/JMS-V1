@@ -139,4 +139,12 @@ article.title');
         return $this->db->get()->result();
     }
 
+    public function get_review_ids($article_id)
+    {
+        $this->db->select('review_id');
+        $this->db->from('assigned_review');
+        $this->db->where('article_id', $article_id);
+        return $this->db->get()->result();
+    }
+
 }

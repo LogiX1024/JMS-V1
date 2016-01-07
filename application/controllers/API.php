@@ -41,7 +41,7 @@ class API extends CI_Controller
 
         $this->load->view('json', array('data' => $view_data));
     }
-    
+
     public function get_reviewed_details($article_id)
     {
         $this->load->model('article');
@@ -50,7 +50,7 @@ class API extends CI_Controller
 
         $this->load->view('json', array('data' => $view_data));
     }
-    
+
     public function add_sub_author()
     {
         $fname = $this->input->post("fname");
@@ -74,8 +74,9 @@ class API extends CI_Controller
         $this->session->set_userdata("subauthors", json_encode($AuthorArray));
         $this->load->view('json', array('data' => $AuthorArray));
     }
-    
-    public function assigned_review() {
+
+    public function assigned_review()
+    {
         $this->load->model('article');
         date_default_timezone_set("Asia/Colombo");
         $this->load->helper('date');
@@ -83,24 +84,24 @@ class API extends CI_Controller
         $acceptid = $this->input->post('acceptid');
         $articleid = $this->input->post('articleid');
         $date = date("Y-m-d");
-         
-        $data =  array(
-                'assigned_date' => $date,
-                'reviewer_id' => $acceptid,
-                'article_id' => $articleid
-            ); 
-            
+
+        $data = array(
+            'assigned_date' => $date,
+            'reviewer_id' => $acceptid,
+            'article_id' => $articleid
+        );
+
         $review_assign = $this->article->assign_review($data);
-          //var_dump($review_assign); die();
+        //var_dump($review_assign); die();
     }
-    
-    
+
+
     public function add_reviewers()
     {
         $fname = $this->input->post("reviewer");
-         
+
         $subauthor = new SubAuthors($fname);
- 
+
         $AuthorArray_JSON = $this->session->userdata("subauthors");
 
         if (!$AuthorArray_JSON) {
@@ -114,7 +115,7 @@ class API extends CI_Controller
         $this->session->set_userdata("subauthors", json_encode($AuthorArray));
         $this->load->view('json', array('data' => $AuthorArray));
     }
-    
+
     public function remove_sub_author($index)
     {
 
@@ -146,8 +147,15 @@ class API extends CI_Controller
     {
         $this->session->unset_userdata('subauthors');
     }
-    
-    
+
+    public function get_reviews($article_id)
+    {
+        $this->load->model('article');
+        $review_ids = $this->article->get_review_ids($article_id);
+
+        $this->load->view('json', array('data' => $review_ids));
+    }
+
 
 }
 

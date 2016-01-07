@@ -163,12 +163,13 @@
                                                                     class="btn btn-w-m btn-default pull-right">Download
                                                             </button>
                                                         </a>
-                                                        <a href="" target="_blank">
-                                                            <button type="button" style="margin-bottom: 10px"
-                                                                    class="btn btn-w-m btn-default pull-right">View
-                                                                Review
-                                                            </button>
-                                                        </a>
+                                                        <!--                                                        <a href="" target="_blank">-->
+                                                        <button data-article-id="<?= $article_data->id ?>" type="button"
+                                                                style="margin-bottom: 10px"
+                                                                class="btn btn-w-m btn-default pull-right view_review">
+                                                            View Review
+                                                        </button>
+                                                        <!--                                                        </a>-->
                                                         <a href="" target="_blank">
                                                             <button type="button" style="margin-bottom: 10px"
                                                                     class="btn btn-w-m btn-default pull-right">Submit
@@ -225,11 +226,61 @@
 
     </div>
 </div>
+
+
+<div class="modal inmodal" id="myModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content animated fadeIn">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span
+                        class="sr-only">Close</span></button>
+                <i class="fa fa-pencil modal-icon fa-2x"></i>
+                <h4 class="modal-title">View Reviews</h4>
+
+            </div>
+            <div class="modal-body">
+
+                <center>
+                    <div class="btn-group">
+                        <a href="<?= base_url('/index.php/') ?>" id="review-btn-1"
+                           class="btn btn-default" target="_blank">Review 1</a>
+                        <a href="<?= base_url('/index.php/') ?>" id="review-btn-2"
+                           class="btn btn-default" target="_blank">Review 2</a>
+                        <a href="<?= base_url('/index.php/') ?>" id="review-btn-3"
+                           class="btn btn-default" target="_blank">Review 3</a>
+                    </div>
+                </center>
+            </div>
+        </div>
+    </div>
+</div>
+
 <?php $this->load->view('partial/common_js'); ?>
 
 <!-- Custom and plugin javascript -->
 <script src="<?php echo base_url('assets'); ?>/js/inspinia.js"></script>
 <script src="<?php echo base_url('assets'); ?>/js/plugins/pace/pace.min.js"></script>
+
+
+<script>
+    $(document).ready(function () {
+        $('.view_review').click(function (e) {
+            var BASE_URL = "<?= base_url('/index.php/reviews/view/') ?>/";
+            var article_id = $(this).data('article-id');
+            $.ajax({
+                type: "POST",
+                dataType: 'json',
+                url: "<?php echo base_url('/index.php/API/get_reviews'); ?>/" + article_id,
+                success: function (data) {
+                    $('#review-btn-1').attr("href", BASE_URL + data[0]['review_id']);
+                    $('#review-btn-2').attr("href", BASE_URL + data[1]['review_id']);
+                    $('#review-btn-3').attr("href", BASE_URL + data[2]['review_id']);
+                }
+            });
+            $('#myModal').modal('show');
+        });
+    });
+</script>
 
 </body>
 </html>
