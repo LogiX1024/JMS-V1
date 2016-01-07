@@ -44,7 +44,7 @@
 
             <div class="row">
                 <div class="col-lg-12">
-                    <div class="ibox-content">
+                    <div class="ibox-content tabbable">
 
                         <div class="panel-heading">
                             <!--<div class="panel-title m-b-md"><h4>Blank Panel with text tabs</h4></div>-->
@@ -70,7 +70,7 @@
                                                 <div class="col-lg-8">
                                                     <div class="ibox-content">
                                                         <h3 class="media-heading">
-                                                            <?= $article_data->title ?>
+                                                            <?= $article_data->title . $article_data->status ?>
                                                         </h3>
                                                         <?php
                                                         /**
@@ -120,7 +120,7 @@
                                                         </div>
                                                     </div>
                                                     <div class="col-lg-2 pull-right">
-                                                        <a href="<?php echo base_url(); ?>./uploads/FreshCopy/<?= $article_data->file_name ?>"
+                                                        <a href="<?php echo base_url(); ?>./uploads/FreshCopy/<?= $article_data->id . '.docx' ?>"
                                                            target="_blank">
                                                             <button type="button" style="margin-bottom: 10px"
                                                                     class="btn btn-w-m btn-default pull-right">Download
@@ -136,10 +136,10 @@
                                                 </div>
 
                                             </div>
-                                        <?php }endforeach; ?>
-
-
+                                        <?php }
+                                    endforeach; ?>
                                 </div>
+
                                 <div id="tab-3" class="tab-pane">
                                     <?php foreach ($author_article as $article_data): ?>
                                         <?php if ($article_data->status == "reviewed") { ?>
@@ -157,7 +157,7 @@
                                                         </div>
                                                     </div>
                                                     <div class="col-lg-2 pull-right">
-                                                        <a href="<?php echo base_url(); ?>./uploads/FreshCopy/<?= $article_data->file_name ?>"
+                                                        <a href="<?php echo base_url(); ?>./uploads/FreshCopy/<?= $article_data->id . '.docx' ?>"
                                                            target="_blank">
                                                             <button type="button" style="margin-bottom: 10px"
                                                                     class="btn btn-w-m btn-default pull-right">Download
@@ -179,10 +179,10 @@
                                                 </div>
 
                                             </div>
-                                        <?php }endforeach; ?>
+                                        <?php }
+                                    endforeach; ?>
 
                                 </div>
-
 
                                 <div id="tab-4" class="tab-pane">
                                     <?php foreach ($author_article as $article_data): ?>
@@ -201,7 +201,7 @@
                                                         </div>
                                                     </div>
                                                     <div class="col-lg-2 pull-right">
-                                                        <a href="<?php echo base_url(); ?>./uploads/FreshCopy/<?= $article_data->file_name ?>"
+                                                        <a href="<?php echo base_url(); ?>./uploads/FreshCopy/<?= $article_data->id . '.docx' ?>"
                                                            target="_blank">
                                                             <button type="button" style="margin-bottom: 10px"
                                                                     class="btn btn-w-m btn-default pull-right">Download
@@ -211,8 +211,8 @@
                                                 </div>
 
                                             </div>
-                                        <?php }endforeach; ?>
-
+                                        <?php }
+                                    endforeach; ?>
                                 </div>
                             </div>
                         </div>
