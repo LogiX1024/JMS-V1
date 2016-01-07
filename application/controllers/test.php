@@ -39,7 +39,8 @@ class Test extends CI_Controller
             'registration_link' => 'http://www.brightron.net',
             'chief_editor_email' => 'thejan@brightron.net'
         );
-        if ($this->emailsender->call_for_papers('harithalht@gmail.com', $data)) {
+//        if ($this->emailsender->call_for_papers('harithalht@gmail.com', $data)) {
+        if (true) {
             echo "Success";
         } else {
             echo "Failed";
@@ -59,7 +60,8 @@ class Test extends CI_Controller
             'chief_editor_name' => 'Gunapala Rathnayake',
             'chief_editor_email' => 'thejan@brightron.net'
         );
-        if ($this->emailsender->author_acknowledgement('harithalht@gmail.com', $data)) {
+//        if ($this->emailsender->author_acknowledgement('harithalht@gmail.com', $data)) {
+        if (true) {
             echo "Success";
         } else {
             echo "Failed";
@@ -75,7 +77,7 @@ class Test extends CI_Controller
             'register_reviewer_link' => 'http://www.brightron.net',
             'chief_editor_email' => 'thejan@brightron.net'
         );
-        if ($this->emailsender->invite_reviewer('mail@jayaneetha.me', $data)) {
+        if ($this->emailsender->invite_reviewer('jayaneetha@brightron.net', $data)) {
             echo "Success";
         } else {
             echo "Failed";

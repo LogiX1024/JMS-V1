@@ -3,20 +3,24 @@
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
-class Journal extends CI_Controller {
+class Journal extends CI_Controller
+{
 
-    public function __construct() {
+    public function __construct()
+    {
         parent::__construct();
         $this->load->model('user');
         $this->load->model('journalm');
         $this->load->library('form_validation');
     }
 
-    public function index() {
+    public function index()
+    {
         redirect('/journal/journal_manager');
     }
 
-    public function create_journal() {
+    public function create_journal()
+    {
         if ($this->ua->check_login() == "Super") {
             $editors = $this->user->get_editors();
             $categories = $this->journalm->get_category();
@@ -28,7 +32,8 @@ class Journal extends CI_Controller {
         }
     }
 
-    public function add_journal() {
+    public function add_journal()
+    {
         $name = $this->input->post("name", TRUE);
         $issue = $this->input->post("issue", TRUE);
         $volume = $this->input->post("volume", TRUE);
@@ -85,7 +90,8 @@ class Journal extends CI_Controller {
         }
     }
 
-    public function journal_manager() {
+    public function journal_manager()
+    {
         $fieldset = array('id', 'name', 'issue', 'volume', 'aim', 'objective',
             'scope', 'category', 'collection_date',
             'camera_ready_date', 'chief_editor_id', 'status');
@@ -93,7 +99,8 @@ class Journal extends CI_Controller {
         $this->load->view('admin_journal_manager', $data);
     }
 
-    public function edit_journal($id) {
+    public function edit_journal($id)
+    {
 
         $JournalData = $this->journalm->get_journal($id);
         //var_dump($editdata);
@@ -102,10 +109,11 @@ class Journal extends CI_Controller {
         $categories = $this->journalm->get_category();
         $sub_editors = $this->journalm->get_sub_editors($id);
 
-        $this->load->view("admin_edit_journal", array('JournalData' => $JournalData, 'editors' => $editors, 'categories' => $categories, 'sub_editors'=>$sub_editors));
+        $this->load->view("admin_edit_journal", array('JournalData' => $JournalData, 'editors' => $editors, 'categories' => $categories, 'sub_editors' => $sub_editors));
     }
 
-    public function update_journal() {
+    public function update_journal()
+    {
 
         $name = $this->input->post("name", TRUE);
         $issue = $this->input->post("issue", TRUE);
@@ -167,7 +175,8 @@ class Journal extends CI_Controller {
         redirect(base_url() . 'index.php/Journal');
     }
 
-    public function category($id = 0, $msg = 0) {
+    public function category($id = 0, $msg = 0)
+    {
 //        if ($id > 0) {
         $categories = $this->journalm->get_category();
         $category = $this->journalm->get_category_by_id($id);
@@ -175,11 +184,14 @@ class Journal extends CI_Controller {
 //            die();
         $message = NULL;
         switch ($msg) {
-            case 1:$message = "Successfully Added.";
+            case 1:
+                $message = "Successfully Added.";
                 break;
-            case 2:$message = "Successfully Updated.";
+            case 2:
+                $message = "Successfully Updated.";
                 break;
-            case 3:$message = "Successfully Deleted.";
+            case 3:
+                $message = "Successfully Deleted.";
                 break;
         }
 
@@ -190,7 +202,8 @@ class Journal extends CI_Controller {
 //        }
     }
 
-    public function add_category() {
+    public function add_category()
+    {
         $category = $this->input->post("name", TRUE);
         $id = $this->journalm->insertData("categories", array("category" => $category));
         if ($id > 0) {
@@ -198,7 +211,8 @@ class Journal extends CI_Controller {
         }
     }
 
-    public function update_category() {
+    public function update_category()
+    {
         $id = $this->input->post("id", TRUE);
         $category = $this->input->post("name", TRUE);
         $dataset = array('category' => $category);
@@ -206,7 +220,8 @@ class Journal extends CI_Controller {
         redirect(base_url() . 'index.php/Journal/category/0/2');
     }
 
-    public function del_category($id) {
+    public function del_category($id)
+    {
 //        $id = $this->input->post("id",TRUE);
 //        $category = $this->input->post("name",TRUE);
         $dataset = array('deleted' => 1);

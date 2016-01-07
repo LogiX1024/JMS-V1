@@ -11,7 +11,7 @@ class Articles extends CI_Controller
     {
         parent::__construct();
         $this->load->model('article');
-         $this->load->model('reviewer');
+        $this->load->model('reviewer');
         $this->load->helper(array('form', 'url'));
         $this->load->library('form_validation');
     }
@@ -69,6 +69,11 @@ class Articles extends CI_Controller
 
             $insert_data = array();
 
+
+            $this->load->library('EmailSender');
+            $this->load->model('journalm');
+            $journal = $this->journalm->get_journal($journal_id);
+
             foreach ($AuthorArray as $sub_author) {
                 $sub_author_data = array(
                     'article_id' => $insert_id,
@@ -78,6 +83,24 @@ class Articles extends CI_Controller
                     'email' => $sub_author->email
                 );
                 array_push($insert_data, $sub_author_data);
+
+                //Send e-mails to the sub authors
+
+                $data = array(
+                    'author_name' => $user->first_name . " " . $user->last_name,
+                    'sub_author_name' => $sub_author->firstname . " " . $sub_author->lastname,
+                    'paper_title' => $title,
+                    'journal_name' => '$journal->name',
+                    'chief_editor_name' => 'Chief Editor',
+                    'chief_editor_email' => 'thejan@brightron.net'
+                );
+                if ($this->emailsender->sub_author_acknowledgement($sub_author->email, $data)) {
+                    //echo "Success";
+                } else {
+                    die('Error!');
+                    // echo "Failed";
+                }
+
             }
 
             $this->article->insert_sub_authors($insert_data);
@@ -96,7 +119,6 @@ class Articles extends CI_Controller
             $this->session->set_flashdata('upload', 'success');
 
             redirect('/dashboard');
-            //Todo; send email
         } else {
             $error = array('error' => "Error Detected!");
             redirect(base_url() . 'index.php/Articles/', $error);
@@ -116,35 +138,34 @@ class Articles extends CI_Controller
             $this->load->view('401');
         }
     }
-    
+
     public function reviewer_assigning_last($id)
-    {   
+    {
         if ($this->ua->check_login() == "Editor") {
             $role = array("role" => "Reviewer");
-            $article = array("id" => $id); 
-            $view_data['article'] = $this->article->getData('*', 'article',$article);
-            $view_data['reviewer'] = $this->reviewer->getData('*', 'user',$role);
+            $article = array("id" => $id);
+            $view_data['article'] = $this->article->getData('*', 'article', $article);
+            $view_data['reviewer'] = $this->reviewer->getData('*', 'user', $role);
             //var_dump($view_data);die();
             $this->load->view('reviewers_assigning ', $view_data);
         } else {
             $this->load->view('401');
         }
     }
-    
+
     public function reviewer_assigning($id)
-    {   
+    {
         if ($this->ua->check_login() == "Editor") {
             $role = array("role" => "Reviewer");
-            $article = array("id" => $id); 
-            $view_data['article'] = $this->article->getData('*', 'article',$article);
-            $view_data['reviewer'] = $this->reviewer->getData('*', 'user',$role);
+            $article = array("id" => $id);
+            $view_data['article'] = $this->article->getData('*', 'article', $article);
+            $view_data['reviewer'] = $this->reviewer->getData('*', 'user', $role);
             //var_dump($view_data); die();
             $this->load->view('reviewers_assigning_datalist', $view_data);
         } else {
             $this->load->view('401');
         }
     }
-  
 
 
 }

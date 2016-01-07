@@ -33,6 +33,7 @@ class EmailSender
         $password = $this->CI->config->item('send_grid_password');
         $smtp_server = $this->CI->config->item('send_grid_smtp_server');
         $smtp_server_port = $this->CI->config->item('send_grid_smtp_server_port');
+        $smtp_server_secrity = $this->CI->config->item('send_grid_smtp_server_security');
 
         $sending_address = $this->CI->config->item('email_sender_address');
         $sending_name = $this->CI->config->item('email_sender_name');
@@ -40,7 +41,7 @@ class EmailSender
         $from = array($sending_address => $sending_name);
         $to = array($to);
 
-        $transport = Swift_SmtpTransport::newInstance($smtp_server, $smtp_server_port);
+        $transport = Swift_SmtpTransport::newInstance($smtp_server, $smtp_server_port, $smtp_server_secrity);
         $transport->setUsername($username);
         $transport->setPassword($password);
         $swift = Swift_Mailer::newInstance($transport);
@@ -99,6 +100,22 @@ class EmailSender
             'chief_editor_email' => $data['chief_editor_email']
         );
         $body_string = $this->CI->parser->parse('email/author_acknowledgement', $view_data, TRUE);
+
+        return $this->send($to, "Paper Submission Acknowledgement", $body_string);
+    }
+
+    public function sub_author_acknowledgement($to, $data)
+    {
+        $this->CI->load->library('parser');
+        $view_data = array(
+            'author_name' => $data['author_name'],
+            'sub_author_name' => $data['sub_author_name'],
+            'paper_title' => $data['paper_title'],
+            'journal_name' => $data['journal_name'],
+            'chief_editor_name' => $data['chief_editor_name'],
+            'chief_editor_email' => $data['chief_editor_email']
+        );
+        $body_string = $this->CI->parser->parse('email/sub_author_acknowledgement', $view_data, TRUE);
 
         return $this->send($to, "Paper Submission Acknowledgement", $body_string);
     }
