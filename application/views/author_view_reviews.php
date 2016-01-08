@@ -40,15 +40,7 @@
                     </h3>
                 </div>
                 <div class="ibox ibox-content">
-                    <!--                    <div id="error-div" class="row m-b-md">
-                                            <center>
-                                                <div id="error" class="col-sm-12 error"><span class="alert alert-danger text-center"></span></div>
-                                            </center>
-                                        </div>-->
-
-                    <form role="form" id="review_form" name="review" method="post"
-                          action="<?= base_url('/index.php/reviews/submit_review') ?>"
-                          enctype="multipart/form-data">
+                         
                         <div class="form-group">
                             <div class="row">
                                 <input type="hidden" name="article_id" value="">
@@ -483,24 +475,9 @@
                                     </select>
                                 </div>
 
-                                <!--                                <div class="col-sm-3" style="margin-top: 10px;">
-                                                                    <label class="control-label">Upload Review : <br/></label>
-                                                                </div>
-                                                                <div class="col-sm-9">
-                                                                    <input name="upload_file" type="file" class="form-control"
-                                                                           style="max-width: 500px;"/>
-                                                                </div>
-                                
-                                                                <div class="col-sm-3">
-                                
-                                                                </div>
-                                                                <div class="col-sm-9" style="margin-top: 20px;">
-                                                                    <input name="submit" type="submit" class="btn btn-w-m btn-primary"/>
-                                                                </div>-->
-
                             </div>
                         </div>
-                    </form>
+                  
                 </div>
             </div>
 
