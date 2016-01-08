@@ -122,6 +122,39 @@ class Articles extends CI_Controller
             $DataSet = array('file_name' => $file['file_name']);
             $this->session->set_flashdata('upload', 'success');
 
+            $suggested_reviewers = array();
+            if ($this->input->post('suggestedReviewer1email') != '') {
+                $suggested_reviewer = array(
+                    'article_id' => $insert_id,
+                    'first_name' => $this->input->post('suggestedReviewer1fname'),
+                    'last_name' => $this->input->post('suggestedReviewer1lname'),
+                    'email' => $this->input->post('suggestedReviewer1email'),
+                    'affiliation' => $this->input->post('suggestedReviewer1affiliation')
+                );
+                array_push($suggested_reviewers, $suggested_reviewer);
+            }
+            if ($this->input->post('suggestedReviewer2email') != '') {
+                $suggested_reviewer = array(
+                    'article_id' => $insert_id,
+                    'first_name' => $this->input->post('suggestedReviewer2fname'),
+                    'last_name' => $this->input->post('suggestedReviewer2lname'),
+                    'email' => $this->input->post('suggestedReviewer2email'),
+                    'affiliation' => $this->input->post('suggestedReviewer2affiliation')
+                );
+                array_push($suggested_reviewers, $suggested_reviewer);
+            }
+            if ($this->input->post('suggestedReviewer3email') != '') {
+                $suggested_reviewer = array(
+                    'article_id' => $insert_id,
+                    'first_name' => $this->input->post('suggestedReviewer3fname'),
+                    'last_name' => $this->input->post('suggestedReviewer3lname'),
+                    'email' => $this->input->post('suggestedReviewer3email'),
+                    'affiliation' => $this->input->post('suggestedReviewer3affiliation')
+                );
+                array_push($suggested_reviewers, $suggested_reviewer);
+            }
+            $this->article->insert_suggested_reviewer($suggested_reviewers);
+
             redirect('/dashboard');
         } else {
             $error = array('error' => "Error Detected!");

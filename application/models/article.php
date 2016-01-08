@@ -147,4 +147,9 @@ article.title');
         return $this->db->get()->result();
     }
 
+    public function insert_suggested_reviewer($data)
+    {
+        $this->db->insert_batch('suggested_reviewers', $data);
+    }
+
 }
