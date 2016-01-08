@@ -10,6 +10,7 @@ class Reviews extends CI_Controller {
     public function __construct() {
         parent::__construct();
         $this->load->model('article');
+        $this->load->model('review');
         $this->load->helper(array('form', 'url'));
         $this->load->library('form_validation');
         $this->USER_OBJ = $this->session->userdata('user');
@@ -82,6 +83,14 @@ class Reviews extends CI_Controller {
         }
     }
 
-    
+    public function view($id) {
+        $dataarr = $this->review->getReviews($id);
+//        var_dump($dataarr[0]);
+//        echo "<br>";
+//        echo $dataarr[0]->review_date;
+//        die();
+        $data["data"] = $dataarr[0];
+        $this->load->view("author_view_reviews", $data);
+    }
 
 }
