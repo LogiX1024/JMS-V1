@@ -12,6 +12,7 @@ class Articles extends CI_Controller
         parent::__construct();
         $this->load->model('article');
         $this->load->model('reviewer');
+        $this->load->model('journalm');
         $this->load->helper(array('form', 'url'));
         $this->load->library('form_validation');
     }
@@ -23,14 +24,16 @@ class Articles extends CI_Controller
         if (isset($_GET['journal'])) {
             $journal_id = $this->input->get('journal');
             $this->session->set_userdata('journal_id', $journal_id);
+            
         }
         if ($this->ua->check_login() == "Author") {
             $user = $this->session->userdata('user');
-            if (isset($user)) {
+            if (isset($user)){
 //            redirect(base_url().'index.php/Users' );
+                $journals = $this->journalm->get_journals();
                 $success = array('success' => "Successfully Loaded!");
-                $this->load->view('author_submit_paper', $success);
-            } else {
+                $this->load->view('author_submit_paper', array('journals' => $journals), $success);
+            }else{
                 $this->load->view('login');
             }
         }
@@ -43,11 +46,12 @@ class Articles extends CI_Controller
         $user = $this->session->userdata("user");
         $title = $this->input->post("title");
         $journal_id = $this->session->userdata('journal_id');
+        //$journal_id = $this->input->post("journal_id");
         $keywords = $this->input->post("keywords");
         $submitted_date = date("Y-m-d");
 
         $DataSet = array('author_id' => $user->id, 'journal_id' => $journal_id, 'title' => $title, 'submit_date' => $submitted_date, 'journal_id' => "9");
-
+        //var_dump($DataSet); die();
         $insert_id = $this->article->insertData("article", $DataSet);
 
 
