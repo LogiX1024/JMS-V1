@@ -33,10 +33,6 @@
                 </div>
             </div>
 
-            <?php
-            echo $data->id;
-            ?>
-
             <div class="ibox">
                 <div class="ibox-title">
                     <h3>
