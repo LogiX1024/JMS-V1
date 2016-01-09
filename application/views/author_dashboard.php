@@ -55,6 +55,7 @@
                                     <li class=""><a data-toggle="tab" href="#tab-2">Published</a></li>
                                     <li class=""><a data-toggle="tab" href="#tab-3">Reviewed</a></li>
                                     <li class=""><a data-toggle="tab" href="#tab-4">Pending Reviews</a></li>
+                                    <li class=""><a data-toggle="tab" href="#tab-5">Drafts</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -81,20 +82,81 @@
                                                         <span>Keywords : <?= keywords($article_data->keyword) ?> </span><br/>
                                                     </div>
                                                 </div>
-                                                <div class="col-lg-2 pull-right">
-                                                    <a href="<?php echo base_url(); ?>./uploads/FreshCopy/<?= $article_data->id . '.docx' ?>"
-                                                       target="_blank">
-                                                        <button type="button" style="margin-bottom: 10px"
-                                                                class="btn btn-w-m btn-default pull-right">Download
+                                                <?php
+                                                if ($article_data->status == "published"):
+                                                    ?>
+                                                    <div class="col-lg-2 pull-right">
+                                                        <a href="<?php echo base_url(); ?>./uploads/FreshCopy/<?= $article_data->id . '.docx' ?>"
+                                                           target="_blank">
+                                                            <button type="button" style="margin-bottom: 10px"
+                                                                    class="btn btn-w-m btn-default pull-right">Download
+                                                            </button>
+                                                        </a>
+                                                        <a href="downloads/3282E2E55115.pdf" target="_blank">
+                                                            <button type="button" style="margin-bottom: 10px"
+                                                                    class="btn btn-w-m btn-default pull-right">View in
+                                                                Journal
+                                                            </button>
+                                                        </a>
+                                                    </div>
+                                                    <?php
+                                                endif;
+                                                if ($article_data->status == "reviewed"):
+                                                    ?>
+                                                    <div class="col-lg-2 pull-right">
+                                                        <a href="<?php echo base_url(); ?>./uploads/FreshCopy/<?= $article_data->id . '.docx' ?>"
+                                                           target="_blank">
+                                                            <button type="button" style="margin-bottom: 10px"
+                                                                    class="btn btn-w-m btn-default pull-right">Download
+                                                            </button>
+                                                        </a>
+                                                        <!--                                                        <a href="" target="_blank">-->
+                                                        <button data-article-id="<?= $article_data->id ?>" type="button"
+                                                                style="margin-bottom: 10px"
+                                                                class="btn btn-w-m btn-default pull-right view_review">
+                                                            View Review
                                                         </button>
-                                                    </a>
-                                                    <a href="downloads/3282E2E55115.pdf" target="_blank">
+                                                        <!--                                                        </a>-->
+                                                        <a href="" target="_blank">
+                                                            <button type="button" style="margin-bottom: 10px"
+                                                                    class="btn btn-w-m btn-default pull-right">Submit
+                                                                for Camera Ready
+                                                            </button>
+                                                        </a>
+                                                    </div>
+                                                    <?php
+                                                endif;
+                                                if ($article_data->status == "assigned" || $article_data->status == "pending"):
+                                                    ?>
+                                                    <div class="col-lg-2 pull-right">
+                                                        <a href="<?php echo base_url(); ?>./uploads/FreshCopy/<?= $article_data->id . '.docx' ?>"
+                                                           target="_blank">
+                                                            <button type="button" style="margin-bottom: 10px"
+                                                                    class="btn btn-w-m btn-default pull-right">Download
+                                                            </button>
+                                                        </a>
+                                                    </div>
+                                                    <?php
+                                                endif;
+                                                if ($article_data->status == "draft"):
+                                                    ?>
+                                                    <div class="col-lg-2 pull-right">
+                                                        <a href="<?php echo base_url(); ?>./uploads/FreshCopy/<?= $article_data->id . '.docx' ?>"
+                                                           target="_blank">
+                                                            <button type="button" style="margin-bottom: 10px"
+                                                                    class="btn btn-w-m btn-default pull-right">Download
+                                                            </button>
+                                                        </a>
                                                         <button type="button" style="margin-bottom: 10px"
-                                                                class="btn btn-w-m btn-default pull-right">View in
-                                                            Journal
+                                                                class="btn btn-w-m btn-default pull-right">Upload New
+                                                            Version
                                                         </button>
-                                                    </a>
-                                                </div>
+                                                    </div>
+                                                    <?php
+                                                endif;
+                                                ?>
+
+
                                             </div>
 
                                         </div>
@@ -208,6 +270,40 @@
                                                                     class="btn btn-w-m btn-default pull-right">Download
                                                             </button>
                                                         </a>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        <?php }
+                                    endforeach; ?>
+                                </div>
+                                <div id="tab-5" class="tab-pane">
+                                    <?php foreach ($author_article as $article_data): ?>
+                                        <?php if ($article_data->status == "draft") { ?>
+                                            <div class="media well">
+                                                <div class="media-body">
+                                                    <div class="col-lg-8">
+                                                        <div class="ibox-content">
+                                                            <h3 class="media-heading">
+                                                                <?= $article_data->title ?>
+                                                            </h3>
+
+                                                            <span>Sub Authors : <?= sub_authors($article_data->sub_authors) ?> </span><br/>
+                                                            <span>Keywords : <?= keywords($article_data->keyword) ?> </span><br/>
+
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-2 pull-right">
+                                                        <a href="<?php echo base_url(); ?>./uploads/FreshCopy/<?= $article_data->id . '.docx' ?>"
+                                                           target="_blank">
+                                                            <button type="button" style="margin-bottom: 10px"
+                                                                    class="btn btn-w-m btn-default pull-right">Download
+                                                            </button>
+                                                        </a>
+                                                        <button type="button" style="margin-bottom: 10px"
+                                                                class="btn btn-w-m btn-default pull-right">Upload New
+                                                            Version
+                                                        </button>
                                                     </div>
                                                 </div>
 
