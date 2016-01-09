@@ -8,7 +8,7 @@ class journalm extends CI_Model {
     public function get_journal($id) {
         $this->db->select('journal.id, journal.name, journal.issue, journal.volume, journal.aim, journal.scope,journal.chief_editor_id,
                 journal.objective, journal.started_date, journal.collection_date, categories.category, user.first_name,
-                user.last_name, journal.publishing_date, journal.camera_ready_date, journal.`status`');
+                user.last_name, user.email_address, journal.publishing_date, journal.camera_ready_date, journal.`status`');
         $this->db->from('journal');
         $this->db->join('user', 'journal.chief_editor_id = user.id', 'inner');
         $this->db->join('categories', 'journal.category = categories.id', 'inner');

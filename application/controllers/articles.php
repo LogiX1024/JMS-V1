@@ -24,16 +24,16 @@ class Articles extends CI_Controller
         if (isset($_GET['journal'])) {
             $journal_id = $this->input->get('journal');
             $this->session->set_userdata('journal_id', $journal_id);
-            
+
         }
         if ($this->ua->check_login() == "Author") {
             $user = $this->session->userdata('user');
-            if (isset($user)){
+            if (isset($user)) {
 //            redirect(base_url().'index.php/Users' );
                 $journals = $this->journalm->get_journals();
                 $success = array('success' => "Successfully Loaded!");
                 $this->load->view('author_submit_paper', array('journals' => $journals), $success);
-            }else{
+            } else {
                 $this->load->view('login');
             }
         }
@@ -94,9 +94,9 @@ class Articles extends CI_Controller
                     'author_name' => $user->first_name . " " . $user->last_name,
                     'sub_author_name' => $sub_author->firstname . " " . $sub_author->lastname,
                     'paper_title' => $title,
-                    'journal_name' => '$journal->name',
-                    'chief_editor_name' => 'Chief Editor',
-                    'chief_editor_email' => 'thejan@brightron.net'
+                    'journal_name' => $journal->name,
+                    'chief_editor_name' => $journal->first_name . " " . $journal->last_name,
+                    'chief_editor_email' => $journal->email_address
                 );
                 if ($this->emailsender->sub_author_acknowledgement($sub_author->email, $data)) {
                     //echo "Success";
@@ -204,5 +204,44 @@ class Articles extends CI_Controller
         }
     }
 
+    public function upload_new_version()
+    {
+        if ($this->ua->check_login() == "Author") {
+
+
+            $article_id = $this->input->post('article_id');
+            $config['upload_path'] = './uploads/FreshCopy';
+            $config['allowed_types'] = 'doc|docx|odt';
+            $config['file_name'] = $article_id;
+            $config['overwrite'] = TRUE;
+
+            $this->load->library('upload', $config);
+
+            if (!$this->upload->do_upload("upload_file")) {
+                echo $this->upload->display_errors();
+            }
+
+            $this->session->set_flashdata('upload', 'success');
+
+            redirect('/dashboard');
+        } else {
+            $this->load->view('401');
+        }
+    }
+
+    public function request_camera_ready()
+    {
+        $article_id = $this->input->post('article_id');
+        $CRNote = $this->input->post('CRNote');
+
+        $this->article->store_CRNote($article_id, $CRNote);
+        $this->article->change_article_status($article_id, 'Camera Ready Requested');
+
+        $this->session->set_flashdata('message', 'Camera Ready request sent successfully');
+        $this->session->set_flashdata('type', 'success');
+
+        redirect('/dashboard');
+
+    }
 
 }

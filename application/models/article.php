@@ -48,29 +48,7 @@ class Article extends CI_Model
 
     public function get_reviewed_article($id)
     {
-        $this->db->select('assigned_review.article_id,
-assigned_review.reviewer_id,
-assigned_review.assigned_date,
-assigned_review.review_id,
-review.id,
-review.review_date,
-review.reviewer_id,
-review.title_acceptable,
-review.title_suggession,
-review.introduction,
-review.introduction_suggession,
-review.originality,
-review.clarity,
-review.completeness,
-review.interpretation,
-review.importance,
-review.materials_and_methods,
-review.materials_and_methods_suggession,
-review.results_and_discussion,
-review.results_and_discussion_suggession,
-review.decision,
-article.id,
-article.title');
+        $this->db->select('assigned_review.article_id, assigned_review.reviewer_id, assigned_review.assigned_date, assigned_review.review_id, review.id, review.review_date, review.reviewer_id, review.title_acceptable, review.title_suggession, review.introduction, review.introduction_suggession, review.originality, review.clarity, review.completeness, review.interpretation, review.importance, review.materials_and_methods, review.materials_and_methods_suggession, review.results_and_discussion, review.results_and_discussion_suggession, review.decision, article.id, article.title');
         $this->db->from('assigned_review');
         $this->db->join('review', 'assigned_review.review_id = review.id', 'inner');
         $this->db->join('article', 'assigned_review.article_id = article.id', 'inner');
@@ -150,6 +128,24 @@ article.title');
     public function insert_suggested_reviewer($data)
     {
         $this->db->insert_batch('suggested_reviewers', $data);
+    }
+
+
+    public function get_articles_of_statuses($statuses)
+    {
+        $this->db->from('article');
+
+        foreach ($statuses as $status) {
+            $this->db->or_where('status', $status);
+        }
+        return $this->db->get()->result();
+    }
+
+    public function store_CRNote($id, $CRNote)
+    {
+        $this->db->set('CRNote', $CRNote);
+        $this->db->where('id', $id);
+        $this->db->update('article');
     }
 
 }
