@@ -65,7 +65,6 @@
                             <div class="tab-content">
                                 <div id="tab-1" class="tab-pane active">
                                     <?php foreach ($author_article as $article_data): ?>
-
                                         <div class="media well">
                                             <div class="media-body">
                                                 <div class="col-lg-8">

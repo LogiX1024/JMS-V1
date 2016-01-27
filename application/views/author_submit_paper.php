@@ -118,6 +118,38 @@ and open the template in the editor.
                                                 </table>
                                             </div>
                                         </div>
+                                                <?php 
+                                                $journal_id = $this->session->userdata('journal_id');
+                                                ?>
+                                                                                            <div class="form-group">
+                                                <label class="col-sm-2 control-label">Journal</label>
+                                                <div class="col-sm-9">
+                                                    <select name="journal_id" id="journals"
+                                                            class="chosen-select form-control">
+                                                                <?php
+                                                                foreach ($journals as $journal):
+
+
+                                                                    if (isset($journal_id) && $journal_id == $journal->id) {
+                                                                        ?>
+                                                                <option selected=""
+                                                                        value="<?= $journal->id ?>"><?= $journal->name ?></option>
+                                                                        <?php } else {
+                                                                        ?>
+                                                                <option 
+                                                                    value="<?= $journal->id ?>"><?= $journal->name ?></option>
+                                                                    <?php
+                                                                }
+                                                                ?>
+
+
+    <?php
+endforeach;
+?>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        
                                         <div class="form-group">
                                             <label class="col-sm-2 control-label">Keywords</label>
 
