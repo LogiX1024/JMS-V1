@@ -55,6 +55,7 @@
                                     <li class=""><a data-toggle="tab" href="#tab-2">Published</a></li>
                                     <li class=""><a data-toggle="tab" href="#tab-3">Reviewed</a></li>
                                     <li class=""><a data-toggle="tab" href="#tab-4">Pending Reviews</a></li>
+                                    <li class=""><a data-toggle="tab" href="#tab-5">Drafts</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -64,44 +65,103 @@
                             <div class="tab-content">
                                 <div id="tab-1" class="tab-pane active">
                                     <?php foreach ($author_article as $article_data): ?>
-
                                         <div class="media well">
                                             <div class="media-body">
                                                 <div class="col-lg-8">
                                                     <div class="ibox-content">
                                                         <h3 class="media-heading">
-                                                            <?= $article_data->title . $article_data->status ?>
+                                                            <?= $article_data->title ?>
                                                         </h3>
                                                         <?php
                                                         /**
                                                          * sub_authors() and keywords() helper functions are available in the helper class 'arraystring_helper'
                                                          */
                                                         ?>
+                                                        <span>Status : <?= ucfirst($article_data->status) ?> </span><br/>
                                                         <span>Sub Authors : <?= sub_authors($article_data->sub_authors) ?> </span><br/>
                                                         <span>Keywords : <?= keywords($article_data->keyword) ?> </span><br/>
                                                     </div>
                                                 </div>
-                                                <div class="col-lg-2 pull-right">
-                                                    <a href="<?php echo base_url(); ?>./uploads/FreshCopy/<?= $article_data->id . '.docx' ?>"
-                                                       target="_blank">
-                                                        <button type="button" style="margin-bottom: 10px"
-                                                                class="btn btn-w-m btn-default pull-right">Download
+                                                <?php
+                                                if ($article_data->status == "published"):
+                                                    ?>
+                                                    <div class="col-lg-2 pull-right">
+                                                        <a href="<?php echo base_url(); ?>./uploads/FreshCopy/<?= $article_data->id . '.docx' ?>"
+                                                           target="_blank">
+                                                            <button type="button" style="margin-bottom: 10px"
+                                                                    class="btn btn-w-m btn-default pull-right">Download
+                                                            </button>
+                                                        </a>
+                                                        <a href="downloads/3282E2E55115.pdf" target="_blank">
+                                                            <button type="button" style="margin-bottom: 10px"
+                                                                    class="btn btn-w-m btn-default pull-right">View in
+                                                                Journal
+                                                            </button>
+                                                        </a>
+                                                    </div>
+                                                    <?php
+                                                endif;
+                                                if ($article_data->status == "Camera Ready Requested"):
+                                                    ?>
+                                                    <div class="col-lg-2 pull-right">
+                                                        <a href="<?php echo base_url(); ?>./uploads/FreshCopy/<?= $article_data->id . '.docx' ?>"
+                                                           target="_blank">
+                                                            <button type="button" style="margin-bottom: 10px"
+                                                                    class="btn btn-w-m btn-default pull-right">Download
+                                                            </button>
+                                                        </a>
+                                                        <!--                                                        <a href="" target="_blank">-->
+                                                        <button data-article-id="<?= $article_data->id ?>" type="button"
+                                                                style="margin-bottom: 10px"
+                                                                class="btn btn-w-m btn-default pull-right view_review">
+                                                            View Review
                                                         </button>
-                                                    </a>
-                                                    <a href="downloads/3282E2E55115.pdf" target="_blank">
+                                                        <!--                                                        </a>-->
+                                                        <a href="" target="_blank">
+                                                            <button type="button" style="margin-bottom: 10px"
+                                                                    class="btn btn-w-m btn-default pull-right">Submit
+                                                                for Camera Ready
+                                                            </button>
+                                                        </a>
+                                                    </div>
+                                                    <?php
+                                                endif;
+                                                if ($article_data->status == "assigned" || $article_data->status == "pending"):
+                                                    ?>
+                                                    <div class="col-lg-2 pull-right">
+                                                        <a href="<?php echo base_url(); ?>./uploads/FreshCopy/<?= $article_data->id . '.docx' ?>"
+                                                           target="_blank">
+                                                            <button type="button" style="margin-bottom: 10px"
+                                                                    class="btn btn-w-m btn-default pull-right">Download
+                                                            </button>
+                                                        </a>
+                                                    </div>
+                                                    <?php
+                                                endif;
+                                                if ($article_data->status == "draft"):
+                                                    ?>
+                                                    <div class="col-lg-2 pull-right">
+                                                        <a href="<?php echo base_url(); ?>./uploads/FreshCopy/<?= $article_data->id . '.docx' ?>"
+                                                           target="_blank">
+                                                            <button type="button" style="margin-bottom: 10px"
+                                                                    class="btn btn-w-m btn-default pull-right">Download
+                                                            </button>
+                                                        </a>
                                                         <button type="button" style="margin-bottom: 10px"
-                                                                class="btn btn-w-m btn-default pull-right">View in
-                                                            Journal
+                                                                data-article-id="<?= $article_data->id ?>"
+                                                                class="btn btn-w-m btn-default pull-right newVersion">
+                                                            Upload New Version
                                                         </button>
-                                                    </a>
-                                                </div>
-                                            </div>
+                                                    </div>
+                                                    <?php
+                                                endif;
+                                                ?>
 
+                                            </div>
                                         </div>
                                     <?php endforeach; ?>
-
                                 </div>
-
+                                <!--                                Published Articles-->
                                 <div id="tab-2" class="tab-pane">
 
                                     <?php foreach ($author_article as $article_data): ?>
@@ -134,15 +194,14 @@
                                                         </a>
                                                     </div>
                                                 </div>
-
                                             </div>
                                         <?php }
                                     endforeach; ?>
                                 </div>
-
+                                <!--                                Reviewed Articles-->
                                 <div id="tab-3" class="tab-pane">
                                     <?php foreach ($author_article as $article_data): ?>
-                                        <?php if ($article_data->status == "reviewed") { ?>
+                                        <?php if ($article_data->status == "Camera Ready Requested") { ?>
                                             <div class="media well">
                                                 <div class="media-body">
                                                     <div class="col-lg-8">
@@ -150,10 +209,8 @@
                                                             <h3 class="media-heading">
                                                                 <?= $article_data->title ?>
                                                             </h3>
-
                                                             <span>Sub Authors : <?= sub_authors($article_data->sub_authors) ?> </span><br/>
                                                             <span>Keywords : <?= keywords($article_data->keyword) ?> </span><br/>
-
                                                         </div>
                                                     </div>
                                                     <div class="col-lg-2 pull-right">
@@ -178,13 +235,11 @@
                                                         </a>
                                                     </div>
                                                 </div>
-
                                             </div>
                                         <?php }
                                     endforeach; ?>
-
                                 </div>
-
+                                <!--                                Assigned or Pending Articles-->
                                 <div id="tab-4" class="tab-pane">
                                     <?php foreach ($author_article as $article_data): ?>
                                         <?php if ($article_data->status == "assigned" || $article_data->status == "pending") { ?>
@@ -210,6 +265,40 @@
                                                         </a>
                                                     </div>
                                                 </div>
+                                            </div>
+                                        <?php }
+                                    endforeach; ?>
+                                </div>
+                                <div id="tab-5" class="tab-pane">
+                                    <?php foreach ($author_article as $article_data): ?>
+                                        <?php if ($article_data->status == "draft") { ?>
+                                            <div class="media well">
+                                                <div class="media-body">
+                                                    <div class="col-lg-8">
+                                                        <div class="ibox-content">
+                                                            <h3 class="media-heading">
+                                                                <?= $article_data->title ?>
+                                                            </h3>
+
+                                                            <span>Sub Authors : <?= sub_authors($article_data->sub_authors) ?> </span><br/>
+                                                            <span>Keywords : <?= keywords($article_data->keyword) ?> </span><br/>
+
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-2 pull-right">
+                                                        <a href="<?php echo base_url(); ?>./uploads/FreshCopy/<?= $article_data->id . '.docx' ?>"
+                                                           target="_blank">
+                                                            <button type="button" style="margin-bottom: 10px"
+                                                                    class="btn btn-w-m btn-default pull-right">Download
+                                                            </button>
+                                                        </a>
+                                                        <button type="button" style="margin-bottom: 10px"
+                                                                data-article-id="<?= $article_data->id ?>"
+                                                                class="btn btn-w-m btn-default pull-right newVersion">
+                                                            Upload New Version
+                                                        </button>
+                                                    </div>
+                                                </div>
 
                                             </div>
                                         <?php }
@@ -220,13 +309,9 @@
                     </div>
                 </div>
             </div>
-
         </div>
-
-
     </div>
 </div>
-
 
 <div class="modal inmodal" id="myModal" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-md">
@@ -254,6 +339,37 @@
         </div>
     </div>
 </div>
+<div class="modal inmodal" id="newVersionUpload" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content animated fadeIn">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span
+                        class="sr-only">Close</span></button>
+                <i class="fa fa-paperclip modal-icon fa-2x"></i>
+                <h4 class="modal-title">Upload New Version</h4>
+            </div>
+            <form method="post" enctype="multipart/form-data"
+                  action="<?= base_url('index.php/articles/upload_new_version') ?>">
+
+                <div class="modal-body">
+                    <input type="text" name="article_id" id="new_version_article_id" hidden/>
+
+                    <div class="form-group">
+                        <label for="upload_file">
+                            Select New Version
+                        </label>
+                        <input type="file" name="upload_file" class="form-control" id="upload_file"/>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <input style="margin-left: 20px" type="submit" class="btn btn-primary pull-right" value="Upload"/>
+                    <Button type="button" class="btn btn-white pull-right" data-dismiss="modal">Cancel</Button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 
 <?php $this->load->view('partial/common_js'); ?>
 
@@ -278,6 +394,12 @@
                 }
             });
             $('#myModal').modal('show');
+        });
+
+        $('.newVersion').click(function () {
+            var article_id = $(this).data('article-id');
+            $('#new_version_article_id').val(article_id);
+            $("#newVersionUpload").modal('show');
         });
     });
 </script>

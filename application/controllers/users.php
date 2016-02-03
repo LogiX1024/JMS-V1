@@ -68,14 +68,38 @@ class Users extends CI_Controller
     }
 
     private function editor_dashboard()
-    {   //$author_id = array("author_id" => $this->USER_OBJ->id);
+    {
+        /**
+         * draft: unattended manuscripts
+         * assigned: waiting for 3 reviewers to review
+         * reviewed: 3 reviewers reviewed waiting to add editor note
+         * camera ready: camera ready sent by author
+         */
+        $articles = $this->article->get_articles_of_statuses(array('draft', 'assigned', 'reviewed', 'camera ready'));
 
-        $data['author_article'] = array();
+        $articles_array = array();
+
+        foreach ($articles as $article) {
+            $article->keyword = $this->article->get_keywords($article->id);
+            $article->sub_authors = $this->article->get_sub_authors($article->id);
+
+            array_push($articles_array, $article);
+        }
 
 
-        //$this->load->view('editor_submissions', $data);
+        $data['type'] = $this->session->flashdata('type');
+        $data['message'] = $this->session->flashdata('message');
+
+        $data['articles'] = $articles_array;
+
+        $this->load->helper('arraystring');
+
+        $this->load->view('editor_submissions', $data);
     }
 
+    /**
+     * Author Dashboard
+     */
     private function author_dashboard()
     {
         $this->load->helper('arraystring');
