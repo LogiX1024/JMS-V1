@@ -475,6 +475,13 @@
                                     </select>
                                 </div>
 
+                                <div class="col-sm-3">
+                                    <label class="control-label">Download Review : <br/></label>
+                                </div>
+                                <div class="col-sm-9">
+                                    <a class="btn btn-primary" href="<?=  base_url('uploads') ?><?= $data->fileurl ?>">Download</a>
+                                </div>
+                                
                             </div>
                         </div>
                   
