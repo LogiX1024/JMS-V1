@@ -65,13 +65,12 @@ class Reviews extends CI_Controller {
             $config['allowed_types'] = 'doc|docx|odt';
             $config['file_name'] = "Reviewed_" . $article_id . "_" . $review_id;
             $this->load->library('upload', $config);
-            $url = "/Reviews/Reviewed_" . $article_id . "_" . $review_id;
-            $this->article->update_review_url($review_id,$url);
+            $url = "/Reviews/Reviewed_" . $article_id . "_" . $review_id;            
             if (!$this->upload->do_upload("upload_file")) {
 //                echo $this->upload->display_errors();
                 $this->load->view('500');
             } else {
-
+                $this->article->update_review_url($review_id,$url);
                 if ($this->article->get_pending_reviews_count($article_id) == 0) {
                     //the 3rd reviewer reviewed
                     //change the status of the article to reviewed
