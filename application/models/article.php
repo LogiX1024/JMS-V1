@@ -68,6 +68,12 @@ class Article extends CI_Model
 
         return $review_id;
     }
+    
+    public function update_review_url($review_id,$url) {
+        $data=array('fileurl'=>$url);
+        $this->db->where('id', $review_id);
+        $this->db->update('review',$data);
+    }
 
     public function assign_review($data)
     {

@@ -65,6 +65,8 @@ class Reviews extends CI_Controller {
             $config['allowed_types'] = 'doc|docx|odt';
             $config['file_name'] = "Reviewed_" . $article_id . "_" . $review_id;
             $this->load->library('upload', $config);
+            $url = "/Reviews/Reviewed_" . $article_id . "_" . $review_id;
+            $this->article->update_review_url($review_id,$url);
             if (!$this->upload->do_upload("upload_file")) {
 //                echo $this->upload->display_errors();
                 $this->load->view('500');
