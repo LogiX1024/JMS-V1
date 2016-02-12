@@ -639,7 +639,7 @@ class Users extends CI_Controller
     public function reset_password($email)
     {
         $data["emails"] = array("email" => $email);
-        $this->load->view("password_reset", $data);
+        $this->load->view("reset_password", $data);
     }
 
     public function reset()
